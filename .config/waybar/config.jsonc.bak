@@ -1,0 +1,92 @@
+{
+    "layer": "top",
+    "modules-left": ["sway/workspaces", "niri/workspaces", "niri/window", "sway/mode"],
+    "modules-center": ["clock"],
+    "modules-right": ["gamemode", "tray", "sway/scratchpad", "battery", "cpu", "memory", "pulseaudio"],
+    "sway/scratchpad": {
+      "format": "󱂬 {count}"
+    },
+    "pulseaudio": {
+    	"format": "  {volume}%"
+    },
+    "sway/workspaces": {
+      "format": "{name}{windows}",
+      "format-window-separator": "|",
+      "window-rewrite-default": " {class} ",
+      "window-format": "<span color='#e0e0e0'>{name}</span>",
+      "window-rewrite": {
+        "class<firefox>": " 󰈹 ",
+        "class<spotify>": " 󰓇 ",
+        "class<kitty>": "  ",
+        "class<vesktop>": "  ",
+        "class<kitty> title<nvim.*>": "  ",
+        "class<kitty> title<htop.*>": "  ",
+        "class<kitty> title<yazi.*>": " 󰈔 ",
+        "class<kitty> title<cava.*>": " 󰝪 ",
+        "class<kitty> title<man.*>": "  ",
+        "class<steam>": "  ",
+        "class<.*.bottles>": " 󰡔 ",
+        "class<heroic>": " 󱢾 ",
+        "class<org.gnome.Calculator>": " 󰪚 ",
+        "class<org.gnome.Builder>": "  ",
+        "class<io.github.idevecore.Valuta>": "  ",
+        "class<io.github.fizzyizzy05.binary>": "  ",
+        "class<org.gnome.Loupe>": " 󰋩 ",
+        "class<com.saivert.pwvucontrol>": " 󰕾 ",
+        "class<org.qbittorrent.qBittorrent>": "  ",
+        "class<VSCodium>": "  ",
+        "class<libreoffice-writer>": "  ",
+        "class<libreoffice-math>": "  ",
+        "class<libreoffice-calc>": "  ",
+        "class<libreoffice-base>": "  ",
+        "class<libreoffice-impress>": "  ",
+        "class<libreoffice-draw>": "  ",
+        "class<libreoffice>": "  ",
+        "class<libreoffice-startcenter>": "  ",
+        "class<soffice>": "  ",
+        "class<vlc>": " 󰕼 "
+      }
+    },
+    "niri/workspaces": {
+      "format": "{index}"
+    },
+    "mpris": {
+    	"format": "{status_icon} {artist} - {title}",
+    	"format-stopped": "",
+    	"status-icons": {
+    		"paused": "⏸",
+    		"playing": "󰐊"
+    	},
+    	"interval": "0.1"
+    },
+    "clock": {
+        "format": "{:%d %b %T}",
+        "interval": 1,
+        "tooltip-format": "{:%A %d %B %Y}",
+        "timezone": "America/New_York"
+    },
+    "tray": {
+    	"spacing": 12
+    },
+    "gamemode": {
+        "glyph": "   ",
+        "format": "{glyph}",
+        "use-icon": false,
+        "icon-spacing": 16
+    },
+    "memory": {
+        "format": "  {percentage}%",
+        "interval": 1
+    },
+    "cpu": {
+        "format": "  {usage}%",
+        "interval": 1
+    },
+    "battery": {
+    	"format": "{icon} {capacity}%",
+    	"format-charging": "{icon} {capacity}% ",
+    	"format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+    	"interval": 1
+    }
+}
+

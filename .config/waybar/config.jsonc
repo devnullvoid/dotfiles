@@ -1,0 +1,243 @@
+{
+    // ===========================================
+    // Global Configuration
+    // ===========================================
+    "layer": "top",
+    "position": "top",
+    // "height": 32,
+    // "width": 1280,
+    "spacing": 4,
+    "modules-left": ["custom/launcher", "niri/workspaces", "wlr/taskbar"],
+    "modules-center": ["clock"],
+    "modules-right": [
+        "tray",
+        "pulseaudio",
+        "network",
+        "cpu",
+        "memory",
+        "temperature",
+        "backlight",
+        "battery",
+        "idle_inhibitor",
+        "custom/lock",
+        "custom/notification"
+    ],
+
+    // ===========================================
+    // Module: Workspaces
+    // ===========================================
+    "niri/workspaces": {
+        "format": "{icon}",
+        "format-icons": {
+            "default": "",
+            "active": "",
+            "focused": ""
+        },
+        "on-click": "activate",
+        "on-click-right": "close"
+    },
+
+    // ===========================================
+    // Module: System Information
+    // ===========================================
+    "cpu": {
+        "format": "  {usage}%",
+        "interval": 1,
+        "max-length": 10,
+        "on-click": "kitty -e btop",
+        "tooltip": true
+        // "tooltip-format": "  CPU: {usage}%  |  Load: {load}\n  Cores: {n_cores}  |  Threads: {n_threads}\n  Freq: {avg_frequency}GHz (Min: {min_frequency}GHz, Max: {max_frequency}GHz)"
+    },
+
+    "memory": {
+        "format": "  {percentage}%",
+        "interval": 1,
+        "tooltip": true,
+        "tooltip-format": "🧠  Memory: {percentage}%\n\n  Used: {used:0.1f}G / {total:0.1f}G\n  Swap: {swapUsed:0.1f}G / {swapTotal:0.1f}G",
+        "max-length": 10
+    },
+
+    "temperature": {
+        "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
+        "critical-threshold": 80,
+        "format": "  {temperatureC}°C",
+        "format-critical": "  {temperatureC}°C",
+        "tooltip": true,
+        "tooltip-format": "🌡️  CPU Temperature: {temperatureC}°C"
+    },
+
+    // ===========================================
+    // Module: Network
+    // ===========================================
+    "network": {
+        "interval": 3,
+        "format-wifi": " ",
+        "format-ethernet": "  {ifname}",
+        "format-disconnected": "  Disconnected",
+        "format-linked": "{ifname} (No IP) ",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+        "tooltip-format": "🌐  Network\n\n  SSID: {essid}\n  IP: {ipaddr}/{cidr}\n  Strength: {signalStrength}%\n  ▼ {bandwidthDownBits}  ▲ {bandwidthUpBits}",
+        "on-click": "nm-connection-editor",
+        "on-click-right": "nm-connection-editor"
+    },
+
+    // ===========================================
+    // Module: Audio
+    // ===========================================
+    "pulseaudio": {
+        "format": "{icon}  {volume}%",
+        "format-bluetooth": "{icon}  {volume}% ",
+        "format-muted": " ",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "scroll-step": 1,
+        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "on-click-right": "pavucontrol",
+        "tooltip": false
+    },
+
+    // ===========================================
+    // Module: Power Management
+    // ===========================================
+    "backlight": {
+        "device": "amdgpu_bl1",
+        "format": "{icon} {percent}%",
+        "format-icons": ["", "", "", "", "", "", "", "", ""],
+        "on-scroll-up": "light -A 5",
+        "on-scroll-down": "light -U 5",
+        "tooltip": false
+    },
+
+    "battery": {
+        "interval": 30,
+        "states": {
+            "warning": 20,
+            "critical": 10
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{icon}",
+        "tooltip": true,
+        "tooltip-format": "🔋  {capacity}%\n⏱️  {time} remaining",
+        "tooltip-format-discharging": "🔋  {capacity}%\n⏱️  {time} remaining",
+        "tooltip-format-charging": "⚡  Charging: {capacity}%\n⏱️  {time} until full",
+        "tooltip-format-full": "🔌  Fully charged",
+        "tooltip-format-plugged": "🔌  Plugged in: {capacity}%",
+        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+    },
+
+    "idle_inhibitor": {
+        "format": "{icon} ",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        },
+        "tooltip-format-deactivated": "💤  {status}\nClick to activate idle inhibitor",
+        "tooltip-format-activated": "💤  {status}\nClick to deactivate idle inhibitor"
+    },
+
+    // ===========================================
+    // Module: System Controls
+    // ===========================================
+    "custom/launcher": {
+        "format": " ",
+        "on-click": "fuzzel --config ~/.config/fuzzel/launcher.ini || pkill fuzzel",
+        "on-click-right": "pkill fuzzel",
+        "tooltip": false
+    },
+
+    "custom/lock": {
+        "format": " ",
+        "on-click": "swaylock",
+        "tooltip": false
+    },
+
+    "custom/power": {
+        "format": "⏻",
+        "on-click": "wlogout",
+        "tooltip": false
+    },
+
+    // ===========================================
+    // Module: Clock
+    // ===========================================
+    "clock": {
+        "interval": 10,
+        "format": "{:%a %d %b %H:%M}",
+        "format-alt": "{:%Y-%m-%d %H:%M:%S}",
+        "tooltip": true,
+        "tooltip-format": "{calendar}",
+        "calendar": {
+            "mode"          : "month",
+            "mode-mon-col"  : 1,
+            "weeks-pos"     : "left",
+            "on-scroll"     : 1,
+            "format": {
+                "months":     "<span color='#a6e3a1'><b>{}</b></span>",
+                "days":       "<span color='#89b4fa'><b>{}</b></span>",
+                "weeks":      "<span color='#f5c2e7'><b>W{}</b></span>",
+                "weekdays":   "<span color='#f9e2af'><b>{}</b></span>",
+                "today":      "<span color='#f38ba8'><b><u>{}</u></b></span>"
+            }
+        },
+        "actions": {
+            "on-click-right": "mode",
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
+        }
+    },
+
+    // ===========================================
+    // Module: Tray
+    // ===========================================
+    "tray": {
+        "icon-size": 16,
+        "spacing": 8,
+        "show-passive-items": true
+    },
+
+    // ===========================================
+    // Module: Taskbar
+    // ===========================================
+    "wlr/taskbar": {
+        "format": " {icon} ",
+        "icon-size": 14,
+        "icon-theme": "Colloid-Purple-Catppuccin-Dark",
+        "tooltip-format": "{title} | {app_id}",
+        "on-click": "activate",
+        "on-click-middle": "close",
+        "on-click-right": "minimize-raise"
+    },
+
+    // ===========================================
+    // Module: Notifications
+    // ===========================================
+    "custom/notification": {
+        "escape": true,
+        "exec": "swaync-client -swb",
+        "exec-if": "which swaync-client",
+        "format": "{icon}",
+        "format-icons": {
+        "dnd-inhibited-none": "󰂚<sup></sup>",
+        "dnd-inhibited-notification": "󰂚<span foreground='#f38ba8'><sup></sup></span>",
+        "dnd-none": "󰂛",
+        "dnd-notification": "󰂛<span foreground='#f38ba8'><sup></sup></span>",
+        "inhibited-none": "󰂚<sup>󰜺</sup>",
+        "inhibited-notification": "󰵙<span foreground='#f38ba8'><sup></sup></span>",
+        "none": "󰂚<span color='#6c7086'><sup></sup></span>",
+        "notification": "󰂚<span foreground='#f38ba8'><sup></sup></span>"
+        },
+        "on-click": "sleep 0.1 && swaync-client -t -sw",
+        "on-click-right": "sleep 0.1 && swaync-client -d -sw",
+        "return-type": "json",
+        "tooltip": false
+    }
+}
