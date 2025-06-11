@@ -237,6 +237,7 @@ scale slider {
 }
 .widget-buttons-grid > flowbox > flowboxchild {
   padding: 3px;
+  margin: 0 5px;
   background: none;
 }
 .widget-buttons-grid > flowbox > flowboxchild > button {
@@ -254,7 +255,7 @@ scale slider {
 }
 .widget-buttons-grid > flowbox > flowboxchild > button.toggle:checked {
   background-color: @accent_color;
-  color: white;
+  color: @icon_primary;
 }
 .widget-buttons-grid > flowbox > flowboxchild > button.toggle:checked:hover {
   background-color: @accent_color_hover;
