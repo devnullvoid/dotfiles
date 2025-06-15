@@ -98,19 +98,26 @@
     "buttons-grid": {
       "actions": [
         {
-          "label": " ",
+          "label": "󰝟",
+          "type": "toggle",
           "command": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
         },
         {
-          "label": "",
+          "label": "󰍭",
+          "type": "toggle",
           "command": "pactl set-source-mute @DEFAULT_SOURCE@ toggle"
         },
         {
           "label": " ",
-          "command": "swaync-client -t -sw && iwgtk"
+          "type": "toggle",
+          "active": true,
+          "command": "sh -c '[[ $SWAYNC_TOGGLE_STATE == true ]] && nmcli radio wifi on || nmcli radio wifi off'",
+          "update-command": "sh -c '[[ $(nmcli r wifi) == \"enabled\" ]] && echo true || echo false'"
         },
         {
           "label": "󰂯",
+          "type": "toggle",
+          "active": true,
           "command": "blueman-manager"
         },
         {

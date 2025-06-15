@@ -1,3 +1,4 @@
+@define-color shadow rgba(0, 0, 0, 0.25);
 /*
 *
 * Catppuccin Mocha palette
@@ -5,7 +6,7 @@
 *
 */
 
-@define-color base   #1e1e2e;
+@define-color base   #1E1D2E;
 @define-color mantle #181825;
 @define-color crust  #11111b;
 
@@ -36,620 +37,570 @@
 @define-color flamingo  #f2cdcd;
 @define-color rosewater #f5e0dc;
 
-@define-color background @base;
-@define-color foreground @text;
-
-@define-color cc-bg alpha(@mantle, 0.95);
-@define-color cc-border-color @surface0;
-@define-color noti-border-color @mauve;
-@define-color noti-bg @base;
-@define-color noti-bg-opaque alpha(@base, 0.95);
-@define-color noti-bg-darker alpha(@base, 0.9);
-@define-color noti-bg-hover alpha(@surface0, 0.8);
-@define-color noti-bg-hover-opaque alpha(@surface0, 0.9);
-@define-color noti-bg-focus alpha(@surface0, 0.6);
-@define-color noti-close-bg alpha(@red, 0.5);
-@define-color noti-close-bg-hover alpha(@red, 0.8);
-@define-color text-color @text;
-@define-color text-color-disabled alpha(@overlay0, 0.8);
-@define-color bg-selected alpha(@mauve, 0.8);
+@define-color base_lighter  #1e1e2e;
+@define-color mauve_lighter #caa6f7;
 
 * {
-  font-family: "JetBrainsMono Nerd Font";
+  font-family: "Inter", "SF Pro Text", sans-serif;
+  font-size: 16px;
+  color: @text;
+  background-clip: border-box;
+}
+
+/* #notifications_box { */
+/*   border: solid 4px red; */
+/* } */
+
+label {
+color: @text;
+}
+
+.notification {
+border: none;
+box-shadow: none;
+/* margin: 0px; */
+/* margin: -15px -10px -15px -10px; */
+border-radius: 4px;
+background: inherit;
+/* background: @theme_bg_color; */
+/* background: shade(alpha(@borders, 2.55), 0.25); */
+}
+
+.notification button {
+background: transparent;
+border-radius: 0px;
+border: none;
+margin: 0px;
+padding: 0px;
+}
+
+.notification button:hover {
+background: @surface0;
+}
+
+.notification-content {
+min-height: 64px;
+margin: 10px;
+padding: 0px;
+border-radius: 0px;
+}
+
+.close-button {
+background: transparent;
+color: transparent;
+}
+
+.notification-default-action,
+.notification-action {
+background: transparent;
+border: none;
+}
+
+
+.notification-default-action {
+border-radius: 4px;
+}
+
+/* When alternative actions are visible */
+.notification-default-action:not(:only-child) {
+border-bottom-left-radius: 0px;
+border-bottom-right-radius: 0px;
+}
+
+.notification-action {
+border-radius: 0px;
+padding: 2px;
+color: @text;
+/* color: @theme_text_color; */
+}
+
+/* add bottom border radius to eliminate clipping */
+.notification-action:first-child {
+border-bottom-left-radius: 4px;
+}
+
+.notification-action:last-child {
+border-bottom-right-radius: 4px;
+}
+
+/*** Notification ***/
+/* Notification header */
+.summary {
+color: @text;
+/* color: @theme_text_color; */
+font-size: 14px;
+padding: 0px;
+}
+
+.time {
+color: @subtext0;
+/* color: alpha(@theme_text_color, 0.9); */
+font-size: 12px;
+text-shadow: none;
+margin: 0px 0px 0px 0px;
+padding: 2px 0px;
+}
+
+.body {
+font-size: 14px;
+font-weight: 500;
+color: @subtext1;
+/* color: alpha(@text, 0.9); */
+/* color: alpha(@theme_text_color, 0.9); */
+text-shadow: none;
+margin: 0px 0px 0px 0px;
+}
+
+.body-image {
+border-radius: 4px;
+}
+
+/* The "Notifications" and "Do Not Disturb" text widget */
+.top-action-title {
+color: @text;
+/* color: @theme_text_color; */
+text-shadow: none;
+}
+
+/* Control center */
+
+.control-center {
+background: alpha(@crust, .80);
+border-radius: 15px;
+border: 0px solid @selected;
+box-shadow: 0 0 10px 0 rgba(0,0,0,.80);
+margin: 10px;
+padding: 4px;
+}
+
+/* .right.overlay-indicator { */
+/*   border: solid 5px red; */
+/* } */
+
+.control-center-list {
+/* background: @base; */
+background: alpha(@crust, .80);
+min-height: 5px;
+/* border: 1px solid @surface1; */
+border-top: none;
+border-radius: 0px 0px 4px 4px;
+}
+
+.control-center-list-placeholder,
+.notification-group-icon,
+.notification-group {
+/* opacity: 1.0; */
+/* opacity: 0; */
+color: alpha(@text, 0.50);
+}
+
+.notification-group {
+/* unset the annoying focus thingie */
+opacity: 0;
+box-shadow: none;
+/* selectable: no; */
+}
+
+.notification-group > box {
+all: unset;
+background: transparent;
+/* background: alpha(currentColor, 0.072); */
+padding: 4px;
+margin: 0px;
+/* margin: 0px -5px; */
+border: none;
+border-radius: 4px;
+box-shadow: none;
 }
 
 .notification-row {
-  outline: none;
+outline: none;
+transition: all 1s ease;
+background: alpha(@mantle, .80);
+/* background: @theme_bg_color; */
+border: 0px solid @crust;
+margin: 10px 5px 0px 5px;
+border-radius: 14px;
+/* box-shadow: 0px 0px 4px black; */
+/* background: alpha(currentColor, 0.05); */
 }
 
 .notification-row:focus,
 .notification-row:hover {
-  background: @noti-bg-focus;
+box-shadow: none;
 }
 
-.notification-row .notification-background {
-  padding: 6px 12px;
+.control-center-list > row,
+.control-center-list > row:focus,
+.control-center-list > row:hover {
+background: transparent;
+border: none;
+margin: 0px;
+padding: 5px 10px 5px 10px;
+box-shadow: none;
 }
 
-.notification-row .notification-background .close-button {
-  /* The notification Close Button */
-  background: @noti-close-bg;
-  color: @text-color;
-  text-shadow: none;
-  padding: 0;
-  border-radius: 100%;
-  margin-top: 5px;
-  margin-right: 5px;
-  box-shadow: none;
-  border: none;
-  min-width: 24px;
-  min-height: 24px;
+.control-center-list > row:last-child {
+padding: 5px 10px 10px 10px;
 }
 
-.notification-row .notification-background .close-button:hover {
-  box-shadow: none;
-  background: @noti-close-bg-hover;
-  transition: background 0.15s ease-in-out;
-  border: none;
-}
 
-.notification-row .notification-background .notification {
-  /* The actual notification */
-  border-radius: 12px;
-  border: 1px solid @noti-border-color;
-  padding: 0;
-  transition: background 0.15s ease-in-out;
-  background: @noti-bg;
-}
-
-.notification-row .notification-background .notification.low {
-  /* Low Priority Notification */
-}
-
-.notification-row .notification-background .notification.normal {
-  /* Normal Priority Notification */
-}
-
-.notification-row .notification-background .notification.critical {
-  /* Critical Priority Notification */
-}
-
-.notification-row .notification-background .notification .notification-action,
-.notification-row
-  .notification-background
-  .notification
-  .notification-default-action {
-  padding: 4px;
-  margin: 0;
-  box-shadow: none;
-  background: transparent;
-  border: none;
-  color: @text-color;
-  transition: background 0.15s ease-in-out;
-}
-
-.notification-row
-  .notification-background
-  .notification
-  .notification-action:hover,
-.notification-row
-  .notification-background
-  .notification
-  .notification-default-action:hover {
-  -gtk-icon-effect: none;
-  background: @noti-bg-hover;
-}
-
-.notification-row
-  .notification-background
-  .notification
-  .notification-default-action {
-  /* The large action that also displays the notification summary and body */
-  border-radius: 12px;
-}
-
-.notification-row
-  .notification-background
-  .notification
-  .notification-default-action:not(:only-child) {
-  /* When alternative actions are visible */
-  border-bottom-left-radius: 0px;
-  border-bottom-right-radius: 0px;
-}
-
-.notification-row
-  .notification-background
-  .notification
-  .notification-default-action
-  .notification-content {
-  background: transparent;
-  border-radius: 12px;
-  padding: 4px;
-}
-
-.notification-row
-  .notification-background
-  .notification
-  .notification-default-action
-  .notification-content
-  .image {
-  /* Notification Primary Image */
-  -gtk-icon-effect: none;
-  border-radius: 100px;
-  /* Size in px */
-  margin: 4px;
-}
-
-.notification-row
-  .notification-background
-  .notification
-  .notification-default-action
-  .notification-content
-  .app-icon {
-  /* Notification app icon (only visible when the primary image is set) */
-  -gtk-icon-effect: none;
-  -gtk-icon-shadow: 0 1px 4px black;
-  margin: 6px;
-}
-
-.notification-row
-  .notification-background
-  .notification
-  .notification-default-action
-  .notification-content
-  .text-box
-  .summary {
-  /* Notification summary/title */
-  font-size: 16px;
-  font-weight: bold;
-  background: transparent;
-  color: @text-color;
-  text-shadow: none;
-}
-
-.notification-row
-  .notification-background
-  .notification
-  .notification-default-action
-  .notification-content
-  .text-box
-  .time {
-  /* Notification time-ago */
-  font-size: 16px;
-  font-weight: bold;
-  background: transparent;
-  color: @text-color;
-  text-shadow: none;
-  margin-right: 30px;
-}
-
-.notification-row
-  .notification-background
-  .notification
-  .notification-default-action
-  .notification-content
-  .text-box
-  .body {
-  /* Notification body */
-  font-size: 15px;
-  font-weight: normal;
-  background: transparent;
-  color: @text-color;
-  text-shadow: none;
-}
-
-.notification-row
-  .notification-background
-  .notification
-  .notification-default-action
-  .notification-content
-  progressbar {
-  /* The optional notification progress bar */
-  margin-top: 4px;
-}
-
-.notification-row
-  .notification-background
-  .notification
-  .notification-default-action
-  .notification-content
-  .body-image {
-  /* The "extra" optional bottom notification image */
-  margin-top: 4px;
-  background-color: white;
-  border-radius: 12px;
-  -gtk-icon-effect: none;
-}
-
-.notification-row
-  .notification-background
-  .notification
-  .notification-default-action
-  .notification-content
-  .inline-reply {
-  /* The inline reply section */
-  margin-top: 4px;
-}
-
-.notification-row
-  .notification-background
-  .notification
-  .notification-default-action
-  .notification-content
-  .inline-reply
-  .inline-reply-entry {
-  background: @noti-bg-darker;
-  color: @text-color;
-  caret-color: @text-color;
-  border: 1px solid @noti-border-color;
-  border-radius: 12px;
-}
-
-.notification-row
-  .notification-background
-  .notification
-  .notification-default-action
-  .notification-content
-  .inline-reply
-  .inline-reply-button {
-  margin-left: 4px;
-  background: @noti-bg;
-  border: 1px solid @noti-border-color;
-  border-radius: 12px;
-  color: @text-color;
-}
-
-.notification-row
-  .notification-background
-  .notification
-  .notification-default-action
-  .notification-content
-  .inline-reply
-  .inline-reply-button:disabled {
-  background: initial;
-  color: @text-color-disabled;
-  border: 1px solid @noti-border-color;
-  border-color: transparent;
-}
-
-.notification-row
-  .notification-background
-  .notification
-  .notification-default-action
-  .notification-content
-  .inline-reply
-  .inline-reply-button:hover {
-  background: @noti-bg-hover;
-}
-
-.notification-row .notification-background .notification .notification-action {
-  /* The alternative actions below the default action */
-  border-top: 1px solid @noti-border-color;
-  border-radius: 0px;
-  border-right: 1px solid @noti-border-color;
-}
-
-.notification-row
-  .notification-background
-  .notification
-  .notification-action:first-child {
-  /* add bottom border radius to eliminate clipping */
-  border-bottom-left-radius: 12px;
-}
-
-.notification-row
-  .notification-background
-  .notification
-  .notification-action:last-child {
-  border-bottom-right-radius: 12px;
-  border-right: none;
-}
-
-.notification-group {
-  /* Styling only for Grouped Notifications */
-}
-
-.notification-group.low {
-  /* Low Priority Group */
-}
-
-.notification-group.normal {
-  /* Low Priority Group */
-}
-
-.notification-group.critical {
-  /* Low Priority Group */
-}
-
-.notification-group .notification-group-buttons,
-.notification-group .notification-group-headers {
-  margin: 0 16px;
-  color: @text-color;
-}
-
-.notification-group .notification-group-headers {
-  /* Notification Group Headers */
-}
-
-.notification-group .notification-group-headers .notification-group-icon {
-  color: @text-color;
-}
-
-.notification-group .notification-group-headers .notification-group-header {
-  color: @text-color;
-}
-
-.notification-group .notification-group-buttons {
-  /* Notification Group Buttons */
-}
-
-.notification-group.collapsed .notification-row .notification {
-  background-color: @noti-bg-opaque;
-}
-
-.notification-group.collapsed .notification-row:not(:last-child) {
-  /* Top notification in stack */
-  /* Set lower stacked notifications opacity to 0 */
-}
-
-.notification-group.collapsed
-  .notification-row:not(:last-child)
-  .notification-action,
-.notification-group.collapsed
-  .notification-row:not(:last-child)
-  .notification-default-action {
-  opacity: 0;
-}
-
-.notification-group.collapsed:hover
-  .notification-row:not(:only-child)
-  .notification {
-  background-color: @noti-bg-hover-opaque;
-}
-
-.control-center {
-  /* The Control Center which contains the old notifications + widgets */
-  background: @cc-bg;
-  color: @text-color;
-  border-radius: 12px;
-  border: 2px solid @cc-border-color;
-}
-
-.control-center .control-center-list-placeholder {
-  /* The placeholder when there are no notifications */
-  opacity: 0.5;
-}
-
-.control-center .control-center-list {
-  /* List of notifications */
-  background: transparent;
-}
-
-.control-center .control-center-list .notification {
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.7),
-    0 2px 6px 2px rgba(0, 0, 0, 0.3);
-}
-
-.control-center .control-center-list .notification .notification-default-action,
-.control-center .control-center-list .notification .notification-action {
-  transition: opacity 400ms ease-in-out, background 0.15s ease-in-out;
-}
-
-.control-center
-  .control-center-list
-  .notification
-  .notification-default-action:hover,
-.control-center .control-center-list .notification .notification-action:hover {
-  background-color: @noti-bg-hover;
-}
-
+/* Window behind control center and on all other monitors */
 .blank-window {
-  /* Window behind control center and on all other monitors */
-  background: transparent;
-}
-
-.floating-notifications {
-  background: transparent;
-}
-
-.floating-notifications .notification {
-  box-shadow: none;
+background: transparent;
 }
 
 /*** Widgets ***/
+
 /* Title widget */
 .widget-title {
-  color: @text-color;
-  margin: 8px;
-  font-size: 1.5rem;
+margin: 0px;
+background: transparent;
+/* background: @theme_bg_color; */
+border-radius: 4px 4px 0px 0px;
+/* border: 1px solid @surface1; */
+border-bottom: none;
+}
+
+.widget-title > label {
+margin: 18px 10px;
+font-size: 20px;
+font-weight: 500;
 }
 
 .widget-title > button {
-  font-size: initial;
-  color: @text-color;
-  text-shadow: none;
-  background: @noti-bg;
-  border: 1px solid @noti-border-color;
-  box-shadow: none;
-  border-radius: 12px;
+font-weight: 700;
+padding: 7px 3px;
+margin-right: 10px;
+background: transparent;
+color: @text;
+/* color: @theme_text_color; */
+border: none;
+border-radius: 4px;
 }
-
 .widget-title > button:hover {
-  background: @noti-bg-hover;
-}
-
-/* DND widget */
-.widget-dnd {
-  color: @text-color;
-  margin: 8px;
-  font-size: 1.1rem;
-}
-
-.widget-dnd > switch {
-  font-size: initial;
-  border-radius: 12px;
-  background: @noti-bg;
-  border: 1px solid @noti-border-color;
-  box-shadow: none;
-}
-
-.widget-dnd > switch:checked {
-  background: @bg-selected;
-}
-
-.widget-dnd > switch slider {
-  background: @noti-bg-hover;
-  border-radius: 12px;
+background: @base;
+/* background: alpha(currentColor, 0.1); */
 }
 
 /* Label widget */
 .widget-label {
-  margin: 8px;
+margin: 0px;
+padding: 0px;
+min-height: 5px;
+background: alpha(@mantle, .80);
+/* background: @theme_bg_color; */
+border-radius: 0px 0px 4px 4px;
+/* border: 1px solid @surface1; */
+border-top: none;
 }
-
 .widget-label > label {
-  font-size: 1.1rem;
+font-size: 15px;
+font-weight: 400;
 }
 
-/* Mpris widget */
-@define-color mpris-album-art-overlay rgba(0, 0, 0, 0.55);
-@define-color mpris-button-hover rgba(0, 0, 0, 0.50);
-.widget-mpris {
-  /* The parent to all players */
+/* Menubar */
+.widget-menubar {
+background: transparent;
+/* background: @theme_bg_color; */
+/* border: 1px solid @surface1; */
+border-top: none;
+border-bottom: none;
+}
+.widget-menubar > box > box {
+margin: 5px 10px 5px 10px;
+min-height: 40px;
+border-radius: 4px;
+background: transparent;
+}
+.widget-menubar > box > box > button {
+background: alpha(@mantle, .80);
+/* background: alpha(currentColor, 0.05); */
+min-width: 185px;
+min-height: 50px;
+margin-right: 10px;
+font-size: 14px;
+padding: 0px;
+}
+.widget-menubar > box > box > button:nth-child(2) {
+margin-right: 0px;
+}
+.widget-menubar button:focus {
+box-shadow: none;
+}
+.widget-menubar button:focus:hover {
+background: @base;
+/* background: alpha(currentColor,0.1); */
+box-shadow: none;
 }
 
-.widget-mpris .widget-mpris-player {
-  padding: 8px;
-  padding: 16px;
-  margin: 16px 20px;
-  background-color: @mpris-album-art-overlay;
-  border-radius: 12px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.75);
+.widget-menubar > box > revealer > box {
+margin: 5px 10px 5px 10px;
+background: alpha(@mantle, .80);
+/* background: alpha(currentColor, 0.05); */
+border-radius: 4px;
+}
+.widget-menubar > box > revealer > box > button {
+background: transparent;
+min-height: 50px;
+padding: 0px;
+margin: 5px;
 }
 
-.widget-mpris .widget-mpris-player button:hover {
-  /* The media player buttons (play, pause, next, etc...) */
-  background: @noti-bg-hover;
-}
-
-.widget-mpris .widget-mpris-player .widget-mpris-album-art {
-  border-radius: 12px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.75);
-}
-
-.widget-mpris .widget-mpris-player .widget-mpris-title {
-  font-weight: bold;
-  font-size: 1.25rem;
-}
-
-.widget-mpris .widget-mpris-player .widget-mpris-subtitle {
-  font-size: 1.1rem;
-}
-
-.widget-mpris .widget-mpris-player > box > button {
-  /* Change player control buttons */
-}
-
-.widget-mpris .widget-mpris-player > box > button:hover {
-  background-color: @mpris-button-hover;
-}
-
-.widget-mpris > box > button {
-  /* Change player side buttons */
-}
-
-.widget-mpris > box > button:disabled {
-  /* Change player side buttons insensitive */
-}
-
-/* Buttons widget */
+/* Buttons grid */
 .widget-buttons-grid {
-  padding: 8px;
-  margin: 8px;
-  border-radius: 12px;
-  background-color: @noti-bg;
+/* background-color: @theme_bg_color; */
+background: transparent;
+/* border: 1px solid @surface1; */
+border-top: none;
+border-bottom: none;
+font-size: 14px;
+font-weight: 500;
+margin: 0px;
+padding: 5px;
+border-radius: 0px;
+}
+
+.widget-buttons-grid > flowbox > flowboxchild {
+background: alpha(@mantle, .80);
+/* background: alpha(currentColor, 0.05); */
+border-radius: 4px;
+min-height: 50px;
+min-width: 85px;
+margin: 5px;
+padding: 0px;
 }
 
 .widget-buttons-grid > flowbox > flowboxchild > button {
-  background: @noti-bg;
-  border-radius: 12px;
+background: transparent;
+border-radius: 4px;
+margin: 0px;
+border: none;
+box-shadow: none;
 }
 
-.widget-buttons-grid > flowbox > flowboxchild > button.toggle:checked {
-  /* style given to the active toggle button */
+
+.widget-buttons-grid > flowbox > flowboxchild > button:hover {
+background: alpha(@mantle, .80);
+/* background: alpha(currentColor, 0.1); */
 }
 
-/* Menubar widget */
-.widget-menubar > box > .menu-button-bar > button {
-  border: none;
-  background: transparent;
+/* Mpris widget */
+.widget-mpris {
+padding: 8px;
+padding-bottom: 15px;
+margin-bottom: -33px;
+}
+.widget-mpris > box {
+padding: 0px;
+margin: -5px 0px -10px 0px;
+padding: 0px;
+border-radius: 4px;
+/* background: alpha(currentColor, 0.05); */
+background: alpha(@mantle, .80);
+}
+.widget-mpris > box > button:nth-child(1),
+.widget-mpris > box > button:nth-child(3) {
+margin-bottom: 0px;
+}
+.widget-mpris > box > button:nth-child(1) {
+margin-left: -25px;
+margin-right: -25px;
+opacity: 0;
+}
+.widget-mpris > box > button:nth-child(3) {
+margin-left: -25px;
+margin-right: -25px;
+opacity: 0;
 }
 
-/* .AnyName { Name defined in config after #
-  background-color: @noti-bg;
-  padding: 8px;
-  margin: 8px;
-  border-radius: 12px;
+.widget-mpris-album-art {
+all: unset;
 }
 
-.AnyName>button {
-  background: transparent;
-  border: none;
+/* Player button box */
+.widget-mpris > box > carousel > widget > box > box:nth-child(2) {
+margin: 5px 0px -5px 90px;
 }
 
-.AnyName>button:hover {
-  background-color: @noti-bg-hover;
-} */
-.topbar-buttons > button {
-  /* Name defined in config after # */
-  border: none;
-  background: transparent;
+/* Player buttons */
+.widget-mpris > box > carousel > widget > box > box:nth-child(2) > button {
+border-radius: 4px;
+}
+.widget-mpris > box > carousel > widget > box > box:nth-child(2) > button:hover {
+background: alpha(currentColor, 0.1);
+}
+carouselindicatordots {
+opacity: 0;
 }
 
-/* Volume widget */
+.widget-mpris-title {
+color: #eeeeee;
+font-weight: bold;
+font-size: 1.25rem;
+text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+}
+.widget-mpris-subtitle {
+color: #eeeeee;
+font-size: 1rem;
+text-shadow: 0px 0px 3px rgba(0, 0, 0, 1);
+}
+
+.widget-mpris-player {
+border-radius: 0px;
+margin: 0px;
+}
+.widget-mpris-player > box > image {
+margin: 0px 0px -48px 0px;
+}
+
+.notification-group > box.vertical {
+/* border: solid 5px red; */
+margin-top: 3px
+}
+
+/* Backlight and volume widgets */
+.widget-backlight,
 .widget-volume {
-  background-color: @noti-bg;
-  padding: 8px;
-  margin: 8px;
-  border-radius: 12px;
+background: transparent;
+/* background-color: @crust; */
+/* background-color: @theme_bg_color; */
+/* border: 1px solid @surface1; */
+border-top: none;
+border-bottom: none; font-size: 13px;
+font-weight: 600;
+border-radius: 0px;
+margin: 0px;
+padding: 0px;
 }
-
+.widget-volume > box {
+background: alpha(@mantle, .80);
+/* background: alpha(currentColor, 0.05); */
+border-radius: 4px;
+margin: 5px 10px 5px 10px;
+min-height: 50px;
+}
+.widget-volume > box > label {
+min-width: 50px;
+padding: 0px;
+}
 .widget-volume > box > button {
-  background: transparent;
-  border: none;
+min-width: 50px;
+box-shadow: none;
+padding: 0px;
+}
+.widget-volume > box > button:hover {
+/* background: alpha(currentColor, 0.05); */
+background: @surface0;
+}
+.widget-volume > revealer > list {
+background: alpha(@mantle, .80);
+/* background: alpha(currentColor, 0.05); */
+border-radius: 4px;
+margin-top: 5px;
+padding: 0px;
+}
+.widget-volume > revealer > list > row {
+padding-left: 10px;
+min-height: 40px;
+background: transparent;
+}
+.widget-volume > revealer > list > row:hover {
+background: transparent;
+box-shadow: none;
+border-radius: 4px;
+}
+.widget-backlight > scale {
+background: alpha(@mantle, .80);
+/* background: alpha(currentColor, 0.05); */
+border-radius: 0px 4px 4px 0px;
+margin: 5px 10px 5px 0px;
+padding: 0px 10px 0px 0px;
+min-height: 50px;
+}
+.widget-backlight > label {
+background: @surface0;
+/* background: alpha(currentColor, 0.05); */
+margin: 5px 0px 5px 10px;
+border-radius: 4px 0px 0px 4px;
+padding: 0px;
+min-height: 50px;
+min-width: 50px;
 }
 
-.per-app-volume {
-  background-color: @noti-bg-alt;
-  padding: 4px 8px 8px 8px;
-  margin: 0px 8px 8px 8px;
-  border-radius: 12px;
+/* DND widget */
+.widget-dnd {
+margin: 6px;
+font-size: 1.2rem;
 }
 
-/* Backlight widget */
-.widget-backlight {
-  background-color: @noti-bg;
-  padding: 8px;
-  margin: 8px;
-  border-radius: 12px;
+.widget-dnd > switch {
+background: alpha(@mantle, .80);
+font-size: initial;
+border-radius: 8px;
+box-shadow: none;
+padding: 2px;
 }
 
-/* Inhibitors widget */
-.widget-inhibitors {
-  margin: 8px;
-  font-size: 1.5rem;
+.widget-dnd > switch:hover {
+background: alpha(@mauve_lighter, .80);
 }
 
-.widget-inhibitors > button {
-  font-size: initial;
-  color: @text-color;
-  text-shadow: none;
-  background: @noti-bg;
-  border: 1px solid @noti-border-color;
-  box-shadow: none;
-  border-radius: 12px;
+.widget-dnd > switch:checked {
+background: @mauve;
 }
 
-.widget-inhibitors > button:hover {
-  background: @noti-bg-hover;
+.widget-dnd > switch:checked:hover {
+background: alpha(@mauve_lighter, .80);
+}
+
+.widget-dnd > switch slider {
+background: alpha(@mauve_lighter, .80);
+border-radius: 6px;
+}
+
+/* Toggles */
+.toggle:checked {
+background: @surface1;
+/* background: @theme_selected_bg_color; */
+}
+/*.toggle:not(:checked) {
+color: rgba(128, 128, 128, 0.5);
+}*/
+.toggle:checked:hover {
+background: @surface2;
+/* background: alpha(@theme_selected_bg_color, 0.75); */
+}
+
+/* Sliders */
+scale {
+padding: 0px;
+margin: 0px 10px 0px 10px;
+}
+
+scale trough {
+border-radius: 4px;
+background: @surface0;
+/* background: alpha(currentColor, 0.1); */
+}
+
+scale highlight {
+border-radius: 5px;
+min-height: 10px;
+margin-right: -5px;
+}
+
+scale slider {
+margin: -10px;
+min-width: 10px;
+min-height: 10px;
+background: transparent;
+box-shadow: none;
+padding: 0px;
+}
+scale slider:hover {
+}
+
+.right.overlay-indicator {
+all: unset;
 }

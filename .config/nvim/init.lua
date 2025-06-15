@@ -37,8 +37,26 @@ vim.schedule(function()
   require "mappings"
 end)
 
+local autocmd = vim.api.nvim_create_autocmd
+
+autocmd("BufReadPost", {
+  pattern = "*",
+  callback = function()
+    local line = vim.fn.line "'\""
+    if
+      line > 1
+      and line <= vim.fn.line "$"
+      and vim.bo.filetype ~= "commit"
+      and vim.fn.index({ "xxd", "gitrebase" }, vim.bo.filetype) == -1
+    then
+      vim.cmd 'normal! g`"'
+    end
+  end,
+})
+
+
 if vim.g.neovide then
-  vim.o.guifont = "Monaspace Krypton:h12"
+  vim.o.guifont = "Monaspace Krypton:h11"
   vim.g.neovide_opacity = 0.95
 end
 -- end

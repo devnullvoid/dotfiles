@@ -1,3 +1,4 @@
+spawn-at-startup "dbus-update-activation-environment" "--systemd" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP"
 spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 spawn-at-startup "/usr/lib/xdg-desktop-portal-gnome"
 spawn-at-startup "xwayland-satellite"
@@ -6,11 +7,12 @@ spawn-at-startup "swayosd-server"
 // spawn-at-startup "dunst"
 spawn-at-startup "swww-daemon"
 // spawn-at-startup "swww img ~/Pictures/Wallpapers/cloudy_quasar_1.D0uanmax.png"
-spawn-at-startup "waypaper" "--restore"
+// spawn-at-startup "waypaper" "--restore"
 spawn-at-startup "walker" "--gapplication-service"
 spawn-at-startup "niriswitcher"
 spawn-at-startup "swaync"
 spawn-at-startup "swayidle" "-w"
+spawn-at-startup "sunsetr"
 
 workspace "1"
 // workspace "2"
@@ -22,8 +24,22 @@ environment {
     DISPLAY ":0"
     // QT_QPA_PLATFORM "wayland"
     // QT_QPA_PLATFORM "xcb"
-    QT_QPA_PLATFORMTHEME "qt6ct"
+    // QT_QPA_PLATFORMTHEME "qt6ct"
+    // ELECTRON_OZONE_PLATFORM_HINT "auto"
+
+    // DISPLAY null
+    CLUTTER_BACKEND "wayland"
     ELECTRON_OZONE_PLATFORM_HINT "auto"
+    GDK_BACKEND "wayland,x11"
+    JAVA_AWT_WM_NONEREPARENTING "1"
+    MOZ_ENABLE_WAYLAND "1"
+    NIXOS_OZONE_WL "1"
+    OZONE_PLATFORM "wayland"
+    QT_QPA_PLATFORM "wayland;xcb"
+    QT_QPA_PLATFORMTHEME "qt6ct"
+    QT_STYLE_OVERRIDE "kvantum"
+    QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
+    SDL_VIDEODRIVER "wayland"
 }
 
 hotkey-overlay {
@@ -188,6 +204,44 @@ layer-rule {
     // match namespace="^swww-daemon$"
     // place-within-backdrop true
 }
+layer-rule {
+    match namespace="waybar"
+    match at-startup=true
+
+    // Properties that apply continuously.
+    // opacity 0.5
+    // block-out-from "screencast"
+    // block-out-from "screen-capture"
+
+    shadow {
+        on
+        // off
+        softness 40
+        spread 5
+        offset x=0 y=0
+        draw-behind-window false
+        color "#11111bf0"
+        // inactive-color "#00000064"
+    }
+
+    geometry-corner-radius 10
+    place-within-backdrop true
+}
+
+layer-rule {
+    // match namespace="swaync-notification-window"
+    match namespace="rofi"
+    shadow {
+        on
+        // off
+        softness 40
+        spread 5
+        offset x=1 y=1
+        draw-behind-window false
+        color "#11111bf0"
+        // inactive-color "#00000064"
+    }
+}
 
 switch-events {
     lid-close {spawn "hyprlock";}
@@ -258,7 +312,9 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     Mod+Return { spawn "kitty"; }
-    Mod+Space { spawn "rofi" "-show" "drun"; }
+    Mod+Space { spawn "rofi" "-show" "drun" "-config" "~/.config/rofi.jon/config.rasi"; }
+    Mod+Alt+Space { spawn "~/.config/rofi/scripts/launcher_t1"; }
+    Ctrl+Mod+Space { spawn "anyrun"; }
     Ctrl+Space { spawn "walker"; }
     Mod+A { spawn "fuzzel"; }
     Mod+F {spawn "firefox";}
@@ -401,7 +457,8 @@ binds {
     Ctrl+Print { screenshot-window; }
 
     Mod+Shift+E { quit; }
-    Ctrl+Alt+Delete { spawn "rofi" "-show" "menu" "-modi" "'menu:~/.config/rofi/scripts/rofi-power-menu-niri --choices=logout/suspend/reboot/shutdown'" "-config" "~/.config/rofi/power.rasi"; }
+    Ctrl+Alt+Delete { spawn "~/.config/rofi/scripts/powermenu_t1"; }
+    // Ctrl+Alt+Delete { spawn "rofi" "-show" "menu" "-modi" "'menu:~/.config/rofi/scripts/rofi-power-menu-niri --choices=logout/suspend/reboot/shutdown'" "-config" "~/.config/rofi/power.rasi"; }
 
     Super+Alt+L { spawn "hyprlock"; }
     Mod+Shift+P { power-off-monitors; }

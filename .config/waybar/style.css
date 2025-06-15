@@ -28,10 +28,10 @@ window#waybar {
     background-color: alpha(@base, 0.85);
     background: linear-gradient(180deg, alpha(@base, 0.85) 0%, alpha(@crust, 0.85) 100%);
     border-radius: 0 0 10px 10px;
-    margin: 0px 0px 10px 0px;
+    /*margin: 0px 0px 10px 0px;*/
    /* background-color: rgba(18, 21, 29, 0.98);*/
    /* box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.7);*/
-    box-shadow: 0 1px 5px 1px alpha(@crust, 0.80);
+    /*box-shadow: 0 1px 5px 1px alpha(@crust, 0.80);*/
     transition-property: background-color;
     transition-duration: .5s;
 }
@@ -77,7 +77,21 @@ window#waybar {
 /* =============================================================================
  * Module Base Styles
  * =========================================================================== */
+.module {
+    border: solid 1px #313244;
+    padding: 0px 12px;
+    border-style: solid;
+    border-radius: 10px;
+    background-color: shade(@base, 1.1);
+    margin: 4px;
+}
+.module:hover {
+    background-color: @surface0;
+}
+
+/*
 #clock,
+#custom-weather,
 #custom-launcher,
 #custom-lock,
 #custom-notification,
@@ -99,13 +113,14 @@ window#waybar {
 #custom-pacman,
 #mpd {
     padding: 0px 12px;
-    border-style: solid;
+    border: solid 1px #313244;
     border-radius: 10px;
     background-color: shade(@base, 1.1);
     margin: 4px;
 }
 
 #clock:hover,
+#custom-weather:hover,
 #custom-lock:hover,
 #custom-notification:hover,
 #custom-swap:hover,
@@ -127,6 +142,7 @@ window#waybar {
 #mpd:hover {
     background-color: @surface0;
 }
+*/
 
 /* =============================================================================
  * Custom Modules
@@ -181,9 +197,29 @@ window#waybar {
     margin-right: 10px;
 }
 
+/*
+.modules-center  {
+    margin: 4px 0;
+    padding: 0px 0;
+    border-width: 0;
+    outline-width: 0;
+    background: #1e1e2e;
+    border-radius: 16px;
+}
+
+.modules-center .module { margin: 2px; border-radius: 10px; padding: 0 8px; }
+
 #clock {
     color: @text;
+    border-radius: 10px 0 0 10px;
+    margin-right: 0px;
 }
+#custom-weather {
+    color: @text;
+    border-radius: 0 10px 10px 0;
+    margin-left: 0px;
+}
+*/
 
 /* =============================================================================
  * System Modules

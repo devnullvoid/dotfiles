@@ -6,9 +6,9 @@
     "position": "top",
     // "height": 32,
     // "width": 1280,
-    "spacing": 4,
+    "spacing": 0,
     "modules-left": ["custom/launcher", "niri/workspaces", "wlr/taskbar"],
-    "modules-center": ["clock"],
+    "modules-center": ["clock", "custom/weather"],
     "modules-right": [
         "tray",
         "pulseaudio",
@@ -193,6 +193,13 @@
             "on-scroll-up": "shift_up",
             "on-scroll-down": "shift_down"
         }
+    },
+    "custom/weather": {
+        "format": "{}°",
+        "tooltip": true,
+        "interval": 3600,
+        "exec": "wttrbar --fahrenheit",
+        "return-type": "json"
     },
 
     // ===========================================
