@@ -601,6 +601,7 @@ box-shadow: none;
 padding: 0px;
 }
 scale slider:hover {
+  background: @mauve_lighter;
 }
 
 .right.overlay-indicator {

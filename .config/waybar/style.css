@@ -9,7 +9,7 @@
  * Base Styles & Reset
  * =========================================================================== */
 * {
-    color: @lavender;
+    color: @text;
     border: 0;
     padding: 0;
     font-family: "JetBrainsMono Nerd Font";
@@ -78,7 +78,7 @@ window#waybar {
  * Module Base Styles
  * =========================================================================== */
 .module {
-    border: solid 1px #313244;
+    border: solid 1px @surface0;
     padding: 0px 12px;
     border-style: solid;
     border-radius: 10px;
@@ -312,6 +312,26 @@ window#waybar {
 #taskbar button box { }
 #taskbar button box label { }
 #taskbar button box image { }
+
+#tray {}
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+}
+#tray menu {
+    background-color: @base;
+}
+#tray menu menuitem {
+    padding: 0px 5px;
+    transition: all .3s ease; 
+}
+
+#tray menu separator {
+    transition: all .3s ease; 
+}
+
 
 /* =============================================================================
  * Tooltips

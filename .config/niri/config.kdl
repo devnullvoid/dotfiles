@@ -2,10 +2,10 @@ spawn-at-startup "dbus-update-activation-environment" "--systemd" "WAYLAND_DISPL
 spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 spawn-at-startup "/usr/lib/xdg-desktop-portal-gnome"
 spawn-at-startup "xwayland-satellite"
+spawn-at-startup "swww-daemon"
 spawn-at-startup "/home/jon/.config/waybar/waybar-reload.sh"
 spawn-at-startup "swayosd-server"
 // spawn-at-startup "dunst"
-spawn-at-startup "swww-daemon"
 // spawn-at-startup "swww img ~/Pictures/Wallpapers/cloudy_quasar_1.D0uanmax.png"
 // spawn-at-startup "waypaper" "--restore"
 spawn-at-startup "walker" "--gapplication-service"
@@ -119,7 +119,9 @@ layout {
         proportion 1.0
     }
 
-    default-column-width { proportion 0.5; }
+    default-column-width { 
+        // proportion 0.5; 
+    }
 
     focus-ring {
         off
@@ -230,7 +232,26 @@ layer-rule {
 
 layer-rule {
     // match namespace="swaync-notification-window"
+    match namespace="walker"
+    match namespace="wofi"
     match namespace="rofi"
+    match namespace="anyrun"
+    match namespace="wlr_which_key"
+
+    shadow {
+        on
+        // off
+        softness 40
+        spread 5
+        offset x=1 y=1
+        draw-behind-window false
+        color "#11111bf0"
+        // inactive-color "#00000064"
+    }
+    opacity 0.9
+}
+layer-rule {
+    match namespace="swayosd"
     shadow {
         on
         // off
@@ -316,12 +337,15 @@ binds {
     Mod+Alt+Space { spawn "~/.config/rofi/scripts/launcher_t1"; }
     Ctrl+Mod+Space { spawn "anyrun"; }
     Ctrl+Space { spawn "walker"; }
+    Ctrl+Shift+Space { spawn "wofi"; }
     Mod+A { spawn "fuzzel"; }
     Mod+F {spawn "firefox";}
     // Mod+D {spawn "discord" "--enable-features=UseOzonePlatform" "--ozone-platform=wayland";}
     Mod+E {spawn "kitty" "-e" "yazi";}
-    Mod+B {spawn "~/.config/waybar/launch.sh"; }
-    Ctrl+grave { spawn "copyq" "toggle"; }
+    Mod+B {spawn "~/.config/waybar/waybar-reload.sh"; }
+    Ctrl+grave { spawn "copyq" "menu"; }
+    Mod+V { spawn "walker" "-m" "clipboard"; }
+    Mod+slash { spawn "wlr-which-key"; }
 
     // XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05+"; }
     // XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05-"; }
