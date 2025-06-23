@@ -86,7 +86,7 @@ border-radius: 0px;
 }
 
 .close-button {
-background: transparent;
+background: alpha(@red, 0.8);
 color: transparent;
 }
 

@@ -69,6 +69,7 @@ input {
         // tap
         dwt
         dwtp
+        accel-speed 0.2
         accel-profile "adaptive"
         scroll-method "two-finger"
         natural-scroll
@@ -92,17 +93,21 @@ output "eDP-1" {
 
     transform "normal"
 
-    background-color "#1e1e2e"
+    // background-color "#1e1e2e"
 
     position x=0 y=0
 }
 
 overview {
   backdrop-color "#11111b"
+  workspace-shadow {
+    off
+  }
 }
 
 layout {
     gaps 16
+    background-color "transparent"
     center-focused-column "never"
 
     preset-column-widths {
@@ -203,8 +208,8 @@ animations {
 }
 
 layer-rule {
-    // match namespace="^swww-daemon$"
-    // place-within-backdrop true
+    match namespace="^swww-daemon$"
+    place-within-backdrop true
 }
 layer-rule {
     match namespace="waybar"
@@ -324,6 +329,23 @@ window-rule {
 }
 
 window-rule {
+    match app-id=r#"librewolf$"#
+    border {
+        on
+        width 2
+        active-color "#f0c6c6"
+    }
+    shadow {
+      on
+      softness 6
+      spread 4
+      offset x=0 y=0
+      draw-behind-window false
+      color "#f0c6c655"
+    }    
+}
+
+window-rule {
     match app-id=r#"^com\.obsproject\.Studio$"#
 
     min-width 876
@@ -333,10 +355,10 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     Mod+Return { spawn "kitty"; }
-    Mod+Space { spawn "rofi" "-show" "drun" "-config" "~/.config/rofi.jon/config.rasi"; }
-    Mod+Alt+Space { spawn "~/.config/rofi/scripts/launcher_t1"; }
-    Ctrl+Mod+Space { spawn "anyrun"; }
-    Ctrl+Space { spawn "walker"; }
+    Mod+Alt+Space { spawn "rofi" "-show" "drun" "-config" "~/.config/rofi.jon/config.rasi"; }
+    Mod+Space { spawn "~/.config/rofi/scripts/launcher_t1"; }
+    Ctrl+Shift+Mod+Space { spawn "anyrun"; }
+    Ctrl+Mod+Space { spawn "walker"; }
     Ctrl+Shift+Space { spawn "wofi"; }
     Mod+A { spawn "fuzzel"; }
     Mod+F {spawn "firefox";}

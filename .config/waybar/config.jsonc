@@ -16,7 +16,7 @@
         "cpu",
         "memory",
         "temperature",
-        "backlight",
+        // "backlight",
         "battery",
         "idle_inhibitor",
         "custom/lock",
