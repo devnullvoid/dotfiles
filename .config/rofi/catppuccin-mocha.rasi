@@ -1,0 +1,239 @@
+* {
+    bg-col:  #1e1e2e55;
+    bg-col-light: #1e1e2e;
+    border-col: #1e1e2e;
+    selected-col: #1e1e2e;
+    blue: #89b4fa;
+    fg-col: #cdd6f4;
+    fg-col2: #f38ba8;
+    grey: #6c7086;
+
+    base:   #1e1e2e;
+    mantle: #181825;
+    crust:  #11111b;
+
+    text:     #cdd6f4;
+    subtext0: #a6adc8;
+    subtext1: #bac2de;
+
+    surface0: #313244;
+    surface1: #45475a;
+    surface2: #585b70;
+
+    overlay0: #6c7086;
+    overlay1: #7f849c;
+    overlay2: #9399b2;
+
+    blue:      #89b4fa;
+    lavender:  #b4befe;
+    sapphire:  #74c7ec;
+    sky:       #89dceb;
+    teal:      #94e2d5;
+    green:     #a6e3a1;
+    yellow:    #f9e2af;
+    peach:     #fab387;
+    maroon:    #eba0ac;
+    red:       #f38ba8;
+    mauve:     #cba6f7;
+    pink:      #f5c2e7;
+    flamingo:  #f2cdcd;
+    rosewater: #f5e0dc;
+
+    background-color: transparent;
+    width: 600;
+    font: "Monaspace Krypton 12";
+
+    bg:  #11111bf0;
+    bg-alt: @mantle;
+    fg: @text;
+
+    color: @fg;
+    background-color: transparent;
+    // highlight: underline bold #cba6f7;
+    highlight: underline bold #f38ba8;
+
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+window {
+    // width: 40px;
+    // children: [ mainbox];
+    location: center;
+    transparency: "real";
+    background-color: @bg;
+    border-radius: 8px;
+}
+
+mainbox {
+    orientation: vertical;
+    children: [ inputbar, message, listview, mode-switcher];
+    border: 1px;
+    border-radius: 8px;
+    border-color: @surface0;
+}
+
+inputbar {
+    padding: 1em;
+    children: [prompt,entry];
+    spacing: -1px;
+}
+
+prompt {
+    background-color: @lavender;
+    padding: 15px;
+    text-color: @bg;
+    border: 2px 0px 2px 2px;
+    border-color: @border-col;
+    border-radius: 8px 0 0 8px;
+}
+
+entry {
+    padding: 15px 30px 15px 15px;
+    border: 2px 2px 2px 0px;
+    border-color: @border-col;
+    border-radius: 0 8px 8px 0;
+    background-color: @bg;
+    text-color: @fg;
+}
+
+message {
+    padding: 0 0 1em 0;
+}
+
+textbox {
+    // background-color: @color1;
+    padding: 0 1.5em;
+}
+
+listview {
+    // margin: 0.5em 0 0 0;
+    lines: 6;
+}
+
+element {
+    padding: 0.5em;
+    color: @fg;
+}
+
+element selected.normal {
+    background-color: @mantle;
+}
+
+element-icon {
+    padding: 0 0.5em 0 1em;
+}
+
+mode-switcher {
+    padding: 0 1em;
+}
+
+button {
+    margin: 0.3em 0 0.5em;
+    padding: 0.3em;
+    border-radius: 8px;
+}
+
+button selected {
+    background-color: @mauve;
+    text-color: @base;
+}
+//
+// element-text, element-icon , mode-switcher {
+//     background-color: inherit;
+//     text-color:       inherit;
+// }
+//
+// window {
+//     height: 360px;
+//     border: 3px;
+//     border-color: @border-col;
+//     background-color: @bg-col;
+//     transparency: "real";
+// }
+//
+// mainbox {
+//     background-color: @bg-col;
+// }
+//
+// inputbar {
+//     children: [prompt,entry];
+//     background-color: @bg-col;
+//     border-radius: 5px;
+//     padding: 2px;
+// }
+//
+// prompt {
+//     background-color: @blue;
+//     padding: 6px;
+//     text-color: @bg-col;
+//     border-radius: 3px;
+//     margin: 20px 0px 0px 20px;
+// }
+//
+// textbox-prompt-colon {
+//     expand: false;
+//     str: ":";
+// }
+//
+// entry {
+//     padding: 6px;
+//     margin: 20px 0px 0px 10px;
+//     text-color: @fg-col;
+//     background-color: @bg-col;
+// }
+//
+// listview {
+//     border: 0px 0px 0px;
+//     padding: 6px 0px 0px;
+//     margin: 10px 0px 0px 20px;
+//     columns: 2;
+//     lines: 5;
+//     background-color: @bg-col;
+// }
+//
+// element {
+//     padding: 5px;
+//     background-color: @bg-col;
+//     text-color: @fg-col  ;
+// }
+//
+// element-icon {
+//     size: 25px;
+// }
+//
+// element selected {
+//     background-color:  @selected-col ;
+//     text-color: @fg-col2  ;
+// }
+//
+// mode-switcher {
+//     spacing: 0;
+//   }
+//
+// button {
+//     padding: 10px;
+//     background-color: @bg-col-light;
+//     text-color: @grey;
+//     vertical-align: 0.5; 
+//     horizontal-align: 0.5;
+// }
+//
+// button selected {
+//   background-color: @bg-col;
+//   text-color: @blue;
+// }
+//
+// message {
+//     background-color: @bg-col-light;
+//     margin: 2px;
+//     padding: 2px;
+//     border-radius: 5px;
+// }
+//
+// textbox {
+//     padding: 6px;
+//     margin: 20px 0px 0px 20px;
+//     text-color: @blue;
+//     background-color: @bg-col-light;
+// }
