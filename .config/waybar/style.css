@@ -16,7 +16,11 @@
     font-feature-settings: "zero";
     font-size: 12px;
     font-weight: bold;
-    transition: all 0.5s ease;
+    /* transition: all 0.5s ease; */
+    transition:
+        background-color 0.3s ease-in-out,
+        box-shadow 0.3s ease-in-out,
+        border 0.3s ease-in-out;
 }
 
 window#waybar {
@@ -24,7 +28,7 @@ window#waybar {
 }
 
 #waybar > box {
-    border-bottom: 2px solid shade(@base, 1.1);
+    border-bottom: 2px solid alpha(@base, .9);
     background-color: alpha(@base, 0.85);
     background: linear-gradient(180deg, alpha(@base, 0.85) 0%, alpha(@crust, 0.85) 100%);
     border-radius: 0 0 10px 10px;
@@ -51,10 +55,10 @@ window#waybar {
 }
 
 #workspaces button {
-    color: @base;
+    /* color: @base;
     border-radius: 50%;
     margin: 0;
-    padding: 2px 6px 2px 0;
+    padding: 2px 6px 2px 0; */
 }
 
 #workspaces button * {
@@ -63,7 +67,7 @@ window#waybar {
 
 #workspaces button:hover *,
 #workspaces button:hover {
-    color: @mauve;
+    color: @flamingo;
     box-shadow: none;
     text-shadow: none;
     background: none;
@@ -78,15 +82,22 @@ window#waybar {
  * Module Base Styles
  * =========================================================================== */
 .module {
-    border: solid 1px @surface0;
+    border: solid 1px alpha(@surface0, 0.8);
     padding: 0px 12px;
     border-style: solid;
     border-radius: 10px;
-    background-color: shade(@base, 1.1);
+    background-color: alpha(@base, 0.8);
     margin: 4px;
+    transition:
+        background-color 0.3s ease-in-out,
+        box-shadow 0.3s ease-in-out,
+        border 0.3s ease-in-out;
 }
 .module:hover {
-    background-color: @surface0;
+    background-color: alpha(@base, 0.5);
+    box-shadow: 
+        inset 0 0 5px 2px alpha(@lavender, 0.3);
+    border-color: @lavender;
 }
 
 /*
@@ -175,13 +186,13 @@ window#waybar {
 }
 
 #custom-launcher {
-    background-color: shade(@base, 1.1);
+    background-color: alpha(@surface0, 0.5);
     color: @mauve;
     padding: 4px 16px;
 }
 
 #custom-launcher:hover {
-    background-color: @surface0;
+    background-color: alpha(@surface0, 0.8);
 }
 
 #custom-power {
@@ -280,7 +291,7 @@ window#waybar {
 }
 
 #idle_inhibitor.activated {
-    background-color: @blue;
+    background-color: alpha(@blue, 0.8);
     color: @base;
 }
 
@@ -296,7 +307,7 @@ window#waybar {
 #taskbar {
     border-style: solid;
     border-radius: 10px;
-    background-color: shade(@base, 1.1);
+    /* background-color: shade(@base, 1.1); */
     margin: 4px;
 }
 #taskbar button {
@@ -341,6 +352,9 @@ tooltip {
     background: @base;
     border: 1px solid @lavender;
     min-width: 1em;
+    box-shadow: 
+        inset 0 0 5px 2px alpha(@lavender, 0.3);
+        /* 0 1px 5px 1px alpha(@lavender, 0.3); */
 }
 
 tooltip > box {
