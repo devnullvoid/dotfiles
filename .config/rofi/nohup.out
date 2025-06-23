@@ -1,0 +1,8 @@
+
+(process:3441608): Gtk-WARNING **: 03:38:29.332: Theme parser error: gtk.css:8009:12-16: Negative values are not allowed
+
+(process:3441608): Gtk-WARNING **: 03:38:29.343: Theme directory categories@2x/22 of theme Colloid-Purple-Catppuccin-Light has no size field
+
+
+(process:3441608): Gtk-WARNING **: 03:38:29.359: Theme parser error: gtk-dark.css:8009:12-16: Negative values are not allowed
+SwayOSD LibInput Backend isn't available, waiting...

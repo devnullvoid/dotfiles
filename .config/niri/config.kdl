@@ -355,7 +355,7 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     Mod+Return { spawn "kitty"; }
-    Mod+Alt+Space { spawn "rofi" "-show" "drun" "-config" "~/.config/rofi.jon/config.rasi"; }
+    Mod+Alt+Space { spawn "rofi" "-show" "drun"; }
     Mod+Space { spawn "~/.config/rofi/scripts/launcher_t1"; }
     Ctrl+Shift+Mod+Space { spawn "anyrun"; }
     Ctrl+Mod+Space { spawn "walker"; }
