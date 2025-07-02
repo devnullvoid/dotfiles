@@ -1,0 +1,20 @@
+# [mgr]
+# prepend_keymap = [
+# {on=["m", "o"], run="shell 'mpv . --loop-playlist=inf' --orphan", desc="play (Ordered)"},
+# {on=["m", "s"], run="shell 'mpv . --shuffle --loop-playlist=inf' --orphan", desc="play (Shuffled)"}
+# ]
+
+[[mgr.prepend_keymap]]
+on   = "f"
+run  = "plugin jump-to-char"
+desc = "Jump to char"
+
+[[mgr.prepend_keymap]]
+on = [ ".", "s" ]
+run  = "plugin what-size"
+desc = "Calc size of selection or cwd" 
+
+[[mgr.prepend_keymap]]
+on   = [ "g", "c" ]
+run  = "plugin git-files"
+desc = "Show Git file changes"

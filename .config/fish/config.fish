@@ -9,6 +9,8 @@ test ! -e "$HOME/.x-cmd.root/local/data/fish/rc.fish" || source "$HOME/.x-cmd.ro
 if status is-interactive
     starship init fish | source
     enable_transience
+
+    source /etc/grc.fish
     #set -g BAT_THEME Dracula
     # Commands to run in interactive sessions can go here
     #set ayu_variant mirage
