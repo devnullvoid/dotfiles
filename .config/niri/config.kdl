@@ -1,6 +1,8 @@
 spawn-at-startup "dbus-update-activation-environment" "--systemd" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP"
-spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
-spawn-at-startup "/usr/lib/xdg-desktop-portal-gnome"
+// spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
+spawn-at-startup "/usr/lib/polkit-kde-authentication-agent-1"
+spawn-at-startup "/usr/lib/xdg-desktop-portal-kde"
+// spawn-at-startup "/usr/lib/xdg-desktop-portal-gnome"
 spawn-at-startup "xwayland-satellite"
 spawn-at-startup "swww-daemon"
 spawn-at-startup "/home/jon/.config/waybar/waybar-reload.sh"
@@ -49,7 +51,7 @@ hotkey-overlay {
 }
 
 cursor {
-    xcursor-theme "Bibata-Modern-Ice"
+    xcursor-theme "Bibata-Mocha"
     xcursor-size 28
     hide-after-inactive-ms 5000
 }
@@ -166,7 +168,7 @@ screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 // screenshot-path null
 
 animations {
-    slowdown 1.500000
+    slowdown 1.2500000
     workspace-switch {
         spring damping-ratio=1.0 stiffness=1000 epsilon=0.0001
     }

@@ -40,6 +40,7 @@ if status is-interactive
     # thefuck --alias | source
     zoxide init fish | source
     atuin init fish | source
+    bind up _atuin_bind_up
     # end
     if test "$TERM" = "xterm-kitty"
         # override ssh to use kitty +kitten ssh
