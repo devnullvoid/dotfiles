@@ -30,10 +30,49 @@ if status is-interactive
     alias cat=bat
     alias vim=nvim
     set -x EDITOR nvim
+    
+    # Git aliases
+    alias g=git
+    alias ga="git add"
+    alias gaa="git add --all"
+    alias gb="git branch"
+    alias gba="git branch -a"
+    alias gbd="git branch -d"
+    alias gc="git commit -v"
+    alias gcm="git commit -m"
+    alias gca="git commit -a -m"
+    alias gcam="git commit -a -m"
+    alias gco="git checkout"
+    alias gcb="git checkout -b"
+    alias gd="git diff"
+    alias gds="git diff --staged"
+    alias gf="git fetch"
+    alias gl="git pull"
+    alias glog="git log --oneline --decorate --graph"
+    alias gloga="git log --oneline --decorate --graph --all"
+    alias gp="git push"
+    alias gpo="git push origin"
+    alias gpom="git push origin main"
+    alias gpsup="git push --set-upstream origin (git branch --show-current)"
+    alias gr="git remote"
+    alias grv="git remote -v"
+    alias gs="git status"
+    alias gss="git status -s"
+    alias gst="git stash"
+    alias gstp="git stash pop"
+    alias gstl="git stash list"
+    alias gm="git merge"
+    alias grb="git rebase"
+    alias grbi="git rebase -i"
+    alias grbc="git rebase --continue"
+    alias grba="git rebase --abort"
     # set -x FZF_DEFAULT_OPTS "--color=fg:#f8f8f2,hl:#bd93f9 --color=fg+:#f8f8f2,bg+:#44475a,hl+:#bd93f9 --color=info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6 --color=marker:#ff79c6,spinner:#ffb86c,header:#6272a4"
     set -x fzf_preview_dir_cmd exa --all --color=always --icons
     # set -x BAT_THEME Catppuccin-mocha
     set -x SKIM_DEFAULT_OPTIONS $SKIM_DEFAULT_OPTIONS "--color=fg:#cdd6f4,bg:#1e1e2e,matched:#313244,matched_bg:#f2cdcd,current:#cdd6f4,current_bg:#45475a,current_match:#1e1e2e,current_match_bg:#f5e0dc,spinner:#a6e3a1,info:#cba6f7,prompt:#89b4fa,cursor:#f38ba8,selected:#eba0ac,header:#94e2d5,border:#6c7086"
+
+    # bemenu Mocha
+    set -x BEMENU_OPTS '--fb "#1e1e2e" --ff "#cdd6f4" --nb "#1e1e2e" --nf "#cdd6f4" --tb "#1e1e2e" --hb "#1e1e2e" --tf "#f38ba8" --hf "#f9e2af" --af "#cdd6f4" --ab "#1e1e2e"'
     # zoxide init fish | source
     carapace _carapace | source
     # carapace carapace fish | source
