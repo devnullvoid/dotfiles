@@ -1,0 +1,119 @@
+# Theming
+font: Monaspace Krypton 10
+background: "#11111b"
+color: "#cdd6f4"
+border: "#cba6f7"
+separator: "  ➜  "
+border_width: 2
+corner_r: 10
+padding: 15 # Defaults to corner_r
+
+# Anchor and margin
+anchor: bottom # One of center, left, right, top, bottom, bottom-left, top-left, etc.
+# Only relevant when anchor is not center
+margin_right: 0
+margin_bottom: 0
+margin_left: 0
+margin_top: 0
+
+menu:
+  "c":
+    desc: "Colorpicker"
+    submenu:
+      "c": { desc: "Hex", cmd: "hyprpicker --autocopy" }
+      "r": { desc: "R G B", cmd: "hyprpicker --autocopy --format=rgb" }
+
+  "s":
+    desc: "Share"
+    submenu:
+      "c": { desc: "Clear", cmd: "niri msg action clear-dynamic-cast-target" }
+      "m": { desc: "Set Monitor", cmd: "niri msg action set-dynamic-cast-monitor --id $(niri msg --json pick-window | jq .id)" }
+      "w": { desc: "Set Window", cmd: "niri msg action set-dynamic-cast-window --id $(niri msg --json pick-window | jq .id)" }
+
+  # Enhanced Applications menu
+  "a":
+    desc: "Applications"
+    submenu:
+      "t": { desc: "Terminal", cmd: "kitty" }
+      "f": { desc: "File Manager", cmd: "kitty -e yazi" }
+      "b": { desc: "Browser", cmd: "firefox" }
+      "r": { desc: "Rofi", cmd: "rofi -show drun" }
+      "w": { desc: "Wofi", cmd: "wofi" }
+      "W": { desc: "Walker", cmd: "walker" }
+      "p": { desc: "Window Picker", cmd: "~/.config/niri/scripts/choose-window.sh" }
+      "F": { desc: "Fuzzel", cmd: "fuzzel" }
+      "v": { desc: "Clipboard", cmd: "walker -m clipboard" }
+
+  # Enhanced Windows menu with Niri controls
+  "w":
+    desc: "Windows"
+    submenu:
+      "q": { desc: "Close", cmd: "niri msg action close-window" }
+      "f": { desc: "Fullscreen", cmd: "niri msg action fullscreen-window" }
+      "t": { desc: "Toggle Float", cmd: "niri msg action toggle-window-floating" }
+      "c": { desc: "Center", cmd: "niri msg action center-window" }
+      "h": { desc: "Focus Left", cmd: "niri msg action focus-column-left" }
+      "j": { desc: "Focus Down", cmd: "niri msg action focus-window-down" }
+      "k": { desc: "Focus Up", cmd: "niri msg action focus-window-up" }
+      "l": { desc: "Focus Right", cmd: "niri msg action focus-column-right" }
+      "H": { desc: "Move Left", cmd: "niri msg action move-column-left" }
+      "J": { desc: "Move Down", cmd: "niri msg action move-window-down" }
+      "K": { desc: "Move Up", cmd: "niri msg action move-window-up" }
+      "L": { desc: "Move Right", cmd: "niri msg action move-column-right" }
+      "c":
+        desc: "WindowColumn"
+        submenu:
+          "J": { desc: "To Workspace Down", cmd: "niri msg action move-column-to-workspace-down" }
+
+  # Enhanced Workspaces menu
+  "W":
+    desc: "Workspaces"
+    submenu:
+      "1": { desc: "Workspace 1", cmd: "niri msg action focus-workspace 1" }
+      "2": { desc: "Workspace 2", cmd: "niri msg action focus-workspace 2" }
+      "3": { desc: "Workspace 3", cmd: "niri msg action focus-workspace 3" }
+      "4": { desc: "Workspace 4", cmd: "niri msg action focus-workspace 4" }
+      "5": { desc: "Workspace 5", cmd: "niri msg action focus-workspace 5" }
+      "6": { desc: "Workspace 6", cmd: "niri msg action focus-workspace 6" }
+      "7": { desc: "Workspace 7", cmd: "niri msg action focus-workspace 7" }
+      "8": { desc: "Workspace 8", cmd: "niri msg action focus-workspace 8" }
+      "9": { desc: "Workspace 9", cmd: "niri msg action focus-workspace 9" }
+      "h": { desc: "Move Left", cmd: "niri msg action move-workspace-to-monitor-left" }
+      "j": { desc: "Move Down", cmd: "niri msg action move-workspace-down" }
+      "k": { desc: "Move Up", cmd: "niri msg action move-workspace-up" }
+      "l": { desc: "Move Right", cmd: "niri msg action move-workspace-to-monitor-right" }
+
+  # Preserved notifications menu
+  "n":
+    desc: "Notifications"
+    submenu:
+      "n": { desc: "Toggle Panel", cmd: "swaync-client --toggle-panel ; wlr-which-key notifications" }
+      "c": { desc: "Close All", cmd: "swaync-client --close-all" }
+      "D": { desc: "Toggle DND", cmd: "swaync-client --toggle-dnd" }
+
+  # System menu with original power options
+  "0":
+    desc: "Power"
+    submenu:
+      "l": { desc: "Lock", cmd: "hyprlock" }
+      "e": { desc: "Exit", cmd: "niri msg action quit" }
+      "s": { desc: "Suspend", cmd: "systemctl suspend" }
+      "h": { desc: "Hibernate", cmd: "systemctl hibernate" }
+      "R": { desc: "Reboot", cmd: "systemctl reboot" }
+      "S": { desc: "Shutdown", cmd: "systemctl poweroff" }
+
+  # Media controls
+  # "m":
+  #   desc: "Media"
+  #   submenu:
+  #     "up": { desc: "Volume Up", cmd: "swayosd-client --output-volume=raise" }
+  #     "down": { desc: "Volume Down", cmd: "swayosd-client --output-volume=lower" }
+  #     "m": { desc: "Mute", cmd: "swayosd-client --output-volume=mute-toggle" }
+  #     "]": { desc: "Brightness Up", cmd: "swayosd-client --brightness=raise" }
+  #     "[": { desc: "Brightness Down", cmd: "swayosd-client --brightness=lower" }
+
+  # Help
+  # "slash":
+  #   mods: ["Mod"]
+  #   desc: "Show Key Bindings"
+  #   cmd: "wlr-which-key"

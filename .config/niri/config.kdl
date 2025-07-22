@@ -1,8 +1,11 @@
 spawn-at-startup "dbus-update-activation-environment" "--systemd" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP"
 // spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 spawn-at-startup "/usr/lib/polkit-kde-authentication-agent-1"
-spawn-at-startup "/usr/lib/xdg-desktop-portal-kde"
-// spawn-at-startup "/usr/lib/xdg-desktop-portal-gnome"
+// spawn-at-startup "/usr/lib/xdg-desktop-portal-kde"
+spawn-at-startup "/usr/lib/xdg-desktop-portal-gnome"
+spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "cursor-theme" "Bibata-Mocha"
+spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "color-scheme" "prefer-dark"
+spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "gtk-theme" "Colloid-Purple-Dark-Catppuccin"
 spawn-at-startup "xwayland-satellite"
 spawn-at-startup "swww-daemon"
 spawn-at-startup "/home/jon/.config/waybar/waybar-reload.sh"
@@ -16,6 +19,7 @@ spawn-at-startup "niriswitcher"
 spawn-at-startup "swaync"
 spawn-at-startup "swayidle" "-w"
 spawn-at-startup "sunsetr"
+spawn-at-startup "copyq" "--start-server"
 // spawn-at-startup "pamac-tray --gapplication-service"
 
 workspace "1"
@@ -41,7 +45,7 @@ environment {
     OZONE_PLATFORM "wayland"
     QT_QPA_PLATFORM "wayland;xcb"
     QT_QPA_PLATFORMTHEME "qt6ct"
-    QT_STYLE_OVERRIDE "kvantum"
+    // QT_STYLE_OVERRIDE "kvantum"
     QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
     SDL_VIDEODRIVER "wayland"
 }
@@ -128,8 +132,8 @@ layout {
         proportion 1.0
     }
 
-    default-column-width { 
-        // proportion 0.5; 
+    default-column-width {
+        // proportion 0.5;
     }
 
     focus-ring {
@@ -299,6 +303,23 @@ window-rule {
 }
 
 window-rule {
+    match app-id=r#"otter-launcher$"# title="^otter-launcher$"
+
+    open-floating true
+    default-column-width { proportion 0.3; }
+    default-window-height { proportion 0.4; }
+    opacity 0.98
+    shadow {
+        on
+        softness 40
+        spread 5
+        offset x=0 y=0
+        draw-behind-window false
+        color "#11111bf0"
+    }
+}
+
+window-rule {
     match app-id=r#"kitty$"# title="^tty-clock$"
 
     open-floating true
@@ -355,7 +376,7 @@ window-rule {
       offset x=0 y=0
       draw-behind-window false
       color "#f0c6c655"
-    }    
+    }
 }
 
 window-rule {
@@ -368,17 +389,20 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     Mod+Return { spawn "kitty"; }
-    Mod+Alt+Space { spawn "rofi" "-show" "drun"; }
-    Mod+Space { spawn "~/.config/rofi/scripts/launcher_t1"; }
-    Ctrl+Shift+Mod+Space { spawn "anyrun"; }
+    // Mod+Alt+Space { spawn "rofi" "-show" "drun"; }
+    Mod+Space { spawn "rofi" "-show" "drun"; }
+    // Mod+Space { spawn "~/.config/rofi/scripts/launcher_t1"; }
+    // Ctrl+Shift+Mod+Space { spawn "anyrun"; }
+    Mod+Z { spawn "~/.config/otter-launcher/otter-toggle-niri.sh"; }
     Ctrl+Mod+Space { spawn "walker"; }
     Ctrl+Shift+Space { spawn "wofi"; }
     Mod+A { spawn "fuzzel"; }
+    Mod+Shift+A { spawn "~/.config/niri/scripts/choose-window.sh"; }
     Mod+F {spawn "firefox";}
     // Mod+D {spawn "discord" "--enable-features=UseOzonePlatform" "--ozone-platform=wayland";}
     Mod+E {spawn "kitty" "-e" "yazi";}
     Mod+B {spawn "~/.config/waybar/waybar-reload.sh"; }
-    Ctrl+grave { spawn "copyq" "menu"; }
+    Ctrl+grave { spawn "copyq" "toggle"; }
     Mod+V { spawn "walker" "-m" "clipboard"; }
     Mod+slash { spawn "wlr-which-key"; }
 
@@ -423,7 +447,7 @@ binds {
     Mod+Ctrl+J     { move-window-down; }
     Mod+Ctrl+K     { move-window-up; }
     Mod+Ctrl+L     { move-column-right; }
-    
+
     Mod+Down { focus-workspace-down; }
     Mod+Up   { focus-workspace-up; }
     Mod+J { focus-workspace-down; }
