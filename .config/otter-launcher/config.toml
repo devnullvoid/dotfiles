@@ -259,6 +259,16 @@ fi
 """
 
 [[modules]]
+description = "CPU governor control (performance/powersave)"
+prefix = "cpu"
+cmd = "~/.config/otter-launcher/scripts/cpu-governor.sh"
+
+# [[modules]]
+# description = "show CPU status and frequencies"
+# prefix = "cpus"
+# cmd = "~/.config/otter-launcher/scripts/cpu-status.sh"
+
+[[modules]]
 description = "power menu"
 prefix = "po"
 cmd = """

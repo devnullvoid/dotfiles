@@ -1,0 +1,152 @@
+#!/bin/bash
+
+# wg-menu - A script for managing WireGuard connections with various fuzzy finders
+# Supports both GUI (fuzzel, rofi, wofi) and TUI (fzf, skim, television) selectors
+
+# Default menu program (can be overridden with environment variable)
+MENU_PROGRAM=${MENU_PROGRAM:-fzf}
+
+# Define colors for TUI output
+RED=$'\033[0;31m'
+GREEN=$'\033[0;32m'
+BOLD=$'\033[1m'
+NC=$'\033[0m' # No Color
+
+# Menu command arguments based on the launcher type
+case "$MENU_PROGRAM" in
+    rofi)
+        MENU_CMD="rofi -dmenu -i -p 'WireGuard Profile:'"
+        USE_COLOR=false
+        ;;
+    wofi)
+        MENU_CMD="wofi --dmenu -p 'WireGuard Profile:'"
+        USE_COLOR=false
+        ;;
+    fuzzel)
+        MENU_CMD="fuzzel --dmenu -p 'WireGuard Profile:'"
+        USE_COLOR=false
+        ;;
+    fzf)
+        MENU_CMD="fzf --reverse --padding 1,3 --prompt 'WireGuard Profile: ' --ansi"
+        USE_COLOR=true
+        ;;
+    sk|skim)
+        MENU_CMD="sk --reverse --prompt 'WireGuard Profile: ' --ansi"
+        USE_COLOR=true
+        ;;
+    television|tv)
+        MENU_CMD="television --reverse --prompt 'WireGuard Profile: ' --ansi"
+        USE_COLOR=true
+        ;;
+    *)  # Default to dmenu
+        MENU_CMD="dmenu -i -p 'WireGuard Profile:'"
+        USE_COLOR=false
+        ;;
+esac
+
+# Function to get profile status (up/down)
+get_status() {
+    local profile="$1"
+    local interface="${profile%.conf}"
+
+    if sudo wg show interfaces | grep -q "$interface"; then
+        echo "UP"
+    else
+        echo "DOWN"
+    fi
+}
+
+# Get all WireGuard profiles using sudo
+# Use readarray to properly handle filenames with spaces
+readarray -t profile_files < <(sudo find /etc/wireguard -type f -name "*.conf" | sort)
+
+if [ ${#profile_files[@]} -eq 0 ]; then
+    echo "No WireGuard profiles found in /etc/wireguard/" >&2
+    exit 1
+fi
+
+# Build menu with status - using an array for cleaner handling
+declare -a menu_items
+for file in "${profile_files[@]}"; do
+    # Extract just the filename without path and remove .conf extension for display
+    profile=$(basename "$file")
+    display_name="${profile%.conf}"
+    status=$(get_status "$profile")
+    if [ "$USE_COLOR" = true ]; then
+        # Colorized output for TUI
+        if [ "$status" = "UP" ]; then
+            menu_items+=("$(printf "%s\t%s●%s %s%s%s" "$display_name" "$GREEN" "$NC" "$BOLD" "UP" "$NC")")
+        else
+            menu_items+=("$(printf "%s\t%s●%s %s%s%s" "$display_name" "$RED" "$NC" "$BOLD" "DOWN" "$NC")")
+        fi
+    else
+        # Plain output for GUI
+        menu_items+=("$display_name [$status]")
+    fi
+done
+
+# Join array elements with newlines for the menu
+if [ "$USE_COLOR" = true ]; then
+    # For TUI: Use printf to preserve colors, then format with column
+    printf "%s\n" "${menu_items[@]}" | column -t -s $'\t' > /tmp/wg_menu_$$
+    menu_text=$(cat /tmp/wg_menu_$$)
+    rm -f /tmp/wg_menu_$$
+else
+    # For GUI: Simple newline separation
+    menu_text=$(printf "%s\n" "${menu_items[@]}")
+fi
+
+# Use the selected menu program to choose a profile
+if [ "$MENU_PROGRAM" = "fzf" ]; then
+    selected=$(echo "$menu_text" | fzf --reverse --padding 1,3 --prompt 'WireGuard Profile: ' --ansi --no-multi)
+elif [ "$MENU_PROGRAM" = "sk" ] || [ "$MENU_PROGRAM" = "skim" ]; then
+    selected=$(echo "$menu_text" | sk --reverse --prompt 'WireGuard Profile: ' --ansi)
+elif [ "$MENU_PROGRAM" = "television" ] || [ "$MENU_PROGRAM" = "tv" ]; then
+    selected=$(echo "$menu_text" | television --reverse --prompt 'WireGuard Profile: ' --ansi)
+else
+    selected=$(echo "$menu_text" | eval "$MENU_CMD")
+fi
+
+# Exit if nothing was selected
+if [ -z "$selected" ]; then
+    exit 0
+fi
+
+# Extract profile name and status from selection
+if [ "$USE_COLOR" = true ]; then
+    # For TUI: Extract name before the color codes
+    display_name=$(echo "$selected" | awk '{print $1}')
+    status=$(echo "$selected" | grep -o 'UP\|DOWN')
+else
+    # For GUI: Extract from bracketed format
+    display_name=$(echo "$selected" | cut -d' ' -f1)
+    status=$(echo "$selected" | grep -o '\[.*\]' | tr -d '[]')
+fi
+
+# Toggle connection based on current status
+# Add .conf extension back for the interface name
+interface="$display_name"
+
+if [ "$status" = "UP" ]; then
+    # Disconnect
+    sudo wg-quick down "$interface"
+
+    # Send notification if notify-send is available
+    if command -v notify-send >/dev/null 2>&1; then
+        notify-send "WireGuard" "Disconnected from $interface"
+    else
+        echo "Disconnected from $interface"
+    fi
+else
+    # Connect
+    sudo wg-quick up "$interface"
+
+    # Send notification if notify-send is available
+    if command -v notify-send >/dev/null 2>&1; then
+        notify-send "WireGuard" "Connected to $interface"
+    else
+        echo "Connected to $interface"
+    fi
+fi
+
+exit 0

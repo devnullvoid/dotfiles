@@ -12,12 +12,36 @@ function M.apply_to_config(config)
   local bar = wezterm.plugin.require("https://github.com/adriankarlen/bar.wezterm")
   bar.apply_to_config(config, 
     {
+      position = "bottom",
+      max_width = 24,
       padding = {
+        left = 0,
+        right = 1,
         tabs = {
           left = 1,
           right = 1
         }
-      }
+      },
+      separator = {
+        space = 1,
+        left_icon = wezterm.nerdfonts.pl_left_soft_divider,
+        right_icon = wezterm.nerdfonts.pl_right_soft_divider,
+        field_icon = wezterm.nerdfonts.indent_line,
+      },
+      modules = {
+        workspace = {
+          enabled = false,
+        },
+        pane = {
+          enabled = false,
+        },
+        username = {
+          enabled = false,
+        },
+        hostname = {
+          enabled = false,
+        },
+      },
     })
 
   -- local tabline = wezterm.plugin.require("https://github.com/michaelbrusegard/tabline.wez")
