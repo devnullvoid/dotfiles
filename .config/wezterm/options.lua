@@ -32,11 +32,11 @@ function M.apply_to_config(config)
     },
   }
   -- config.window_decorations = "RESIZE"
-  config.default_domain = "local"
-  config.unix_domains = { {
-    name = "unix",
-    connect_automatically = true,
-  } }
+  -- config.default_domain = "local"
+  -- config.unix_domains = { {
+  --   name = "unix",
+  --   connect_automatically = true,
+  -- } }
   config.color_scheme = "Catppuccin Mocha"
   config.command_palette_fg_color = utils.colors.text
   config.command_palette_bg_color = utils.colors.surface0
