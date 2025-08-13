@@ -31,7 +31,18 @@ function M.apply_to_config(config)
       font = monaspace_krypton_bold,
     },
   }
-  -- config.window_decorations = "RESIZE"
+  config.tab_bar_at_bottom = true
+  -- config.window_decorations = "NONE"
+  config.show_new_tab_button_in_tab_bar = false
+  config.tab_max_width = 32
+  config.window_padding = {
+    left = 0,
+    right = 0,
+    top = 0,
+    bottom = 0,
+  }
+
+  -- config.integrated_title_buttons = { }
   -- config.default_domain = "local"
   -- config.unix_domains = { {
   --   name = "unix",
@@ -42,7 +53,6 @@ function M.apply_to_config(config)
   config.command_palette_bg_color = utils.colors.surface0
   config.command_palette_font = monaspace_argon
   config.command_palette_font_size = 11
-  config.tab_bar_at_bottom = true
   config.colors = {
     indexed = {
       [16] = utils.colors.base, -- No clue why, but fixes ipython colors (https://github.com/catppuccin/wezterm/issues/15)

@@ -24,11 +24,19 @@ menu:
       "r": { desc: "R G B", cmd: "hyprpicker --autocopy --format=rgb" }
 
   "s":
+    desc: "Screenshot"
+    submenu:
+      "w": { desc: "Active Window", cmd: "niri msg action screenshot-window" }
+      "W": { desc: "Pick Window", cmd: "niri msg action screenshot-window --id $(niri msg --json pick-window | jq -r .id)" }
+      "s": { desc: "Screen", cmd: "niri msg action screenshot-screen" }
+      "r": { desc: "Region", cmd: "niri msg action screenshot" }
+
+  "S":
     desc: "Share"
     submenu:
       "c": { desc: "Clear", cmd: "niri msg action clear-dynamic-cast-target" }
-      "m": { desc: "Set Monitor", cmd: "niri msg action set-dynamic-cast-monitor --id $(niri msg --json pick-window | jq .id)" }
-      "w": { desc: "Set Window", cmd: "niri msg action set-dynamic-cast-window --id $(niri msg --json pick-window | jq .id)" }
+      "m": { desc: "Set Monitor", cmd: "niri msg action set-dynamic-cast-monitor" }
+      "w": { desc: "Set Window", cmd: "niri msg action set-dynamic-cast-window --id $(niri msg --json pick-window | jq -r .id)" }
 
   # Enhanced Applications menu
   "a":
@@ -43,15 +51,20 @@ menu:
       "p": { desc: "Window Picker", cmd: "~/.config/niri/scripts/choose-window.sh" }
       "F": { desc: "Fuzzel", cmd: "fuzzel" }
       "v": { desc: "Clipboard", cmd: "walker -m clipboard" }
+      "n": { desc: "Niri Launcher", cmd: "~/.local/share/scripts/niri-launcher-pick.sh --menu=fuzzel" }
 
   # Enhanced Windows menu with Niri controls
   "w":
     desc: "Windows"
     submenu:
       "q": { desc: "Close", cmd: "niri msg action close-window" }
+      "Q": { desc: "Close (Pick)", cmd: "niri msg action close-window --id $(niri msg --json pick-window | jq -r .id)" }
       "f": { desc: "Fullscreen", cmd: "niri msg action fullscreen-window" }
+      "F": { desc: "Fullscreen (Pick)", cmd: "niri msg action fullscreen-window --id $(niri msg --json pick-window | jq -r .id)" }
       "t": { desc: "Toggle Float", cmd: "niri msg action toggle-window-floating" }
+      "T": { desc: "Toggle Float (Pick)", cmd: "niri msg action toggle-window-floating --id $(niri msg --json pick-window | jq -r .id)" }
       "c": { desc: "Center", cmd: "niri msg action center-window" }
+      "C": { desc: "Center (Pick)", cmd: "niri msg action center-window --id $(niri msg --json pick-window | jq -r .id)" }
       "h": { desc: "Focus Left", cmd: "niri msg action focus-column-left" }
       "j": { desc: "Focus Down", cmd: "niri msg action focus-window-down" }
       "k": { desc: "Focus Up", cmd: "niri msg action focus-window-up" }
@@ -60,10 +73,46 @@ menu:
       "J": { desc: "Move Down", cmd: "niri msg action move-window-down" }
       "K": { desc: "Move Up", cmd: "niri msg action move-window-up" }
       "L": { desc: "Move Right", cmd: "niri msg action move-column-right" }
-      "c":
-        desc: "WindowColumn"
+      "p": { desc: "Focus (Pick)", cmd: "niri msg action focus-window --id $(niri msg --json pick-window | jq -r .id)" }
+      "o": { desc: "Focus Previous", cmd: "niri msg action focus-window-previous" }
+      "r":
+        desc: "Resize"
         submenu:
+          "w": { desc: "Set Width", cmd: "niri msg action set-window-width --id $(niri msg --json pick-window | jq -r .id)" }
+          "h": { desc: "Set Height", cmd: "niri msg action set-window-height --id $(niri msg --json pick-window | jq -r .id)" }
+          "r": { desc: "Reset Height", cmd: "niri msg action reset-window-height --id $(niri msg --json pick-window | jq -r .id)" }
+          "W": { desc: "Switch Width Preset", cmd: "niri msg action switch-preset-window-width --id $(niri msg --json pick-window | jq -r .id)" }
+          "H": { desc: "Switch Height Preset", cmd: "niri msg action switch-preset-window-height --id $(niri msg --json pick-window | jq -r .id)" }
+      "m":
+        desc: "Move"
+        submenu:
+          "f": { desc: "To Floating", cmd: "niri msg action move-window-to-floating --id $(niri msg --json pick-window | jq -r .id)" }
+          "t": { desc: "To Tiling", cmd: "niri msg action move-window-to-tiling --id $(niri msg --json pick-window | jq -r .id)" }
+          "m": { desc: "To Monitor", cmd: "niri msg action move-window-to-monitor --id $(niri msg --json pick-window | jq -r .id)" }
+          "F": { desc: "Move Floating", cmd: "niri msg action move-floating-window --id $(niri msg --json pick-window | jq -r .id)" }
+      "u":
+        desc: "Urgent"
+        submenu:
+          "t": { desc: "Toggle Urgent", cmd: "niri msg action toggle-window-urgent --id $(niri msg --json pick-window | jq -r .id)" }
+          "s": { desc: "Set Urgent", cmd: "niri msg action set-window-urgent --id $(niri msg --json pick-window | jq -r .id)" }
+          "u": { desc: "Unset Urgent", cmd: "niri msg action unset-window-urgent --id $(niri msg --json pick-window | jq -r .id)" }
+      "x":
+        desc: "Effects"
+        submenu:
+          "o": { desc: "Toggle Opacity", cmd: "niri msg action toggle-window-rule-opacity --id $(niri msg --json pick-window | jq -r .id)" }
+          "w": { desc: "Windowed Fullscreen", cmd: "niri msg action toggle-windowed-fullscreen --id $(niri msg --json pick-window | jq -r .id)" }
+      "c":
+        desc: "Column"
+        submenu:
+          "c": { desc: "Consume into Column", cmd: "niri msg action consume-window-into-column" }
+          "x": { desc: "Expel from Column", cmd: "niri msg action expel-window-from-column" }
           "J": { desc: "To Workspace Down", cmd: "niri msg action move-column-to-workspace-down" }
+          "K": { desc: "To Workspace Up", cmd: "niri msg action move-column-to-workspace-up" }
+          "t": { desc: "Toggle Tabbed", cmd: "niri msg action toggle-column-tabbed-display" }
+          "w": { desc: "Set Width", cmd: "niri msg action set-column-width" }
+          "m": { desc: "Maximize", cmd: "niri msg action maximize-column" }
+          "e": { desc: "Expand to Available", cmd: "niri msg action expand-column-to-available-width" }
+          "W": { desc: "Switch Width Preset", cmd: "niri msg action switch-preset-column-width" }
 
   # Enhanced Workspaces menu
   "W":
@@ -78,10 +127,64 @@ menu:
       "7": { desc: "Workspace 7", cmd: "niri msg action focus-workspace 7" }
       "8": { desc: "Workspace 8", cmd: "niri msg action focus-workspace 8" }
       "9": { desc: "Workspace 9", cmd: "niri msg action focus-workspace 9" }
+      "p": { desc: "Previous", cmd: "niri msg action focus-workspace-previous" }
+      "j": { desc: "Focus Down", cmd: "niri msg action focus-workspace-down" }
+      "k": { desc: "Focus Up", cmd: "niri msg action focus-workspace-up" }
       "h": { desc: "Move Left", cmd: "niri msg action move-workspace-to-monitor-left" }
-      "j": { desc: "Move Down", cmd: "niri msg action move-workspace-down" }
-      "k": { desc: "Move Up", cmd: "niri msg action move-workspace-up" }
+      "J": { desc: "Move Down", cmd: "niri msg action move-workspace-down" }
+      "K": { desc: "Move Up", cmd: "niri msg action move-workspace-up" }
       "l": { desc: "Move Right", cmd: "niri msg action move-workspace-to-monitor-right" }
+      "n": { desc: "Set Name", cmd: "niri msg action set-workspace-name" }
+      "u": { desc: "Unset Name", cmd: "niri msg action unset-workspace-name" }
+      "m":
+        desc: "Move Window To"
+        submenu:
+          "1": { desc: "To Workspace 1", cmd: "niri msg action move-window-to-workspace 1" }
+          "2": { desc: "To Workspace 2", cmd: "niri msg action move-window-to-workspace 2" }
+          "3": { desc: "To Workspace 3", cmd: "niri msg action move-window-to-workspace 3" }
+          "4": { desc: "To Workspace 4", cmd: "niri msg action move-window-to-workspace 4" }
+          "5": { desc: "To Workspace 5", cmd: "niri msg action move-window-to-workspace 5" }
+          "6": { desc: "To Workspace 6", cmd: "niri msg action move-window-to-workspace 6" }
+          "7": { desc: "To Workspace 7", cmd: "niri msg action move-window-to-workspace 7" }
+          "8": { desc: "To Workspace 8", cmd: "niri msg action move-window-to-workspace 8" }
+          "9": { desc: "To Workspace 9", cmd: "niri msg action move-window-to-workspace 9" }
+          "j": { desc: "To Workspace Down", cmd: "niri msg action move-window-to-workspace-down" }
+          "k": { desc: "To Workspace Up", cmd: "niri msg action move-window-to-workspace-up" }
+
+  # New Monitor menu
+  "M":
+    desc: "Monitors"
+    submenu:
+      "h": { desc: "Focus Left", cmd: "niri msg action focus-monitor-left" }
+      "j": { desc: "Focus Down", cmd: "niri msg action focus-monitor-down" }
+      "k": { desc: "Focus Up", cmd: "niri msg action focus-monitor-up" }
+      "l": { desc: "Focus Right", cmd: "niri msg action focus-monitor-right" }
+      "p": { desc: "Focus Previous", cmd: "niri msg action focus-monitor-previous" }
+      "n": { desc: "Focus Next", cmd: "niri msg action focus-monitor-next" }
+      "o": { desc: "Power Off", cmd: "niri msg action power-off-monitors" }
+      "O": { desc: "Power On", cmd: "niri msg action power-on-monitors" }
+
+  # New Layout menu
+  "L":
+    desc: "Layout"
+    submenu:
+      "s": { desc: "Switch Keyboard Layout", cmd: "niri msg action switch-layout" }
+      "f": { desc: "Focus Floating", cmd: "niri msg action focus-floating" }
+      "t": { desc: "Focus Tiling", cmd: "niri msg action focus-tiling" }
+      "x": { desc: "Switch Float/Tiling", cmd: "niri msg action switch-focus-between-floating-and-tiling" }
+      "o": { desc: "Toggle Overview", cmd: "niri msg action toggle-overview" }
+      "O": { desc: "Open Overview", cmd: "niri msg action open-overview" }
+      "c": { desc: "Close Overview", cmd: "niri msg action close-overview" }
+      "h": { desc: "Show Hotkey Overlay", cmd: "niri msg action show-hotkey-overlay" }
+      "d": { desc: "Screen Transition", cmd: "niri msg action do-screen-transition" }
+
+  # New Debug menu
+  "d":
+    desc: "Debug"
+    submenu:
+      "t": { desc: "Toggle Debug Tint", cmd: "niri msg action toggle-debug-tint" }
+      "o": { desc: "Toggle Opaque Regions", cmd: "niri msg action debug-toggle-opaque-regions" }
+      "d": { desc: "Toggle Damage", cmd: "niri msg action debug-toggle-damage" }
 
   # Preserved notifications menu
   "n":

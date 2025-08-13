@@ -83,7 +83,7 @@ for conn in "${wg_connections[@]}"; do
             menu_items+=("$(printf "%s\t%s●%s %s%s%s" "$conn" "$GREEN" "$NC" "$BOLD" "UP" "$NC")")
         else
             menu_items+=("$(printf "%s\t%s●%s %s%s%s" "$conn" "$RED" "$NC" "$BOLD" "DOWN" "$NC")")
-        fi
+        # fi
     else
         # Plain output for GUI
         menu_items+=("$conn [$status]")

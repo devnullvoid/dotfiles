@@ -64,12 +64,12 @@ cmd = "setsid -f xdg-open https://wiki.archlinux.org/index.php?search='{}'"
 with_argument = true
 url_encode = true
 
-[[modules]]
-description = "search for arch packages"
-prefix = "pac"
-cmd = "setsid -f xdg-open https://archlinux.org/packages/?q='{}'"
-with_argument = true
-url_encode = true
+# [[modules]]
+# description = "search for arch packages"
+# prefix = "pac"
+# cmd = "setsid -f xdg-open https://archlinux.org/packages/?q='{}'"
+# with_argument = true
+# url_encode = true
 
 [[modules]]
 description = "search for aur packages"
@@ -267,6 +267,11 @@ cmd = "~/.config/otter-launcher/scripts/cpu-governor.sh"
 # description = "show CPU status and frequencies"
 # prefix = "cpus"
 # cmd = "~/.config/otter-launcher/scripts/cpu-status.sh"
+
+[[modules]]
+description = "niri window manager actions"
+prefix = "nr"
+cmd = "setsid -f $TERM -e ~/.local/share/scripts/niri-launcher-pick.sh --menu=fzf"
 
 [[modules]]
 description = "power menu"
