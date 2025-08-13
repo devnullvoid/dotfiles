@@ -8,16 +8,17 @@ spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "color-scheme" 
 spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "gtk-theme" "Colloid-Purple-Dark-Catppuccin"
 spawn-at-startup "xwayland-satellite"
 spawn-at-startup "swww-daemon"
-spawn-at-startup "/home/jon/.config/waybar/waybar-reload.sh"
-spawn-at-startup "swayosd-server"
+spawn-at-startup "qs" "-c" "DevNullShell"
+// spawn-at-startup "/home/jon/.config/waybar/waybar-reload.sh"
+// spawn-at-startup "swayosd-server"
 // spawn-at-startup "dunst"
 // spawn-at-startup "swww img ~/Pictures/Wallpapers/cloudy_quasar_1.D0uanmax.png"
 // spawn-at-startup "waypaper" "--restore"
 spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
 spawn-at-startup "walker" "--gapplication-service"
 spawn-at-startup "niriswitcher"
-spawn-at-startup "swaync"
-spawn-at-startup "swayidle" "-w"
+// spawn-at-startup "swaync"
+// spawn-at-startup "swayidle" "-w"
 spawn-at-startup "sunsetr"
 spawn-at-startup "copyq" "--start-server"
 // spawn-at-startup "pamac-tray --gapplication-service"
@@ -259,6 +260,8 @@ layer-rule {
     match namespace="anyrun"
     match namespace="launcher"
     match namespace="wlr_which_key"
+    match namespace="fuzzel"
+    match namespace="niriswitcher"
 
     shadow {
         on
@@ -388,10 +391,44 @@ window-rule {
 binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
+    Mod+Space hotkey-overlay-title="Application Launcher" {
+       spawn "qs" "-c" "DevNullShell" "ipc" "call" "spotlight" "toggle";
+    }
+    Mod+V hotkey-overlay-title="Clipboard Manager" {
+       spawn "qs" "-c" "DevNullShell" "ipc" "call" "clipboard" "toggle";
+    }
+    // Mod+M hotkey-overlay-title="Task Manager" {
+    //    spawn "qs" "-c" "DevNullShell" "ipc" "call" "processlist" "toggle";
+    // }
+    // Mod+Comma hotkey-overlay-title="Settings" {
+    //    spawn "qs" "-c" "DevNullShell" "ipc" "call" "settings" "toggle";
+    // }
+    Super+Alt+L hotkey-overlay-title="Lock Screen" {
+       spawn "qs" "-c" "DevNullShell" "ipc" "call" "lock" "lock";
+    }
+    XF86AudioRaiseVolume allow-when-locked=true {
+       spawn "qs" "-c" "DevNullShell" "ipc" "call" "audio" "increment" "3";
+    }
+    XF86AudioLowerVolume allow-when-locked=true {
+       spawn "qs" "-c" "DevNullShell" "ipc" "call" "audio" "decrement" "3";
+    }
+    XF86AudioMute allow-when-locked=true {
+       spawn "qs" "-c" "DevNullShell" "ipc" "call" "audio" "mute";
+    }
+    XF86AudioMicMute allow-when-locked=true {
+       spawn "qs" "-c" "DevNullShell" "ipc" "call" "audio" "micmute";
+    }
+    XF86MonBrightnessUp allow-when-locked=true {
+       spawn "qs" "-c" "DevNullShell" "ipc" "call" "brightness" "increment" "5";
+    }
+    XF86MonBrightnessDown allow-when-locked=true {
+       spawn "qs" "-c" "DevNullShell" "ipc" "call" "brightness" "decrement" "5";
+    } 
+
     Mod+Return { spawn "kitty"; }
     // Mod+Alt+Space { spawn "rofi" "-show" "drun"; }
     Mod+Alt+Space { spawn "rofi" "-show" "drun"; }
-    Mod+Space { spawn "~/.config/otter-launcher/otter-toggle-niri.sh"; }
+    // Mod+Space { spawn "~/.config/otter-launcher/otter-toggle-niri.sh"; }
     // Mod+Space { spawn "~/.config/rofi/scripts/launcher_t1"; }
     // Ctrl+Shift+Mod+Space { spawn "anyrun"; }
     Mod+Z { spawn "~/.config/otter-launcher/otter-toggle-niri.sh"; }
@@ -402,9 +439,9 @@ binds {
     Mod+F {spawn "firefox";}
     // Mod+D {spawn "discord" "--enable-features=UseOzonePlatform" "--ozone-platform=wayland";}
     Mod+E {spawn "kitty" "-e" "yazi";}
-    Mod+B {spawn "~/.config/waybar/waybar-reload.sh"; }
+    // Mod+B {spawn "~/.config/waybar/waybar-reload.sh"; }
     Ctrl+grave { spawn "copyq" "toggle"; }
-    Mod+V { spawn "walker" "-m" "clipboard"; }
+    // Mod+V { spawn "walker" "-m" "clipboard"; }
     Mod+slash { spawn "wlr-which-key"; }
 
     // XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05+"; }
@@ -413,19 +450,21 @@ binds {
     // XF86AudioMicMute     allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
     // XF86MonBrightnessUp cooldown-ms=50 allow-when-locked=true { spawn "brightnessctl" "s" "5%+"; }
     // XF86MonBrightnessDown cooldown-ms=50 allow-when-locked=true { spawn "brightnessctl" "s" "5%-"; }
-    XF86AudioLowerVolume { spawn "swayosd-client" "--output-volume=lower"; }
-    XF86AudioRaiseVolume { spawn "swayosd-client" "--output-volume=raise"; }
-    XF86AudioMute { spawn "swayosd-client" "--output-volume=mute-toggle"; }
-    XF86AudioMicMute { spawn "swayosd-client" "--input-volume=mute-toggle"; }
-    XF86MonBrightnessDown { spawn "swayosd-client" "--brightness=lower"; }
-    XF86MonBrightnessUp { spawn "swayosd-client" "--brightness=raise"; }
+
+    // XF86AudioLowerVolume { spawn "swayosd-client" "--output-volume=lower"; }
+    // XF86AudioRaiseVolume { spawn "swayosd-client" "--output-volume=raise"; }
+    // XF86AudioMute { spawn "swayosd-client" "--output-volume=mute-toggle"; }
+    // XF86AudioMicMute { spawn "swayosd-client" "--input-volume=mute-toggle"; }
+    // XF86MonBrightnessDown { spawn "swayosd-client" "--brightness=lower"; }
+    // XF86MonBrightnessUp { spawn "swayosd-client" "--brightness=raise"; }
+
     // XF86AudioNext { spawn "/nix/store/swqm64zvxfwr5aay3w5bn1amwh5c1qwd-playerctl-2.4.1/bin/playerctl" "next"; }
     // XF86AudioPlay { spawn "/nix/store/swqm64zvxfwr5aay3w5bn1amwh5c1qwd-playerctl-2.4.1/bin/playerctl" "play-pause"; }
     // XF86AudioPrev { spawn "/nix/store/swqm64zvxfwr5aay3w5bn1amwh5c1qwd-playerctl-2.4.1/bin/playerctl" "previous"; }
     // XF86AudioStop { spawn "/nix/store/swqm64zvxfwr5aay3w5bn1amwh5c1qwd-playerctl-2.4.1/bin/playerctl" "pause"; }
 
-    Shift+XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.01+"; }
-    Shift+XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.01-"; }
+    // Shift+XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.01+"; }
+    // Shift+XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.01-"; }
 
     Mod+Tab repeat=false { toggle-overview; }
 
@@ -536,10 +575,11 @@ binds {
     Mod+Y { switch-layout "next"; }
     Mod+Shift+Y { switch-layout "prev"; }
 
-    // Alt+Tab repeat=false { spawn "gdbus" "call" "--session" "--dest" "io.github.isaksamsten.Niriswitcher" "--object-path" "/io/github/isaksamsten/Niriswitcher" "--method" "io.github.isaksamsten.Niriswitcher.application" ; }
-    // Alt+Shift+Tab repeat=false { spawn "gdbus" "call" "--session" "--dest" "io.github.isaksamsten.Niriswitcher" "--object-path" "/io/github/isaksamsten/Niriswitcher" "--method" "io.github.isaksamsten.Niriswitcher.application" ; }
-    Alt+Tab repeat=false { spawn "pkill" "-USR1" "niriswitcher"; }
-    Alt+Shift+Tab repeat=false { spawn "pkill" "-USR1" "niriswitcher"; }
+    Alt+Tab repeat=false { spawn "gdbus" "call" "--session" "--dest" "io.github.isaksamsten.Niriswitcher" "--object-path" "/io/github/isaksamsten/Niriswitcher" "--method" "io.github.isaksamsten.Niriswitcher.application" ; }
+    Alt+Shift+Tab repeat=false { spawn "gdbus" "call" "--session" "--dest" "io.github.isaksamsten.Niriswitcher" "--object-path" "/io/github/isaksamsten/Niriswitcher" "--method" "io.github.isaksamsten.Niriswitcher.application" ; }
+
+    // Alt+Tab repeat=false { spawn "pkill" "-USR1" "niriswitcher"; }
+    // Alt+Shift+Tab repeat=false { spawn "pkill" "-USR1" "niriswitcher"; }
 
     Print { screenshot show-pointer=false; }
     Alt+Print { screenshot-screen show-pointer=false; }
@@ -549,7 +589,7 @@ binds {
     Ctrl+Alt+Delete { spawn "~/.config/rofi/scripts/powermenu_t1"; }
     // Ctrl+Alt+Delete { spawn "rofi" "-show" "menu" "-modi" "'menu:~/.config/rofi/scripts/rofi-power-menu-niri --choices=logout/suspend/reboot/shutdown'" "-config" "~/.config/rofi/power.rasi"; }
 
-    Super+Alt+L { spawn "hyprlock"; }
+    // Super+Alt+L { spawn "hyprlock"; }
     Mod+Shift+P { power-off-monitors; }
 
     Mod+Shift+C { center-window; }

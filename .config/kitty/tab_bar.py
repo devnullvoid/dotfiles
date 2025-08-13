@@ -82,7 +82,7 @@ def _draw_icon(screen: Screen, index: int, tab=None, draw_data=None) -> int:
         return 0
 
 
-MAX_TAB_TITLE_LENGTH = 30  # Change this value to adjust truncation length
+
 
 def _draw_left_status(
     draw_data: DrawData,
@@ -109,7 +109,13 @@ def _draw_left_status(
         screen.cursor.x = len(ICON)
     screen.draw(' ')
     screen.cursor.bg = tab_bg
-    draw_title(draw_data, screen, tab, index)
+    # Truncate tab title if too long
+    title = tab.title if hasattr(tab, 'title') else ''
+    if len(title) > max_title_length:
+        title = title[:max_title_length-1] + '…'
+    fg, bg = screen.cursor.fg, screen.cursor.bg
+    draw_attributed_string(title, screen)
+    screen.cursor.fg, screen.cursor.bg = fg, bg
     if not needs_soft_separator:
         screen.draw(' ')
         screen.cursor.fg = tab_bg
@@ -244,12 +250,20 @@ def draw_tab(
             right_status_length += len(str(cell[1]))
 
         _draw_icon(screen, index, tab=tab, draw_data=draw_data)
+
+        # Dynamically calculate max title length for tabs
+        # Estimate: available width = total columns - right_status_length - icon/divider - (tabs * padding)
+        total_tabs = len(get_boss().active_tab_manager.tabs) if get_boss() and get_boss().active_tab_manager else 1
+        icon_and_divider = len(ICON) + len(SEPARATOR_SYMBOL) + 2  # +2 for spaces
+        available_width = screen.columns - right_status_length - icon_and_divider
+        per_tab = max(6, int(available_width / total_tabs) - 2)  # -2 for padding, min 6 chars
+
         _draw_left_status(
             draw_data,
             screen,
             tab,
             before,
-            max_title_length,
+            per_tab,
             index,
             is_last,
             extra_data,
