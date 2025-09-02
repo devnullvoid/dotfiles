@@ -82,12 +82,25 @@ if status is-interactive
     bind up _atuin_bind_up
     # end
     if test "$TERM" = "xterm-kitty"
-        # override ssh to use kitty +kitten ssh
+        # override ssh to use kitty +kitten ssh with proper handling for interactive prompts
         function ssh --description 'Use kitty +kitten ssh when in Kitty'
-            kitty +kitten ssh $argv
+            # Use kitty kitten with explicit TTY allocation to fix interactive prompt issues
+            # The -t flag forces TTY allocation which helps with host key confirmations and passwords
+            kitty +kitten ssh -t $argv
         end
     end
     # test -f ~/.inshellisense/fish/init.fish && source ~/.inshellisense/fish/init.fish
+    
+    # Override terminal title to show current directory instead of "qterm"
+    function fish_title
+        # Show current directory name, or "fish" if in home
+        set -l pwd_name (basename (prompt_pwd))
+        if test "$pwd_name" = "~"
+            echo "fish"
+        else
+            echo "$pwd_name"
+        end
+    end
 end
 
 # restic minio keys

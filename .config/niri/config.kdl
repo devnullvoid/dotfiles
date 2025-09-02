@@ -7,7 +7,7 @@ spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "cursor-theme" 
 spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "color-scheme" "prefer-dark"
 spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "gtk-theme" "Colloid-Purple-Dark-Catppuccin"
 spawn-at-startup "xwayland-satellite"
-spawn-at-startup "swww-daemon"
+// spawn-at-startup "swww-daemon"
 spawn-at-startup "qs" "-c" "DevNullShell"
 // spawn-at-startup "/home/jon/.config/waybar/waybar-reload.sh"
 // spawn-at-startup "swayosd-server"
@@ -19,13 +19,13 @@ spawn-at-startup "walker" "--gapplication-service"
 spawn-at-startup "niriswitcher"
 // spawn-at-startup "swaync"
 // spawn-at-startup "swayidle" "-w"
-spawn-at-startup "sunsetr"
+// spawn-at-startup "sunsetr"
 spawn-at-startup "copyq" "--start-server"
 // spawn-at-startup "pamac-tray --gapplication-service"
 
-workspace "1"
-// workspace "2"
-// workspace "3"
+workspace "home"
+workspace "code"
+workspace "misc"
 
 prefer-no-csd
 
@@ -229,6 +229,10 @@ layer-rule {
     place-within-backdrop true
 }
 layer-rule {
+  match namespace="^quickshell$"
+  place-within-backdrop true
+}
+layer-rule {
     match namespace="waybar"
     match at-startup=true
 
@@ -362,6 +366,8 @@ window-rule {
     match app-id=r#"virt-manager$"#
     match app-id=r#"^com\.obsproject\.Studio$"#
 
+    open-on-workspace "misc"
+
     opacity 1.0
 }
 
@@ -380,6 +386,13 @@ window-rule {
       draw-behind-window false
       color "#f0c6c655"
     }
+}
+
+window-rule {
+  match app-id=r#"cursor$"#
+  match app-id=r#"windsurf$"#
+
+  open-on-workspace "code"
 }
 
 window-rule {
@@ -419,10 +432,10 @@ binds {
        spawn "qs" "-c" "DevNullShell" "ipc" "call" "audio" "micmute";
     }
     XF86MonBrightnessUp allow-when-locked=true {
-       spawn "qs" "-c" "DevNullShell" "ipc" "call" "brightness" "increment" "5";
+       spawn "qs" "-c" "DevNullShell" "ipc" "call" "brightness" "increment" "5" "intel_backlight";
     }
     XF86MonBrightnessDown allow-when-locked=true {
-       spawn "qs" "-c" "DevNullShell" "ipc" "call" "brightness" "decrement" "5";
+       spawn "qs" "-c" "DevNullShell" "ipc" "call" "brightness" "decrement" "5" "intel_backlight";
     } 
 
     Mod+Return { spawn "kitty"; }

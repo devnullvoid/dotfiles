@@ -120,4 +120,10 @@ M.paste_selection = wezterm.action_callback(function(window, pane)
   end
 end)
 
+-- Spawn a new tab and immediately split it horizontally (top/bottom)
+M.spawn_tab_with_split = wezterm.action_callback(function(window, pane)
+  window:perform_action(action.SpawnTab("CurrentPaneDomain"), pane)
+  window:perform_action(action.SplitPane { direction = "Down", size = 0.5 }, pane)
+end)
+
 return M

@@ -7,7 +7,7 @@ config.use_fancy_tab_bar = false
 
 require("options").apply_to_config(config)
 require("keys").apply_to_config(config)
--- -- require("workspaces").setup()
+require("workspaces").setup()
 -- -- require("tabbar").apply_to_config(config)
 require("plugins").apply_to_config(config)
 
