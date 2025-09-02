@@ -83,7 +83,7 @@ function M.apply_to_config(config)
     { key = "v", mods = "ALT", action = action.PasteFrom("PrimarySelection") },
     { key = "k", mods = "LEADER|SHIFT", action = action.CloseCurrentTab { confirm = true } },
     { key = "k", mods = "LEADER", action = action.CloseCurrentPane { confirm = true } },
-    { key = "t", mods = "LEADER", action = action.SpawnTab("CurrentPaneDomain") },
+    { key = "t", mods = "LEADER", action = user_action.spawn_tab_with_split },
     { key = "/", mods = "SHIFT|CTRL", action = wezterm.action.QuickSelect },
     {
       key = "h",

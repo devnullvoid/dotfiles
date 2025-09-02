@@ -2,14 +2,14 @@ local wezterm = require("wezterm") --[[@as Wezterm]]
 local utils = require("utils")
 local M = {}
 
-local monaspace_krypton = wezterm.font { family = "Monaspace Krypton", harfbuzz_features= { "cv01=2" }, }
-local monaspace_neon = wezterm.font { family = "Monaspace Neon", harfbuzz_features= { "cv01=2" }, }
-local monaspace_argon = wezterm.font { family = "Monaspace Argon", harfbuzz_features= { "cv01=2" }, }
-local monaspace_radon = wezterm.font { family = "Monaspace Radon", harfbuzz_features= { "cv01=2" }, }
-local monaspace_krypton_bold = wezterm.font { family = "Monaspace Krypton", weight = "Bold", harfbuzz_features= { "cv01=2" }, }
-local monaspace_neon_bold = wezterm.font { family = "Monaspace Neon", weight = "Bold", harfbuzz_features= { "cv01=2" }, }
-local monaspace_argon_bold = wezterm.font { family = "Monaspace Argon", weight = "Bold", harfbuzz_features= { "cv01=2" }, }
-local monaspace_radon_bold = wezterm.font { family = "Monaspace Radon", weight = "Bold", harfbuzz_features= { "cv01=2" }, }
+local monaspace_krypton = wezterm.font { family = "Monaspace Krypton NF", harfbuzz_features= { "cv01=2" }, }
+local monaspace_neon = wezterm.font { family = "Monaspace Neon NF", harfbuzz_features= { "cv01=2" }, }
+local monaspace_argon = wezterm.font { family = "Monaspace Argon NF", harfbuzz_features= { "cv01=2" }, }
+local monaspace_radon = wezterm.font { family = "Monaspace Radon NF", harfbuzz_features= { "cv01=2" }, }
+local monaspace_krypton_bold = wezterm.font { family = "Monaspace Krypton NF", weight = "Bold", harfbuzz_features= { "cv01=2" }, }
+local monaspace_neon_bold = wezterm.font { family = "Monaspace Neon NF", weight = "Bold", harfbuzz_features= { "cv01=2" }, }
+local monaspace_argon_bold = wezterm.font { family = "Monaspace Argon NF", weight = "Bold", harfbuzz_features= { "cv01=2" }, }
+local monaspace_radon_bold = wezterm.font { family = "Monaspace Radon NF", weight = "Bold", harfbuzz_features= { "cv01=2" }, }
 
 function M.apply_to_config(config)
   config.font_size = 11

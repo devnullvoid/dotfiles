@@ -100,7 +100,7 @@ function M.apply_to_config(config)
       tabline_c = { },
       tab_active = {
         'index',
-        wezterm.nerdfonts.ple_forwardslash_separator,
+        wezterm.nerdfonts.ple_backslash_separator,
         { 'parent', padding = 0 },
         '/',
         { 'cwd', padding = { left = 0, right = 1 } },
