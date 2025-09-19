@@ -1,0 +1,184 @@
+{
+  "currentThemeName": "custom",
+  "customThemeFile": "/home/jon/.config/DankMaterialShell/catppuccin.json",
+  "topBarTransparency": 0.85,
+  "topBarWidgetTransparency": 0.5,
+  "popupTransparency": 0.92,
+  "dockTransparency": 1,
+  "use24HourClock": false,
+  "useFahrenheit": true,
+  "nightModeEnabled": false,
+  "weatherLocation": "40.7128, -74.0060",
+  "weatherCoordinates": "40.7128,-74.0060",
+  "useAutoLocation": true,
+  "weatherEnabled": true,
+  "showLauncherButton": true,
+  "showWorkspaceSwitcher": true,
+  "showFocusedWindow": true,
+  "showWeather": true,
+  "showMusic": true,
+  "showClipboard": true,
+  "showCpuUsage": true,
+  "showMemUsage": true,
+  "showCpuTemp": true,
+  "showGpuTemp": true,
+  "selectedGpuIndex": 0,
+  "enabledGpuPciIds": [],
+  "showSystemTray": true,
+  "showClock": true,
+  "showNotificationButton": true,
+  "showBattery": true,
+  "showControlCenterButton": true,
+  "controlCenterShowNetworkIcon": true,
+  "controlCenterShowBluetoothIcon": true,
+  "controlCenterShowAudioIcon": true,
+  "showWorkspaceIndex": false,
+  "showWorkspacePadding": true,
+  "showWorkspaceApps": false,
+  "maxWorkspaceIcons": 3,
+  "workspacesPerMonitor": true,
+  "workspaceNameIcons": {
+    "1": {
+      "type": "icon",
+      "value": "home"
+    },
+    "2": {
+      "type": "icon",
+      "value": "code"
+    },
+    "3": {
+      "type": "icon",
+      "value": "auto_awesome"
+    },
+    "home": {
+      "type": "icon",
+      "value": "home"
+    },
+    "code": {
+      "type": "icon",
+      "value": "data_object"
+    },
+    "misc": {
+      "type": "icon",
+      "value": "star"
+    }
+  },
+  "waveProgressEnabled": true,
+  "clockCompactMode": false,
+  "focusedWindowCompactMode": false,
+  "runningAppsCompactMode": true,
+  "runningAppsCurrentWorkspace": false,
+  "clockDateFormat": "ddd MMM d",
+  "lockDateFormat": "dddd, MMMM d",
+  "mediaSize": 1,
+  "topBarLeftWidgets": [
+    {
+      "id": "launcherButton",
+      "enabled": true
+    },
+    {
+      "id": "workspaceSwitcher",
+      "enabled": true
+    },
+    {
+      "id": "runningApps",
+      "enabled": true
+    },
+    {
+      "id": "focusedWindow",
+      "enabled": true
+    }
+  ],
+  "topBarCenterWidgets": [
+    "music",
+    "clock",
+    "weather"
+  ],
+  "topBarRightWidgets": [
+    {
+      "id": "systemTray",
+      "enabled": true
+    },
+    {
+      "id": "clipboard",
+      "enabled": true
+    },
+    {
+      "id": "notepadButton",
+      "enabled": true
+    },
+    {
+      "id": "systemUpdate",
+      "enabled": true
+    },
+    {
+      "id": "cpuUsage",
+      "enabled": true
+    },
+    {
+      "id": "memUsage",
+      "enabled": true
+    },
+    {
+      "id": "vpn",
+      "enabled": true
+    },
+    {
+      "id": "idleInhibitor",
+      "enabled": true
+    },
+    {
+      "id": "notificationButton",
+      "enabled": true
+    },
+    {
+      "id": "battery",
+      "enabled": true
+    },
+    {
+      "id": "controlCenterButton",
+      "enabled": true
+    }
+  ],
+  "appLauncherViewMode": "list",
+  "spotlightModalViewMode": "list",
+  "networkPreference": "auto",
+  "iconTheme": "Colloid-Purple-Catppuccin",
+  "useOSLogo": false,
+  "osLogoColorOverride": "",
+  "osLogoBrightness": 0.5,
+  "osLogoContrast": 1,
+  "wallpaperDynamicTheming": true,
+  "fontFamily": "Inter Variable",
+  "monoFontFamily": "Fira Code",
+  "fontWeight": 400,
+  "fontScale": 1,
+  "notepadUseMonospace": true,
+  "notepadFontFamily": "",
+  "notepadFontSize": 14,
+  "gtkThemingEnabled": false,
+  "qtThemingEnabled": false,
+  "showDock": false,
+  "dockAutoHide": false,
+  "cornerRadius": 15,
+  "notificationOverlayEnabled": false,
+  "topBarAutoHide": false,
+  "topBarOpenOnOverview": false,
+  "topBarVisible": true,
+  "topBarSpacing": 2,
+  "topBarBottomGap": -4,
+  "topBarInnerPadding": 0,
+  "topBarSquareCorners": false,
+  "topBarNoBackground": false,
+  "topBarGothCornersEnabled": true,
+  "lockScreenShowPowerActions": true,
+  "hideBrightnessSlider": false,
+  "notificationTimeoutLow": 5000,
+  "notificationTimeoutNormal": 5000,
+  "notificationTimeoutCritical": 0,
+  "screenPreferences": {
+    "wallpaper": [
+      "all"
+    ]
+  }
+}
