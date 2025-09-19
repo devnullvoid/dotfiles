@@ -82,16 +82,16 @@ function M.apply_to_config(config)
         }
       },
       section_separators = {
-        left = wezterm.nerdfonts.ple_lower_left_triangle, -- hard_divider,
-        right = wezterm.nerdfonts.ple_lower_right_triangle, -- hard_divider,
+        left = wezterm.nerdfonts.ple_upper_left_triangle, -- hard_divider,
+        right = wezterm.nerdfonts.ple_upper_right_triangle, -- hard_divider,
       },
       component_separators = {
-        left = wezterm.nerdfonts.ple_backslash_separator, -- left_soft_divider,
-        right = wezterm.nerdfonts.ple_forwardslash_separator, -- right_soft_divider,
+        left = wezterm.nerdfonts.ple_forwardslash_separator, -- left_soft_divider,
+        right = wezterm.nerdfonts.ple_backslash_separator, -- right_soft_divider,
       },
       tab_separators = {
-        left = wezterm.nerdfonts.ple_lower_left_triangle, -- left_hard_divider,
-        right = wezterm.nerdfonts.ple_upper_right_triangle, -- hard_divider,
+        left = wezterm.nerdfonts.ple_upper_left_triangle, -- left_hard_divider,
+        right = wezterm.nerdfonts.ple_lower_right_triangle, -- hard_divider,
       },
     },
     sections = {
@@ -100,7 +100,7 @@ function M.apply_to_config(config)
       tabline_c = { },
       tab_active = {
         'index',
-        wezterm.nerdfonts.ple_backslash_separator,
+        wezterm.nerdfonts.ple_forwardslash_separator,
         { 'parent', padding = 0 },
         '/',
         { 'cwd', padding = { left = 0, right = 1 } },

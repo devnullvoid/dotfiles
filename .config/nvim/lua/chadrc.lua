@@ -15,10 +15,13 @@ M.base46 = {
 	},
 }
 
-M.nvdash = { load_on_startup = true }
+M.nvdash = { 
+  load_on_startup = true,
+  buttons = require "nvdash",
+}
 M.ui = {
   statusline = {
-    separator_style = "round",
+    separator_style = "default",
   },
      --  tabufline = {
      --     lazyload = false
