@@ -20,12 +20,14 @@ M.nvdash = {
   buttons = require "nvdash",
 }
 M.ui = {
+  telescope = { style = "bordered" },
   statusline = {
+    theme = "default",
     separator_style = "default",
   },
-     --  tabufline = {
-     --     lazyload = false
-     -- }
+  tabufline = {
+     lazyload = false
+ }
 }
 
 return M

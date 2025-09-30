@@ -1,8 +1,9 @@
 {
   "currentThemeName": "custom",
   "customThemeFile": "/home/jon/.config/DankMaterialShell/catppuccin.json",
-  "topBarTransparency": 0.85,
-  "topBarWidgetTransparency": 0.5,
+  "matugenScheme": "scheme-tonal-spot",
+  "dankBarTransparency": 0.6,
+  "dankBarWidgetTransparency": 0.5,
   "popupTransparency": 0.92,
   "dockTransparency": 1,
   "use24HourClock": false,
@@ -30,8 +31,50 @@
   "showBattery": true,
   "showControlCenterButton": true,
   "controlCenterShowNetworkIcon": true,
-  "controlCenterShowBluetoothIcon": true,
+  "controlCenterShowBluetoothIcon": false,
   "controlCenterShowAudioIcon": true,
+  "controlCenterWidgets": [
+    {
+      "id": "volumeSlider",
+      "enabled": true,
+      "width": 50
+    },
+    {
+      "id": "brightnessSlider",
+      "enabled": true,
+      "width": 50
+    },
+    {
+      "id": "wifi",
+      "enabled": true,
+      "width": 50
+    },
+    {
+      "id": "bluetooth",
+      "enabled": true,
+      "width": 50
+    },
+    {
+      "id": "audioOutput",
+      "enabled": true,
+      "width": 50
+    },
+    {
+      "id": "audioInput",
+      "enabled": true,
+      "width": 50
+    },
+    {
+      "id": "nightMode",
+      "enabled": true,
+      "width": 50
+    },
+    {
+      "id": "darkMode",
+      "enabled": true,
+      "width": 50
+    }
+  ],
   "showWorkspaceIndex": false,
   "showWorkspacePadding": true,
   "showWorkspaceApps": false,
@@ -65,13 +108,13 @@
   },
   "waveProgressEnabled": true,
   "clockCompactMode": false,
-  "focusedWindowCompactMode": false,
+  "focusedWindowCompactMode": true,
   "runningAppsCompactMode": true,
   "runningAppsCurrentWorkspace": false,
   "clockDateFormat": "ddd MMM d",
   "lockDateFormat": "dddd, MMMM d",
   "mediaSize": 1,
-  "topBarLeftWidgets": [
+  "dankBarLeftWidgets": [
     {
       "id": "launcherButton",
       "enabled": true
@@ -89,12 +132,12 @@
       "enabled": true
     }
   ],
-  "topBarCenterWidgets": [
+  "dankBarCenterWidgets": [
     "music",
     "clock",
     "weather"
   ],
-  "topBarRightWidgets": [
+  "dankBarRightWidgets": [
     {
       "id": "systemTray",
       "enabled": true
@@ -109,6 +152,10 @@
     },
     {
       "id": "systemUpdate",
+      "enabled": true
+    },
+    {
+      "id": "network_speed_monitor",
       "enabled": true
     },
     {
@@ -148,7 +195,6 @@
   "osLogoColorOverride": "",
   "osLogoBrightness": 0.5,
   "osLogoContrast": 1,
-  "wallpaperDynamicTheming": true,
   "fontFamily": "Inter Variable",
   "monoFontFamily": "Fira Code",
   "fontWeight": 400,
@@ -156,23 +202,31 @@
   "notepadUseMonospace": true,
   "notepadFontFamily": "",
   "notepadFontSize": 14,
+  "notepadShowLineNumbers": false,
+  "notepadTransparencyOverride": -1,
+  "notepadLastCustomTransparency": 0.95,
   "gtkThemingEnabled": false,
   "qtThemingEnabled": false,
   "showDock": false,
   "dockAutoHide": false,
+  "dockGroupByApp": false,
+  "dockOpenOnOverview": false,
   "cornerRadius": 15,
   "notificationOverlayEnabled": false,
-  "topBarAutoHide": false,
-  "topBarOpenOnOverview": false,
-  "topBarVisible": true,
-  "topBarSpacing": 2,
-  "topBarBottomGap": -4,
-  "topBarInnerPadding": 0,
-  "topBarSquareCorners": false,
-  "topBarNoBackground": false,
-  "topBarGothCornersEnabled": true,
+  "dankBarAutoHide": false,
+  "dankBarOpenOnOverview": false,
+  "dankBarVisible": true,
+  "dankBarSpacing": 2,
+  "dankBarBottomGap": -4,
+  "dankBarInnerPadding": 0,
+  "dankBarSquareCorners": false,
+  "dankBarNoBackground": false,
+  "dankBarGothCornersEnabled": false,
+  "dankBarAtBottom": false,
   "lockScreenShowPowerActions": true,
   "hideBrightnessSlider": false,
+  "widgetBackgroundColor": "sch",
+  "surfaceBase": "s",
   "notificationTimeoutLow": 5000,
   "notificationTimeoutNormal": 5000,
   "notificationTimeoutCritical": 0,
