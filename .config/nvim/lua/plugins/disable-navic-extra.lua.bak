@@ -1,0 +1,4 @@
+-- Disable LazyVim's built-in navic extra to prevent conflicts
+return {
+  { "lazyvim.plugins.extras.editor.navic", enabled = false },
+}
