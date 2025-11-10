@@ -8,7 +8,7 @@ spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "color-scheme" 
 spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "gtk-theme" "Colloid-Purple-Dark-Catppuccin"
 spawn-at-startup "xwayland-satellite"
 // spawn-at-startup "swww-daemon"
-spawn-at-startup "qs" "-c" "DevNullShell"
+spawn-at-startup "/usr/local/bin/dms" "run" "-d"
 // spawn-at-startup "/home/jon/.config/waybar/waybar-reload.sh"
 // spawn-at-startup "swayosd-server"
 // spawn-at-startup "dunst"
@@ -45,6 +45,7 @@ environment {
     NIXOS_OZONE_WL "1"
     OZONE_PLATFORM "wayland"
     QT_QPA_PLATFORM "wayland;xcb"
+    QT_QPA_PLATFORMTHEME "qt6ct"
     QT_QPA_PLATFORMTHEME "qt6ct"
     // QT_STYLE_OVERRIDE "kvantum"
     QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
@@ -118,6 +119,7 @@ layout {
     gaps 16
     background-color "transparent"
     center-focused-column "never"
+    always-center-single-column
 
     preset-column-widths {
         proportion 0.25
@@ -144,18 +146,23 @@ layout {
     border {
         // off
         width 2
-        active-color "#cba6f7"
-        inactive-color "#45475a"
+        active-color "#cba6f7" // mauve
+        // active-color "#b4befe" // lavender
+        // inactive-color "#45475a"
+        inactive-color "#313244"
         urgent-color "#f38ba8"
     }
     shadow {
       on
       softness 6
-      spread 4
+      spread 2
       offset x=0 y=0
       draw-behind-window false
-      color "#cba6f755"
-      inactive-color "#45475a"
+      color "#ca9ee67f"
+      // inactive-color "#45475a"
+      // inactive-color "#313244"
+      inactive-color "#1e1e2e"
+      // inactive-color "#181825"
     }
     struts {
       // left 2
@@ -231,6 +238,10 @@ layer-rule {
 layer-rule {
   match namespace="^quickshell$"
   place-within-backdrop true
+}
+layer-rule {
+    match namespace="dms:blurwallpaper"
+    place-within-backdrop true
 }
 layer-rule {
     match namespace="waybar"
@@ -381,16 +392,19 @@ window-rule {
     shadow {
       on
       softness 6
-      spread 4
+      spread 2
       offset x=0 y=0
       draw-behind-window false
-      color "#f0c6c655"
+      color "eebebe7f"
     }
 }
 
 window-rule {
   match app-id=r#"cursor$"#
   match app-id=r#"windsurf$"#
+  match app-id=r#"dev.zed.Zed$"#
+  match app-id=r#"code$"#
+  match app-id=r#"code-insiders$"#
 
   open-on-workspace "code"
 }
@@ -405,37 +419,37 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     Mod+Space hotkey-overlay-title="Application Launcher" {
-       spawn "qs" "-c" "DevNullShell" "ipc" "call" "spotlight" "toggle";
+       spawn "/usr/local/bin/dms" "ipc" "call" "spotlight" "toggle";
     }
     Mod+V hotkey-overlay-title="Clipboard Manager" {
-       spawn "qs" "-c" "DevNullShell" "ipc" "call" "clipboard" "toggle";
+       spawn "/usr/local/bin/dms" "ipc" "call" "clipboard" "toggle";
     }
     // Mod+M hotkey-overlay-title="Task Manager" {
-    //    spawn "qs" "-c" "DevNullShell" "ipc" "call" "processlist" "toggle";
+    //    spawn "/usr/local/bin/dms" "ipc" "call" "processlist" "toggle";
     // }
     // Mod+Comma hotkey-overlay-title="Settings" {
-    //    spawn "qs" "-c" "DevNullShell" "ipc" "call" "settings" "toggle";
+    //    spawn "/usr/local/bin/dms" "ipc" "call" "settings" "toggle";
     // }
     Super+Alt+L hotkey-overlay-title="Lock Screen" {
-       spawn "qs" "-c" "DevNullShell" "ipc" "call" "lock" "lock";
+       spawn "/usr/local/bin/dms" "ipc" "call" "lock" "lock";
     }
     XF86AudioRaiseVolume allow-when-locked=true {
-       spawn "qs" "-c" "DevNullShell" "ipc" "call" "audio" "increment" "3";
+       spawn "/usr/local/bin/dms" "ipc" "call" "audio" "increment" "3";
     }
     XF86AudioLowerVolume allow-when-locked=true {
-       spawn "qs" "-c" "DevNullShell" "ipc" "call" "audio" "decrement" "3";
+       spawn "/usr/local/bin/dms" "ipc" "call" "audio" "decrement" "3";
     }
     XF86AudioMute allow-when-locked=true {
-       spawn "qs" "-c" "DevNullShell" "ipc" "call" "audio" "mute";
+       spawn "/usr/local/bin/dms" "ipc" "call" "audio" "mute";
     }
     XF86AudioMicMute allow-when-locked=true {
-       spawn "qs" "-c" "DevNullShell" "ipc" "call" "audio" "micmute";
+       spawn "/usr/local/bin/dms" "ipc" "call" "audio" "micmute";
     }
     XF86MonBrightnessUp allow-when-locked=true {
-       spawn "qs" "-c" "DevNullShell" "ipc" "call" "brightness" "increment" "5" "intel_backlight";
+       spawn "/usr/local/bin/dms" "ipc" "call" "brightness" "increment" "5" "backlight:intel_backlight";
     }
     XF86MonBrightnessDown allow-when-locked=true {
-       spawn "qs" "-c" "DevNullShell" "ipc" "call" "brightness" "decrement" "5" "intel_backlight";
+       spawn "/usr/local/bin/dms" "ipc" "call" "brightness" "decrement" "5" "backlight:intel_backlight";
     } 
 
     Mod+Return { spawn "kitty"; }
@@ -607,3 +621,6 @@ binds {
 
     Mod+Shift+C { center-window; }
 }
+
+// include "dms/colors.kdl"
+// include "dms/layout.kdl"

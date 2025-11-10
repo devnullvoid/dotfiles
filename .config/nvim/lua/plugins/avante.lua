@@ -1,9 +1,10 @@
 return {
   {
     "yetone/avante.nvim",
-    opts = {
-      provider = "claude", -- Default provider
-      acp_providers = {
+    priority = 49,
+    opts = function(_, opts)
+      opts.provider = "codex"
+      opts.acp_providers = vim.tbl_deep_extend("force", opts.acp_providers or {}, {
         ["claude-code"] = {
           command = "npx",
           args = { "@zed-industries/claude-code-acp" },
@@ -29,21 +30,36 @@ return {
             -- OPENAI_API_KEY = os.getenv("OPENAI_API_KEY"),
           },
         },
-      },
-    },
+      })
+    end,
   },
   {
     "saghen/blink.cmp",
-    opts = {
-      sources = {
-        default = { "avante" },
-        providers = {
+    dependencies = { "Kaiser-Yang/blink-cmp-avante" },
+    opts = function(_, opts)
+      local function is_avante_buffer()
+        local ft = vim.bo.filetype
+        return ft == "AvanteInput" or ft == "AvantePromptInput"
+      end
+
+      opts.sources = opts.sources or {}
+      opts.sources.providers = opts.sources.providers or {}
+      opts.sources.providers.avante = vim.tbl_deep_extend("force", {
+        module = "blink-cmp-avante",
+        name = "Avante",
+        opts = {
           avante = {
-            module = "blink-cmp-avante",
-            name = "Avante",
+            command = { enable = is_avante_buffer },
+            mention = { enable = is_avante_buffer },
+            shortcut = { enable = is_avante_buffer },
           },
         },
-      },
-    },
+      }, opts.sources.providers.avante or {})
+
+      opts.sources.default = opts.sources.default or {}
+      if type(opts.sources.default) == "table" and not vim.tbl_contains(opts.sources.default, "avante") then
+        table.insert(opts.sources.default, "avante")
+      end
+    end,
   },
 }

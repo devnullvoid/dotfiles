@@ -14,6 +14,10 @@ map("n", "<c-/>", "gcc", { desc = "toggle comment", remap = true })
 map("n", "<leader>bn", "<cmd> bnext <CR>", { desc = "next buffer" })
 map("n", "<leader>bp", "<cmd> bprevious <CR>", { desc = "previous buffer" })
 
+-- Buffer navigation with Tab
+map("n", "<Tab>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
+map("n", "<S-Tab>", "<cmd>bprevious<cr>", { desc = "Previous Buffer" })
+
 -- Visual mode mappings
 map("v", ">", ">gv", { desc = "indent" })
 map("v", "<c-/>", "gc", { desc = "toggle comment", remap = true })
