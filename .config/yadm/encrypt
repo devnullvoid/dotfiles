@@ -1,0 +1,5 @@
+.config/fish/config_secrets.fish
+.claude.json
+.gemini/settings.json
+.aws/amazonq/cli-agents/cli-agent.json
+.codex/config.toml
