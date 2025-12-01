@@ -415,6 +415,7 @@ window-rule {
     min-width 876
 }
 
+// include "/home/jon/.config/quickshell/dms/binds.kdl"
 binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 

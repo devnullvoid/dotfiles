@@ -1,12 +1,18 @@
 -- require("starship"):setup()
 -- require("auto-layout")
 require("yaziline"):setup({
-  separator_style = "curvy",
-  select_symbol = "",
-  yank_symbol = "󰆐",
+	separator_style = "angly",
+	select_symbol = "",
+	yank_symbol = "󰆐",
+	separator_open = "",
+	separator_close = "",
+	separator_open_thin = "",
+	separator_close_thin = "",
+	-- separator_head = "",
+	-- separator_tail = "",
 })
 require("full-border"):setup({
-  type = ui.Border.ROUNDED,
+	type = ui.Border.ROUNDED,
 })
 function Linemode:size_and_mtime()
 	local year = os.date("%Y")
