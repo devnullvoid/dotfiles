@@ -10,8 +10,7 @@ return {
           args = { "@zed-industries/claude-code-acp" },
           env = {
             NODE_NO_WARNINGS = "1",
-            -- ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY"),
-            -- CLAUDE_CODE_OAUTH_TOKEN = os.getenv("CLAUDE_CODE_OAUTH_TOKEN"),
+            CLAUDE_CODE_OAUTH_TOKEN = "cmd:jq -r '.claudeAiOauth.accessToken' ~/.claude/.credentials.json",
           },
         },
         ["gemini-cli"] = {
@@ -19,7 +18,7 @@ return {
           args = { "--experimental-acp" },
           env = {
             NODE_NO_WARNINGS = "1",
-            -- GEMINI_API_KEY = os.getenv("GEMINI_API_KEY"),
+            GEMINI_OAUTH_TOKEN = "cmd:jq -r '.access_token' ~/.gemini/oauth_creds.json",
           },
         },
         ["codex"] = {
@@ -27,8 +26,17 @@ return {
           args = { "@zed-industries/codex-acp" },
           env = {
             NODE_NO_WARNINGS = "1",
-            -- OPENAI_API_KEY = os.getenv("OPENAI_API_KEY"),
+            CHATGPT_SESSION_TOKEN = "cmd:jq -r '.tokens.access_token' ~/.codex/auth.json",
           },
+        },
+      })
+
+      opts.providers = vim.tbl_deep_extend("force", opts.providers or {}, {
+        ["zai-coding"] = {
+          __inherited_from = "openai",
+          endpoint = "https://api.z.ai/api/coding/paas/v4",
+          api_key_name = "Z_API_KEY",
+          model = "glm-4.6",
         },
       })
     end,
