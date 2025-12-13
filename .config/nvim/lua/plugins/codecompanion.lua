@@ -12,6 +12,9 @@ return {
 
       local function claude_code_adapter()
         return adapters.extend("claude_code", {
+          defaults = {
+            auth_method = "oauth",
+          },
           env = {
             CLAUDE_CODE_OAUTH_TOKEN = "cmd:jq -r '.claudeAiOauth.accessToken' ~/.claude/.credentials.json",
           },
@@ -36,6 +39,7 @@ return {
           },
           env = {
             CHATGPT_SESSION_TOKEN = "cmd:jq -r '.tokens.access_token' ~/.codex/auth.json",
+            OPENAI_API_KEY = "cmd:jq -r '.tokens.access_token' ~/.codex/auth.json",
           },
         })
       end
