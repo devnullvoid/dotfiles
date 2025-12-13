@@ -37,8 +37,78 @@ return {
           endpoint = "https://api.z.ai/api/coding/paas/v4",
           api_key_name = "Z_API_KEY",
           model = "glm-4.6",
+          timeout = 30000,
+          extra_request_body = {
+            temperature = 0.7,
+            max_tokens = 4096,
+          },
         },
       })
+
+      -- Windows and display configuration
+      opts.windows = {
+        position = "right",
+        wrap = true,
+        width = 30,
+        sidebar_header = {
+          enabled = true,
+          align = "center",
+          rounded = true,
+        },
+        input = {
+          prefix = "> ",
+          height = 8,
+        },
+        edit = {
+          border = "rounded",
+          start_insert = true,
+        },
+        ask = {
+          floating = false,
+          start_insert = true,
+          border = "rounded",
+          focus_on_apply = "ours",
+        },
+      }
+
+      -- Behavior settings
+      opts.behaviour = {
+        auto_suggestions = false,
+        auto_set_keymaps = true,
+        auto_apply_diff_after_generation = false,
+        minimize_diff = true,
+        auto_add_current_file = true,
+      }
+
+      -- Keymaps
+      opts.mappings = {
+        ask = "<leader>aa",
+        edit = "<leader>ae",
+        refresh = "<leader>ar",
+        toggle = {
+          default = "<leader>at",
+          debug = "<leader>ad",
+          hint = "<leader>ah",
+          suggestion = "<leader>as",
+        },
+        sidebar = {
+          switch_windows = "<Tab>",
+          reverse_switch_windows = "<S-Tab>",
+        },
+      }
+
+      -- Diff configuration
+      opts.diff = {
+        autojump = true,
+        list_opener = "copen",
+        override_timeoutlen = 500,
+      }
+
+      -- Selection and hints
+      opts.selection = {
+        enabled = true,
+        hint_display = "delayed",
+      }
     end,
   },
   {

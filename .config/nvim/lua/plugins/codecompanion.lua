@@ -47,7 +47,7 @@ return {
       local function zai_coding_adapter()
         return adapters.extend("openai", {
           env = {
-            api_key = os.getenv("Z_API_KEY"),
+            api_key = "cmd:echo $Z_API_KEY",
             url = "https://api.z.ai/api/coding/paas/v4",
           },
           schema = {
@@ -66,19 +66,87 @@ return {
           zai_coding = zai_coding_adapter,
           acp = {
             claude_code = claude_code_adapter,
-            gemini_cli = gemini_cli_adapter,
             codex = codex_adapter,
+            gemini_cli = gemini_cli_adapter,
           },
           http = {
             zai_coding = zai_coding_adapter,
+            opts = {
+              allow_insecure = false,
+              cache_models_for = 1800, -- Cache for 30 minutes
+            },
           },
         },
         strategies = {
           chat = {
             adapter = "claude_code",
+            roles = {
+              llm = "AI Assistant",
+              user = "Jon",
+            },
+            keymaps = {
+              send = { modes = { n = "<CR>", i = "<C-s>" } },
+              close = { modes = { n = "q", i = "<C-c>" } },
+              stop = { modes = { n = "<C-q>" } },
+              regenerate = { modes = { n = "gr" } },
+            },
+            tools = {
+              cmd_runner = {
+                opts = { requires_approval = true },
+              },
+              insert_edit_into_file = {
+                opts = {
+                  requires_approval = { buffer = false, file = false },
+                  user_confirmation = true,
+                },
+              },
+            },
           },
           inline = {
-            adapter = "claude_code",
+            adapter = "zai_coding",
+          },
+        },
+        display = {
+          chat = {
+            window = {
+              layout = "vertical",
+              width = 0.4,
+              height = 0.8,
+              border = "rounded",
+            },
+            show_settings = true,
+            show_token_count = true,
+            intro_message = "Welcome! How can I help?",
+          },
+          diff = {
+            provider = "inline",
+          },
+          action_palette = {
+            provider = "telescope",
+          },
+        },
+        prompt_library = {
+          ["Explain Code"] = {
+            strategy = "chat",
+            description = "Explain selected code",
+            opts = { short_name = "explain", auto_submit = true },
+            prompts = {
+              { role = "system", content = "Explain code clearly and concisely." },
+              {
+                role = "user",
+                content = function(context)
+                  return "Explain:\n\n```" .. context.filetype .. "\n" .. table.concat(context.lines, "\n") .. "\n```"
+                end,
+              },
+            },
+          },
+          ["Optimize"] = {
+            strategy = "inline",
+            description = "Optimize selected code",
+            opts = { short_name = "optimize" },
+            prompts = {
+              { role = "system", content = "Optimize code for performance and readability." },
+            },
           },
         },
         opts = {

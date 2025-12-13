@@ -22,6 +22,7 @@ spawn-at-startup "niriswitcher"
 spawn-at-startup "swayidle" "-w"
 // spawn-at-startup "sunsetr"
 spawn-at-startup "copyq" "--start-server"
+spawn-at-startup "wezterm" "start" "--daemonize"
 // spawn-at-startup "pamac-tray --gapplication-service"
 
 workspace "home"
