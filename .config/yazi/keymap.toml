@@ -18,3 +18,8 @@ desc = "Calc size of selection or cwd"
 on   = [ "g", "c" ]
 run  = "plugin git-files"
 desc = "Show Git file changes"
+
+[[mgr.prepend_keymap]]
+on = ["M","s"]
+run = "plugin sshfs -- menu"
+desc = "Open SSHFS options"

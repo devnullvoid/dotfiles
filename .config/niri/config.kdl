@@ -16,10 +16,10 @@ spawn-at-startup "/home/jon/.config/quickshell/dms/core/bin/dms" "run" "-d"
 // spawn-at-startup "swww img ~/Pictures/Wallpapers/cloudy_quasar_1.D0uanmax.png"
 // spawn-at-startup "waypaper" "--restore"
 spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
-spawn-at-startup "walker" "--gapplication-service"
+// spawn-at-startup "walker" "--gapplication-service"
 spawn-at-startup "niriswitcher"
 // spawn-at-startup "swaync"
-spawn-at-startup "swayidle" "-w"
+// spawn-at-startup "swayidle" "-w"
 // spawn-at-startup "sunsetr"
 spawn-at-startup "copyq" "--start-server"
 spawn-at-startup "wezterm" "start" "--daemonize"
@@ -385,6 +385,38 @@ window-rule {
 }
 
 window-rule {
+  match app-id=r#"floorp$"#
+    border {
+        on
+        width 2
+        active-color "#89b4fa"
+    }
+    shadow {
+      on
+      softness 6
+      spread 2
+      offset x=0 y=0
+      draw-behind-window false
+      color "#8caaee7f"
+    }
+}
+window-rule {
+  match app-id=r#"brave-browser$"#
+    border {
+        on
+        width 2
+        active-color "#b4befe"
+    }
+    shadow {
+      on
+      softness 6
+      spread 2
+      offset x=0 y=0
+      draw-behind-window false
+      color "#babbf17f"
+    }
+}
+window-rule {
     match app-id=r#"librewolf$"#
     border {
         on
@@ -397,7 +429,7 @@ window-rule {
       spread 2
       offset x=0 y=0
       draw-behind-window false
-      color "eebebe7f"
+      color "#eebebe7f"
     }
 }
 
@@ -455,25 +487,29 @@ binds {
        spawn "/usr/local/bin/dms" "ipc" "call" "brightness" "decrement" "5" "backlight:intel_backlight";
     } 
 
+    // AI Assistant Dev
+    Mod+A { spawn "/home/jon/.config/quickshell/dms/core/bin/dms" "ipc" "call" "aiassistant" "toggle"; }
+
     Mod+Return { spawn "kitty"; }
-    // Mod+Alt+Space { spawn "rofi" "-show" "drun"; }
     Mod+Alt+Space { spawn "rofi" "-show" "drun"; }
-    // Mod+Space { spawn "~/.config/otter-launcher/otter-toggle-niri.sh"; }
-    // Mod+Space { spawn "~/.config/rofi/scripts/launcher_t1"; }
-    // Ctrl+Shift+Mod+Space { spawn "anyrun"; }
     Mod+Z { spawn "~/.config/otter-launcher/otter-toggle-niri.sh"; }
-    Ctrl+Mod+Space { spawn "walker"; }
     Ctrl+Shift+Space { spawn "wofi"; }
-    Mod+A { spawn "fuzzel"; }
-    Mod+Shift+A { spawn "~/.config/niri/scripts/choose-window.sh"; }
     Mod+F {spawn "firefox";}
     // Mod+D {spawn "discord" "--enable-features=UseOzonePlatform" "--ozone-platform=wayland";}
     Mod+E {spawn "kitty" "-e" "yazi";}
-    // Mod+B {spawn "~/.config/waybar/waybar-reload.sh"; }
     Ctrl+grave { spawn "copyq" "toggle"; }
-    // Mod+V { spawn "walker" "-m" "clipboard"; }
     Mod+slash { spawn "wlr-which-key"; }
 
+    // DEPRECATED BINDS BELOW
+    // Mod+Alt+Space { spawn "rofi" "-show" "drun"; }
+    // Mod+Space { spawn "~/.config/otter-launcher/otter-toggle-niri.sh"; }
+    // Mod+Space { spawn "~/.config/rofi/scripts/launcher_t1"; }
+    // Ctrl+Shift+Mod+Space { spawn "anyrun"; }
+    // Ctrl+Mod+Space { spawn "walker"; }
+    // Mod+A { spawn "fuzzel"; }
+    // Mod+Shift+A { spawn "~/.config/niri/scripts/choose-window.sh"; }
+    // Mod+B {spawn "~/.config/waybar/waybar-reload.sh"; }
+    // Mod+V { spawn "walker" "-m" "clipboard"; }
     // XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05+"; }
     // XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05-"; }
     // XF86AudioMute        allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }

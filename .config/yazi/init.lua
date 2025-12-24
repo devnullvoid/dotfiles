@@ -1,5 +1,6 @@
 -- require("starship"):setup()
 -- require("auto-layout")
+require("sshfs").setup()
 require("yaziline"):setup({
 	separator_style = "angly",
 	select_symbol = "",

@@ -51,7 +51,7 @@ function M.apply_to_config(config)
   config.default_domain = "unix"
   config.unix_domains = { {
     name = "unix",
-    connect_automatically = true,
+    connect_automatically = false,
   } }
   config.color_scheme = "Catppuccin Mocha"
   config.command_palette_fg_color = utils.colors.text

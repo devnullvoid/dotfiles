@@ -36,11 +36,24 @@ return {
           __inherited_from = "openai",
           endpoint = "https://api.z.ai/api/coding/paas/v4",
           api_key_name = "Z_API_KEY",
-          model = "glm-4.6",
+          model = "glm-4.7",
           timeout = 30000,
           extra_request_body = {
             temperature = 0.7,
-            max_tokens = 4096,
+            -- max_tokens = 4096,
+          },
+        },
+        ["kimi-coding"] = {
+          __inherited_from = "openai",
+          endpoint = "https://api.kimi.com/coding/v1",
+          api_key_name = "KIMI_API_KEY",
+          model = "kimi-for-coding",
+          timeout = 30000,
+          use_xml_format = false,
+          max_tokens = 32768,
+          extra_request_body = {
+            stream = true,
+            reasoning_effort = "medium",
           },
         },
       })

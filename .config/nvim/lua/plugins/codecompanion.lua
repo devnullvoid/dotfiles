@@ -52,7 +52,27 @@ return {
           },
           schema = {
             model = {
-              default = "glm-4.6",
+              default = "glm-4.7",
+            },
+          },
+        })
+      end
+
+      local function kimi_coding_adapter()
+        return adapters.extend("openai", {
+          env = {
+            api_key = "cmd:echo $KIMI_API_KEY",
+            url = "https://api.kimi.com/coding/v1",
+          },
+          schema = {
+            model = {
+              default = "kimi-for-coding",
+            },
+            max_tokens = {
+              default = 32768,
+            },
+            temperature = {
+              default = 0.7,
             },
           },
         })
@@ -64,6 +84,7 @@ return {
           gemini_cli = gemini_cli_adapter,
           codex = codex_adapter,
           zai_coding = zai_coding_adapter,
+          kimi_coding = kimi_coding_adapter,
           acp = {
             claude_code = claude_code_adapter,
             codex = codex_adapter,
@@ -71,6 +92,7 @@ return {
           },
           http = {
             zai_coding = zai_coding_adapter,
+            kimi_coding = kimi_coding_adapter,
             opts = {
               allow_insecure = false,
               cache_models_for = 1800, -- Cache for 30 minutes
