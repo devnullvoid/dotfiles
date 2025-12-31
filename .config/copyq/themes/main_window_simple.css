@@ -1,0 +1,16 @@
+#plainTextEditCommand {
+    ;${edit_font}
+    ;background: ${edit_bg}
+    ;color: ${edit_fg}
+    ;border: 1px solid #45475a
+    ;border-radius: 4px
+    ;padding: 4px
+}
+#comboBoxCommands {
+    ;${edit_font}
+    ;background: ${edit_bg}
+    ;color: ${edit_fg}
+    ;border: 1px solid #45475a
+    ;border-radius: 4px
+    ;padding: 4px
+}

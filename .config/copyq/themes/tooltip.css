@@ -1,0 +1,10 @@
+#item QToolTip, QMenu QToolTip {
+    ;${notes_font}
+    ;background: ${notes_bg}
+    ;color: ${notes_fg}
+    /* Rounded corners for modern look */
+    ;border: 1px solid #45475a
+    ;border-radius: 6px
+    ;padding: 6px 8px
+    ;${notes_css}
+}

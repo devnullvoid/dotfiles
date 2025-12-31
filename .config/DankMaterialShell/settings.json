@@ -141,9 +141,9 @@
   "lockDateFormat": "dddd, MMMM d",
   "mediaSize": 0,
   "appLauncherViewMode": "list",
-  "appPickerViewMode": "grid",
+  "appPickerViewMode": "list",
   "spotlightModalViewMode": "list",
-  "browserPickerViewMode": "grid",
+  "browserPickerViewMode": "list",
   "sortAppsAlphabetically": false,
   "appLauncherGridColumns": 6,
   "spotlightCloseNiriOverview": true,
@@ -176,7 +176,7 @@
   "aiAssistantBaseUrl": "https://api.z.ai/api/coding/paas/v4",
   "aiAssistantModel": "GLM-4.7",
   "aiAssistantTemperature": 0.7,
-  "aiAssistantMaxTokens": 2048,
+  "aiAssistantMaxTokens": 4096,
   "aiAssistantTimeout": 30,
   "aiAssistantTransparencyOverride": -1,
   "aiAssistantLastCustomTransparency": 0.7,
@@ -184,6 +184,7 @@
   "aiAssistantApiKey": "",
   "aiAssistantSaveApiKey": false,
   "aiAssistantSessionApiKey": "",
+  "aiAssistantApiKeyEnvVar": "Z_API_KEY",
   "soundsEnabled": true,
   "useSystemSoundTheme": false,
   "soundNewNotification": true,
@@ -205,7 +206,9 @@
   "fadeToLockGracePeriod": 5,
   "launchPrefix": "",
   "brightnessDevicePins": {},
-  "wifiNetworkPins": {},
+  "wifiNetworkPins": {
+    "preferredWifi": "nullynet"
+  },
   "bluetoothDevicePins": {},
   "audioInputDevicePins": {},
   "audioOutputDevicePins": {},
@@ -330,10 +333,6 @@
         {
           "id": "focusedWindow",
           "enabled": true
-        },
-        {
-          "id": "colorPicker",
-          "enabled": false
         }
       ],
       "centerWidgets": [
@@ -355,6 +354,10 @@
           "enabled": true
         },
         {
+          "id": "aiAssistantButton",
+          "enabled": true
+        },
+        {
           "id": "notepadButton",
           "enabled": true
         },
@@ -368,13 +371,11 @@
         },
         {
           "id": "cpuUsage",
-          "enabled": true,
-          "minimumWidth": true
+          "enabled": true
         },
         {
           "id": "memUsage",
-          "enabled": true,
-          "minimumWidth": true
+          "enabled": true
         },
         {
           "id": "vpn",
@@ -394,10 +395,7 @@
         },
         {
           "id": "controlCenterButton",
-          "enabled": true,
-          "showNetworkIcon": true,
-          "showBluetoothIcon": true,
-          "showAudioIcon": true
+          "enabled": true
         }
       ],
       "spacing": 2,
