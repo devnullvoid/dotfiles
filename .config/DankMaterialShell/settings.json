@@ -2,6 +2,7 @@
   "currentThemeName": "custom",
   "currentThemeCategory": "custom",
   "customThemeFile": "/home/jon/.config/DankMaterialShell/catppuccin.json",
+  "registryThemeVariants": {},
   "matugenScheme": "scheme-neutral",
   "runUserMatugenTemplates": true,
   "matugenTargetMonitor": "",
@@ -42,9 +43,12 @@
   "controlCenterShowNetworkIcon": true,
   "controlCenterShowBluetoothIcon": false,
   "controlCenterShowAudioIcon": true,
+  "controlCenterShowAudioPercent": false,
   "controlCenterShowVpnIcon": false,
   "controlCenterShowBrightnessIcon": false,
+  "controlCenterShowBrightnessPercent": false,
   "controlCenterShowMicIcon": false,
+  "controlCenterShowMicPercent": false,
   "controlCenterShowBatteryIcon": false,
   "controlCenterShowPrinterIcon": false,
   "showPrivacyButton": true,
@@ -100,6 +104,7 @@
   "maxWorkspaceIcons": 3,
   "workspacesPerMonitor": true,
   "showOccupiedWorkspacesOnly": false,
+  "reverseScrolling": false,
   "dwlShowAllTags": false,
   "workspaceNameIcons": {
     "1": {
@@ -130,6 +135,7 @@
   "waveProgressEnabled": true,
   "scrollTitleEnabled": true,
   "audioVisualizerEnabled": true,
+  "audioScrollEnabled": true,
   "clockCompactMode": true,
   "focusedWindowCompactMode": false,
   "runningAppsCompactMode": true,
@@ -148,8 +154,6 @@
   "appLauncherGridColumns": 6,
   "spotlightCloseNiriOverview": true,
   "niriOverviewOverlayEnabled": true,
-  "weatherLocation": "40.7128, -74.0060",
-  "weatherCoordinates": "38.9786,-76.4918",
   "useAutoLocation": false,
   "weatherEnabled": true,
   "networkPreference": "wifi",
@@ -200,6 +204,7 @@
   "batterySuspendTimeout": 0,
   "batterySuspendBehavior": 0,
   "batteryProfileName": "",
+  "batteryChargeLimit": 100,
   "lockBeforeSuspend": true,
   "loginctlLockIntegration": true,
   "fadeToLockEnabled": false,
@@ -223,6 +228,7 @@
   "matugenTemplateQt6ct": true,
   "matugenTemplateFirefox": true,
   "matugenTemplatePywalfox": true,
+  "matugenTemplateZenBrowser": true,
   "matugenTemplateVesktop": true,
   "matugenTemplateEquibop": true,
   "matugenTemplateGhostty": true,
@@ -495,5 +501,5 @@
   "desktopWidgetPositions": {},
   "desktopWidgetGridSettings": {},
   "desktopWidgetInstances": [],
-  "configVersion": 4
+  "configVersion": 5
 }
