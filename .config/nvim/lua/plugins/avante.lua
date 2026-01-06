@@ -51,6 +51,9 @@ return {
           timeout = 30000,
           use_xml_format = false,
           max_tokens = 32768,
+          extra_headers = {
+            ["User-Agent"] = "claude-code/1.0",
+          },
           extra_request_body = {
             stream = true,
             reasoning_effort = "medium",

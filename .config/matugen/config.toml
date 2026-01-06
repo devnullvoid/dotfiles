@@ -1,0 +1,5 @@
+[config]
+
+[templates.myneovim]
+input_path = '/home/jon/.config/matugen/templates/dankcolors.lua'
+output_path = '/home/jon/.config/nvim/lua/plugins/dankcolors.lua'

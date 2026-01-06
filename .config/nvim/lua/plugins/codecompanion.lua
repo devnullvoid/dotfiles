@@ -47,9 +47,9 @@ return {
       local function zai_coding_adapter()
         return adapters.extend("openai", {
           env = {
-            api_key = "cmd:echo $Z_API_KEY",
-            url = "https://api.z.ai/api/coding/paas/v4",
+            OPENAI_API_KEY = "cmd:grep '^set -gx Z_API_KEY' ~/.config/fish/config_secrets.fish | awk '{print $4}'",
           },
+          url = "https://api.z.ai/api/coding/paas/v4/chat/completions",
           schema = {
             model = {
               default = "glm-4.7",
@@ -61,8 +61,12 @@ return {
       local function kimi_coding_adapter()
         return adapters.extend("openai", {
           env = {
-            api_key = "cmd:echo $KIMI_API_KEY",
-            url = "https://api.kimi.com/coding/v1",
+            -- OPENAI_API_KEY = "cmd:echo $KIMI_API_KEY",
+            OPENAI_API_KEY = "cmd:grep '^set -gx KIMI_API_KEY' ~/.config/fish/config_secrets.fish | awk '{print $4}'",
+          },
+          url = "https://api.kimi.com/coding/v1/chat/completions",
+          headers = {
+            ["User-Agent"] = "claude-code/1.0",
           },
           schema = {
             model = {
@@ -99,7 +103,7 @@ return {
             },
           },
         },
-        strategies = {
+        interactions = {
           chat = {
             adapter = "claude_code",
             roles = {
@@ -136,9 +140,18 @@ return {
               height = 0.8,
               border = "rounded",
             },
+            auto_scroll = true,
+            -- intro_message = "Welcome! How can I help?",
+            separator = "─",
+            show_context = true,
+            show_header_separator = false,
             show_settings = true,
             show_token_count = true,
-            intro_message = "Welcome! How can I help?",
+            show_tools_processing = true,
+            start_in_insert_mode = false,
+            fold_context = false,
+            fold_reasoning = true,
+            show_reasoning = true,
           },
           diff = {
             provider = "inline",

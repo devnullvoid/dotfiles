@@ -659,6 +659,13 @@ binds {
     Mod+Shift+P { power-off-monitors; }
 
     Mod+Shift+C { center-window; }
+
+    Mod+S hotkey-overlay-title="Suspend Focused Window" { 
+      spawn "suspend-focused"; 
+    }
+    Mod+Shift+S hotkey-overlay-title="Suspend Selected Window" { 
+      spawn "suspend-picker"; 
+    }
 }
 
 // include "dms/colors.kdl"
