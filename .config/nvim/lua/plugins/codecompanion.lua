@@ -82,6 +82,15 @@ return {
         })
       end
 
+      local function opencode_adapter()
+        return adapters.extend("acp", {
+          name = "opencode",
+          env = {
+            OPENCODE_API_KEY = "cmd:grep '^set -gx OPENCODE_API_KEY' ~/.config/fish/config_secrets.fish | awk '{print $4}'",
+          },
+        })
+      end
+
       require("codecompanion").setup({
         adapters = {
           claude_code = claude_code_adapter,
@@ -89,10 +98,12 @@ return {
           codex = codex_adapter,
           zai_coding = zai_coding_adapter,
           kimi_coding = kimi_coding_adapter,
+          opencode = opencode_adapter,
           acp = {
             claude_code = claude_code_adapter,
             codex = codex_adapter,
             gemini_cli = gemini_cli_adapter,
+            opencode = opencode_adapter,
           },
           http = {
             zai_coding = zai_coding_adapter,

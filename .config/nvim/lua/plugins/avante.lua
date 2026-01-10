@@ -29,6 +29,10 @@ return {
             CHATGPT_SESSION_TOKEN = "cmd:jq -r '.tokens.access_token' ~/.codex/auth.json",
           },
         },
+        ["opencode"] = {
+          command = "opencode",
+          args = { "acp" },
+        },
       })
 
       opts.providers = vim.tbl_deep_extend("force", opts.providers or {}, {
