@@ -48,7 +48,7 @@ function M.apply_to_config(config)
   config.window_background_opacity = 0.95
 
   -- config.integrated_title_buttons = { }
-  config.default_domain = "unix"
+  -- config.default_domain = "unix"
   config.unix_domains = { {
     name = "unix",
     connect_automatically = false,

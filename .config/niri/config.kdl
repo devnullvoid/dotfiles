@@ -19,7 +19,7 @@ spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
 // spawn-at-startup "walker" "--gapplication-service"
 spawn-at-startup "niriswitcher"
 // spawn-at-startup "swaync"
-// spawn-at-startup "swayidle" "-w"
+spawn-at-startup "swayidle" "-w"
 // spawn-at-startup "sunsetr"
 spawn-at-startup "copyq" "--start-server"
 spawn-at-startup "wezterm" "start" "--daemonize"
@@ -488,7 +488,7 @@ binds {
     } 
 
     // AI Assistant Dev
-    Mod+A { spawn "/home/jon/.config/quickshell/dms/core/bin/dms" "ipc" "call" "aiassistant" "toggle"; }
+    Mod+A { spawn "/home/jon/.config/quickshell/dms/core/bin/dms" "ipc" "call" "plugins" "toggle" "aiAssistant"; }
 
     Mod+Return { spawn "kitty"; }
     Mod+Alt+Space { spawn "rofi" "-show" "drun"; }
