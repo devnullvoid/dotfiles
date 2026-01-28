@@ -204,13 +204,29 @@
       "name": "Firefox"
     },
     "brave-browser": {
-      "count": 1,
-      "lastUsed": 1769491359168,
+      "count": 4,
+      "lastUsed": 1769536308324,
       "name": "Brave"
     }
   },
-  "appPickerViewMode": "grid",
-  "filePickerUsageHistory": {},
+  "appPickerViewMode": "list",
+  "filePickerUsageHistory": {
+    "mirage": {
+      "count": 13,
+      "lastUsed": 1769608116946,
+      "name": "Mirage"
+    },
+    "gimp": {
+      "count": 1,
+      "lastUsed": 1769605794245,
+      "name": "GNU Image Manipulation Program"
+    },
+    "org.inkscape.Inkscape": {
+      "count": 1,
+      "lastUsed": 1769607645395,
+      "name": "Inkscape"
+    }
+  },
   "sortAppsAlphabetically": false,
   "appLauncherGridColumns": 6,
   "spotlightCloseNiriOverview": true,

@@ -49,9 +49,13 @@ menu:
       "w": { desc: "Wofi", cmd: "wofi" }
       "W": { desc: "Walker", cmd: "walker" }
       "p": { desc: "Window Picker", cmd: "~/.config/niri/scripts/choose-window.sh" }
+      "s": { desc: "Window Switcher", cmd: "gdbus call --session --dest io.github.isaksamsten.Niriswitcher --object-path /io/github/isaksamsten/Niriswitcher --method io.github.isaksamsten.Niriswitcher.application" }
       "F": { desc: "Fuzzel", cmd: "fuzzel" }
       "v": { desc: "Clipboard", cmd: "walker -m clipboard" }
+      "c": { desc: "Copyq", cmd: "copyq toggle" }
       "n": { desc: "Niri Launcher", cmd: "~/.local/share/scripts/niri-launcher-pick.sh --menu=fuzzel" }
+      "o": { desc: "Otter Launcher", cmd: "~/.config/otter-launcher/otter-toggle-niri.sh" }
+      "A": { desc: "AI Assistant", cmd: "/home/jon/.config/quickshell/dms/core/bin/dms ipc call plugins toggle aiAssistant" }
 
   # Enhanced Windows menu with Niri controls
   "w":
@@ -63,8 +67,8 @@ menu:
       "F": { desc: "Fullscreen (Pick)", cmd: "niri msg action fullscreen-window --id $(niri msg --json pick-window | jq -r .id)" }
       "t": { desc: "Toggle Float", cmd: "niri msg action toggle-window-floating" }
       "T": { desc: "Toggle Float (Pick)", cmd: "niri msg action toggle-window-floating --id $(niri msg --json pick-window | jq -r .id)" }
-      "c": { desc: "Center", cmd: "niri msg action center-window" }
-      "C": { desc: "Center (Pick)", cmd: "niri msg action center-window --id $(niri msg --json pick-window | jq -r .id)" }
+      "c": { desc: "Center Window", cmd: "niri msg action center-window" }
+      "C": { desc: "Center Window (Pick)", cmd: "niri msg action center-window --id $(niri msg --json pick-window | jq -r .id)" }
       "h": { desc: "Focus Left", cmd: "niri msg action focus-column-left" }
       "j": { desc: "Focus Down", cmd: "niri msg action focus-window-down" }
       "k": { desc: "Focus Up", cmd: "niri msg action focus-window-up" }
@@ -75,12 +79,15 @@ menu:
       "L": { desc: "Move Right", cmd: "niri msg action move-column-right" }
       "p": { desc: "Focus (Pick)", cmd: "niri msg action focus-window --id $(niri msg --json pick-window | jq -r .id)" }
       "o": { desc: "Focus Previous", cmd: "niri msg action focus-window-previous" }
+      "s": { desc: "Suspend Focused", cmd: "suspend-focused" }
+      "S": { desc: "Suspend (Pick)", cmd: "suspend-picker" }
       "r":
         desc: "Resize"
         submenu:
           "w": { desc: "Set Width", cmd: "niri msg action set-window-width --id $(niri msg --json pick-window | jq -r .id)" }
           "h": { desc: "Set Height", cmd: "niri msg action set-window-height --id $(niri msg --json pick-window | jq -r .id)" }
           "r": { desc: "Reset Height", cmd: "niri msg action reset-window-height --id $(niri msg --json pick-window | jq -r .id)" }
+          "R": { desc: "Reset Height (Focused)", cmd: "niri msg action reset-window-height" }
           "W": { desc: "Switch Width Preset", cmd: "niri msg action switch-preset-window-width --id $(niri msg --json pick-window | jq -r .id)" }
           "H": { desc: "Switch Height Preset", cmd: "niri msg action switch-preset-window-height --id $(niri msg --json pick-window | jq -r .id)" }
       "m":
@@ -106,6 +113,13 @@ menu:
         submenu:
           "c": { desc: "Consume into Column", cmd: "niri msg action consume-window-into-column" }
           "x": { desc: "Expel from Column", cmd: "niri msg action expel-window-from-column" }
+          "l": { desc: "Consume/Expel Right", cmd: "niri msg action consume-or-expel-window-right" }
+          "h": { desc: "Consume/Expel Left", cmd: "niri msg action consume-or-expel-window-left" }
+          "f": { desc: "Focus First", cmd: "niri msg action focus-column-first" }
+          "F": { desc: "Move to First", cmd: "niri msg action move-column-to-first" }
+          "L": { desc: "Focus Last", cmd: "niri msg action focus-column-last" }
+          "M": { desc: "Move to Last", cmd: "niri msg action move-column-to-last" }
+          "C": { desc: "Center Column", cmd: "niri msg action center-column" }
           "J": { desc: "To Workspace Down", cmd: "niri msg action move-column-to-workspace-down" }
           "K": { desc: "To Workspace Up", cmd: "niri msg action move-column-to-workspace-up" }
           "t": { desc: "Toggle Tabbed", cmd: "niri msg action toggle-column-tabbed-display" }
@@ -169,6 +183,8 @@ menu:
     desc: "Layout"
     submenu:
       "s": { desc: "Switch Keyboard Layout", cmd: "niri msg action switch-layout" }
+      "n": { desc: "Switch Layout Next", cmd: "niri msg action switch-layout next" }
+      "p": { desc: "Switch Layout Prev", cmd: "niri msg action switch-layout prev" }
       "f": { desc: "Focus Floating", cmd: "niri msg action focus-floating" }
       "t": { desc: "Focus Tiling", cmd: "niri msg action focus-tiling" }
       "x": { desc: "Switch Float/Tiling", cmd: "niri msg action switch-focus-between-floating-and-tiling" }

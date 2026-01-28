@@ -660,10 +660,10 @@ binds {
 
     Mod+Shift+C { center-window; }
 
-    Mod+S hotkey-overlay-title="Suspend Focused Window" { 
+    Mod+Alt+S hotkey-overlay-title="Suspend Focused Window" { 
       spawn "suspend-focused"; 
     }
-    Mod+Shift+S hotkey-overlay-title="Suspend Selected Window" { 
+    Mod+Shift+Alt+S hotkey-overlay-title="Suspend Selected Window" { 
       spawn "suspend-picker"; 
     }
 }
