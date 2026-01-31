@@ -34,8 +34,8 @@ declare -a key_times=()
 declare -A held_keys=()
 declare -A key_held_since=()
 
-# Keys that are safe to hold (navigation, deletion)
-safe_keys="KEY_UP KEY_DOWN KEY_LEFT KEY_RIGHT KEY_BACKSPACE KEY_DELETE KEY_HOME KEY_END KEY_PAGEUP KEY_PAGEDOWN KEY_J KEY_K"
+# Keys that are safe to hold (navigation, deletion, modifiers)
+safe_keys="KEY_UP KEY_DOWN KEY_LEFT KEY_RIGHT KEY_BACKSPACE KEY_DELETE KEY_HOME KEY_END KEY_PAGEUP KEY_PAGEDOWN KEY_J KEY_K KEY_LEFTCTRL KEY_RIGHTCTRL KEY_LEFTALT KEY_RIGHTALT KEY_LEFTSHIFT KEY_RIGHTSHIFT KEY_LEFTMETA KEY_RIGHTMETA"
 
 evtest "$kbd" 2>/dev/null | while read line; do
     if [[ $line =~ KEY_([A-Z0-9_]+).*value\ ([012]) ]]; then
