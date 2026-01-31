@@ -4,3 +4,4 @@
 .aws/amazonq/cli-agents/cli-agent.json
 .codex/config.toml
 .aws/amazonq/cli-agents/mcp-agent.json
+.config/1mcp/mcp.json
