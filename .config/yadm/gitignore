@@ -1,0 +1,7 @@
+# Don't track these in dotfiles
+*.bak
+*.cache
+*.log
+*.tmp
+.config/rofi/images/
+.config/yazi/plugins/
