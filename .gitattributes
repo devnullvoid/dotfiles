@@ -2,3 +2,4 @@
 .config/fish/config_secrets.fish  filter=crypt diff=crypt merge=crypt
 .claude.json  filter=crypt diff=crypt merge=crypt
 .config/1mcp/mcp.json  filter=crypt diff=crypt merge=crypt
+.ssh/config  filter=crypt diff=crypt merge=crypt
