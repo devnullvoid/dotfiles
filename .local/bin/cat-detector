@@ -1,0 +1,107 @@
+#!/bin/bash
+# Detect rapid keypresses and lock session
+
+LOG_LEVEL="${CAT_DETECTOR_LOG_LEVEL:-INFO}"  # DEBUG, INFO, WARN, ERROR
+
+log() {
+    local level=$1
+    shift
+    local msg="$@"
+    local levels=("DEBUG" "INFO" "WARN" "ERROR")
+    local current_level_idx=0
+    local msg_level_idx=0
+    
+    for i in "${!levels[@]}"; do
+        [[ "${levels[$i]}" == "$LOG_LEVEL" ]] && current_level_idx=$i
+        [[ "${levels[$i]}" == "$level" ]] && msg_level_idx=$i
+    done
+    
+    if [[ $msg_level_idx -ge $current_level_idx ]]; then
+        echo "$(date +%T) [$level] $msg" | tee -a /tmp/cat-detector.log
+    fi
+}
+
+kbd=$(ls /dev/input/by-path/*-kbd 2>/dev/null | head -1)
+if [[ -z "$kbd" ]]; then
+    log ERROR "No keyboard found"
+    exit 1
+fi
+
+log INFO "Monitoring $kbd for suspicious keypresses..."
+log INFO "Log level: $LOG_LEVEL (set CAT_DETECTOR_LOG_LEVEL=DEBUG for verbose)"
+
+declare -a key_times=()
+declare -A held_keys=()
+declare -A key_held_since=()
+
+# Keys that are safe to hold (navigation, deletion)
+safe_keys="KEY_UP KEY_DOWN KEY_LEFT KEY_RIGHT KEY_BACKSPACE KEY_DELETE KEY_HOME KEY_END KEY_PAGEUP KEY_PAGEDOWN"
+
+evtest "$kbd" 2>/dev/null | while read line; do
+    if [[ $line =~ KEY_([A-Z0-9_]+).*value\ ([012]) ]]; then
+        key="KEY_${BASH_REMATCH[1]}"
+        value="${BASH_REMATCH[2]}"
+        now=$(date +%s)
+        
+        if [[ $value == "1" ]]; then
+            # Key pressed
+            held_keys[$key]=1
+            key_held_since[$key]=$now
+            now_ns=$(date +%s%N)
+            key_times+=($now_ns)
+            
+            log DEBUG "Key pressed: $key"
+            
+            # Keep only keys from last 1 second
+            cutoff=$((now_ns - 1000000000))
+            new_times=()
+            for t in "${key_times[@]}"; do
+                if [[ $t -gt $cutoff ]]; then
+                    new_times+=($t)
+                fi
+            done
+            key_times=("${new_times[@]}")
+            
+            count=${#key_times[@]}
+            held_count=${#held_keys[@]}
+            
+            log DEBUG "Keys/sec: $count, Held: $held_count"
+            
+            # Lock if >25 keys/sec OR >4 keys held simultaneously
+            if [[ $count -gt 25 ]]; then
+                log WARN "Rapid typing detected: $count keys/sec"
+                log ERROR "LOCKING SESSION (rapid typing)"
+                loginctl lock-session
+                key_times=()
+                held_keys=()
+                key_held_since=()
+            elif [[ $held_count -gt 4 ]]; then
+                log WARN "Multiple keys held: $held_count (${!held_keys[@]})"
+                log ERROR "LOCKING SESSION (multiple keys held)"
+                loginctl lock-session
+                key_times=()
+                held_keys=()
+                key_held_since=()
+            fi
+        elif [[ $value == "2" ]]; then
+            # Key repeat - check hold duration
+            for k in "${!key_held_since[@]}"; do
+                duration=$((now - key_held_since[$k]))
+                if [[ $duration -gt 3 && ! " $safe_keys " =~ " $k " ]]; then
+                    log WARN "Key $k held for ${duration}s"
+                    log ERROR "LOCKING SESSION (key held too long)"
+                    loginctl lock-session
+                    key_times=()
+                    held_keys=()
+                    key_held_since=()
+                    break
+                fi
+            done
+        elif [[ $value == "0" ]]; then
+            # Key released
+            log DEBUG "Key released: $key"
+            unset held_keys[$key]
+            unset key_held_since[$key]
+        fi
+    fi
+done

@@ -35,6 +35,7 @@ function M.apply_to_config(config)
       font = monaspace_krypton_bold,
     },
   }
+  config.line_height = 1.2
   config.tab_bar_at_bottom = true
   -- config.window_decorations = "NONE"
   config.show_new_tab_button_in_tab_bar = false

@@ -17,7 +17,7 @@ spawn-at-startup "/home/jon/.config/quickshell/dms/core/bin/dms" "run" "-d"
 // spawn-at-startup "waypaper" "--restore"
 spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
 // spawn-at-startup "walker" "--gapplication-service"
-spawn-at-startup "niriswitcher"
+// spawn-at-startup "niriswitcher"
 // spawn-at-startup "swaync"
 spawn-at-startup "swayidle" "-w"
 // spawn-at-startup "sunsetr"
@@ -439,6 +439,8 @@ window-rule {
   match app-id=r#"dev.zed.Zed$"#
   match app-id=r#"code$"#
   match app-id=r#"code-insiders$"#
+  match app-id=r#"antigravity"#
+  match app-id=r#"kiro"#
 
   open-on-workspace "code"
 }
@@ -491,17 +493,17 @@ binds {
     Mod+A { spawn "/home/jon/.config/quickshell/dms/core/bin/dms" "ipc" "call" "plugins" "toggle" "aiAssistant"; }
 
     Mod+Return { spawn "kitty"; }
-    Mod+Alt+Space { spawn "rofi" "-show" "drun"; }
     Mod+Z { spawn "~/.config/otter-launcher/otter-toggle-niri.sh"; }
-    Ctrl+Shift+Space { spawn "wofi"; }
     Mod+F {spawn "firefox";}
-    // Mod+D {spawn "discord" "--enable-features=UseOzonePlatform" "--ozone-platform=wayland";}
     Mod+E {spawn "kitty" "-e" "yazi";}
     Ctrl+grave { spawn "copyq" "toggle"; }
     Mod+slash { spawn "wlr-which-key"; }
 
     // DEPRECATED BINDS BELOW
+    // Mod+D {spawn "discord" "--enable-features=UseOzonePlatform" "--ozone-platform=wayland";}
     // Mod+Alt+Space { spawn "rofi" "-show" "drun"; }
+    // Mod+Alt+Space { spawn "rofi" "-show" "drun"; }
+    // Ctrl+Shift+Space { spawn "wofi"; }
     // Mod+Space { spawn "~/.config/otter-launcher/otter-toggle-niri.sh"; }
     // Mod+Space { spawn "~/.config/rofi/scripts/launcher_t1"; }
     // Ctrl+Shift+Mod+Space { spawn "anyrun"; }
@@ -641,8 +643,8 @@ binds {
     Mod+Y { switch-layout "next"; }
     Mod+Shift+Y { switch-layout "prev"; }
 
-    Alt+Tab repeat=false { spawn "gdbus" "call" "--session" "--dest" "io.github.isaksamsten.Niriswitcher" "--object-path" "/io/github/isaksamsten/Niriswitcher" "--method" "io.github.isaksamsten.Niriswitcher.application" ; }
-    Alt+Shift+Tab repeat=false { spawn "gdbus" "call" "--session" "--dest" "io.github.isaksamsten.Niriswitcher" "--object-path" "/io/github/isaksamsten/Niriswitcher" "--method" "io.github.isaksamsten.Niriswitcher.application" ; }
+    // Alt+Tab repeat=false { spawn "gdbus" "call" "--session" "--dest" "io.github.isaksamsten.Niriswitcher" "--object-path" "/io/github/isaksamsten/Niriswitcher" "--method" "io.github.isaksamsten.Niriswitcher.application" ; }
+    // Alt+Shift+Tab repeat=false { spawn "gdbus" "call" "--session" "--dest" "io.github.isaksamsten.Niriswitcher" "--object-path" "/io/github/isaksamsten/Niriswitcher" "--method" "io.github.isaksamsten.Niriswitcher.application" ; }
 
     // Alt+Tab repeat=false { spawn "pkill" "-USR1" "niriswitcher"; }
     // Alt+Shift+Tab repeat=false { spawn "pkill" "-USR1" "niriswitcher"; }
