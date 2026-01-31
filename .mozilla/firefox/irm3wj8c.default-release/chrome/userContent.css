@@ -1,0 +1,146 @@
+:root {
+    --rosewater: #f5e0dc;
+    --flamingo: #f2cdcd;
+    --pink: #f5c2e7;
+    --mauve: #cba6f7;
+    --red: #f38ba8;
+    --maroon: #eba0ac;
+    --peach: #fab387;
+    --yellow: #f9e2af;
+    --green: #a6e3a1;
+    --teal: #94e2d5;
+    --sky: #89dceb;
+    --sapphire: #74c7ec;
+    --blue: #89b4fa;
+    --lavender: #b4befe;
+    --text: #cdd6f4;
+    --subtext1: #bac2de;
+    --subtext0: #a6adc8;
+    --overlay2: #9399b2;
+    --overlay1: #7f849c;
+    --overlay0: #6c7086;
+    --surface2: #585b70;
+    --surface1: #45475a;
+    --surface0: #313244;
+    --base: #1e1e2e;
+    --mantle: #181825;
+    --crust: #11111b;
+
+  --page-bg: var(--base) !important;
+  --page-fg: var(--text) !important;
+  --selected-bg: rgba(116, 199, 236, 0.6) !important; /* sapphire 0.6 */
+  --disabled-fg: var(--overlay1) !important;
+  --link-fg: var(--flamingo) !important;
+  --userlink-fg: var(--mauve) !important;
+  --userlink-hover-fg: var(--blue) !important;
+  --ctrl-bg: var(--surface1) !important;
+  --ctrl-border-clr: var(--peach) !important;
+  --button-bg: var(--ctrl-bg) !important;
+  --group-border-clr: var(--mauve) !important;
+  --group-bg: var(--surface0) !important;
+  --group-disabled-bg: var(--mantle) !important;
+  --button-active-bg: var(--mauve) !important;
+  --container-indicator-shadow-style: inset -3px 0px 0px 0px !important;
+  --active-marker-bw: 2px;
+  --delete-active-bg: var(--red) !important;
+
+  --container-color-blue:      rgba(137, 180, 250, 0.5) !important; /* blue */
+  --container-color-turquoise: rgba(148, 226, 213, 0.5) !important; /* teal */
+  --container-color-green:     rgba(166, 227, 161, 0.5) !important; /* green */
+  --container-color-yellow:    rgba(249, 226, 175, 0.5) !important; /* yellow */
+  --container-color-orange:    rgba(250, 179, 135, 0.5) !important; /* peach */
+  --container-color-red:       rgba(243, 139, 168, 0.5) !important; /* red */
+  --container-color-pink:      rgba(245, 194, 231, 0.5) !important; /* pink */
+  --container-color-purple:    rgba(203, 166, 247, 0.5) !important; /* mauve */
+  --container-color-toolbar:   rgba(186, 194, 222, 0.5) !important; /* subtext1 */
+}
+
+aside.notification,
+aside.notification .contents {
+  background: var(--surface1) !important;
+}
+
+.tab.loading a.text {
+  background-size: 150% 100% !important;
+  background-image: linear-gradient(
+    to right,
+    rgba(137, 220, 235, 0) 30%, /* --sky with 0 alpha */
+    rgba(137, 220, 235, 0.25) 50%, /* --sky with 0.25 alpha */
+    rgba(137, 220, 235, 0) 70% /* --sky with 0 alpha */
+  ) !important;
+  animation: 1.25s linear -1.35s infinite alternate loading-bg-animation;
+}
+@keyframes loading-bg-animation {
+  from { background-position-x: -75%; }
+  to   { background-position-x: 175%; }
+}
+
+.action.expand {
+  opacity: 0.4 !important;
+}
+
+.folder.action-container header {
+  padding-right: 0px !important;
+}
+
+.action-group .action {
+  opacity: 0.6;
+}
+
+.action-container.tab {
+ padding: 0px !important;
+ padding-left: 2px !important;
+ margin: 0px !important
+}
+
+.folder .folder-name {
+  padding-left: 0.25em !important;
+  margin-left: -0.50em !important;
+}
+
+.folder.has-open-tabs .folder-name {
+  background: var(--group-bg) !important;
+  color: var(--link-fg) !important;
+}
+
+
+.folder.has-open-tabs:not(.collapsed) .folder-name {
+  color: var(--page-fg) !important;
+  background: var(--selected-bg) !important;
+}
+
+
+.folder.collapsed:not(.has-open-tabs) .folder-name {
+  color: var(--disabled-fg) !important;
+}
+
+.action-container.tab a.text {
+ position: relative !important;
+}
+
+.action-container.tab a.text:before {
+  content: '';
+  width: calc(100% - -3px);
+  height: 100%;    
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: linear-gradient(to right, transparent calc(100% - 1em), var(--page-bg) 100%);
+}
+
+.action-container.tab a.text {
+  text-overflow: clip !important;
+  margin-left: 3px !important;
+  margin-right: 3px !important;
+}
+
+.action-container.tab img.action, .action-container.tab span.action {
+ margin-left: 2px !important;
+}
+
+/*
+footer {
+  display: none !important;
+}
+*/
+
