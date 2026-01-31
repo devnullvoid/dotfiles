@@ -1,0 +1,16 @@
+" General Settings
+set update.lastchecktime 1691538845436
+set configversion 2.0
+set theme catppuccin_custom
+set smoothscroll true
+set hintchars asdfqwertzxvb
+
+" Binds
+bind O fillcmdline tabopen
+bind d stop
+bind x tabclose
+bind t fillcmdline tab
+unbind <C-f>
+
+" For syntax highlighting see https://github.com/tridactyl/vim-tridactyl
+" vim: set filetype=tridactyl
