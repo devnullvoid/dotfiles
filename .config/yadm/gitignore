@@ -5,3 +5,4 @@
 *.tmp
 .config/rofi/images/
 .config/yazi/plugins/
+.config/yazi/flavors/catppuccin-*/
