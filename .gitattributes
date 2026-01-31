@@ -3,3 +3,5 @@
 .claude.json  filter=crypt diff=crypt merge=crypt
 .config/1mcp/mcp.json  filter=crypt diff=crypt merge=crypt
 .ssh/config  filter=crypt diff=crypt merge=crypt
+.codex/config.toml  filter=crypt diff=crypt merge=crypt
+.gemini/settings.json  filter=crypt diff=crypt merge=crypt
