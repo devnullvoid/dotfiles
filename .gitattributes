@@ -1,0 +1,6 @@
+# Prevent sensitive files from being committed
+.config/fish/config_secrets.fish filter=secret
+.claude.json filter=secret
+.gemini/settings.json filter=secret
+.aws/amazonq/cli-agents/cli-agent.json filter=secret
+.codex/config.toml filter=secret
