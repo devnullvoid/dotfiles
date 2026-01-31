@@ -5,3 +5,4 @@
 .ssh/config  filter=crypt diff=crypt merge=crypt
 .codex/config.toml  filter=crypt diff=crypt merge=crypt
 .gemini/settings.json  filter=crypt diff=crypt merge=crypt
+.config/backrest/config.json  filter=crypt diff=crypt merge=crypt
