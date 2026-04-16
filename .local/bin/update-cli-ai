@@ -1,1 +1,31 @@
-/home/jon/Dev/misc/update-cli-tools.sh
+#!/bin/bash
+
+# Script to update CLI coding agents/tools
+
+echo "🔄 Updating CLI coding agents and tools..."
+echo ""
+
+tools=(
+  "@anthropic-ai/claude-code"
+  "@just-every/code"
+  "@1mcp/agent"
+  "@openai/codex"
+  "@google/gemini-cli"
+)
+
+for tool in "${tools[@]}"; do
+  echo "📦 Updating $tool..."
+  npm install -g "$tool@latest"
+  echo ""
+done
+
+claude install latest
+uv tool upgrade kimi-cli --no-cache
+uv tool upgrade mistral-vibe
+uv tool upgrade basic-memory
+kiro-cli update
+
+echo "📦 Updating opencode..."
+bun install -g opencode-ai@latest
+
+echo "✅ All CLI tools updated successfully!"
