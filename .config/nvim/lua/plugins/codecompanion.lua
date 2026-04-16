@@ -58,60 +58,51 @@ return {
         })
       end
 
-      local function kimi_coding_adapter()
-        return adapters.extend("openai", {
-          env = {
-            -- OPENAI_API_KEY = "cmd:echo $KIMI_API_KEY",
-            OPENAI_API_KEY = "cmd:grep '^set -gx KIMI_API_KEY' ~/.config/fish/config_secrets.fish | awk '{print $4}'",
-          },
-          url = "https://api.kimi.com/coding/v1/chat/completions",
-          headers = {
-            ["User-Agent"] = "claude-code/1.0",
-          },
-          schema = {
-            model = {
-              default = "kimi-for-coding",
-            },
-            max_tokens = {
-              default = 32768,
-            },
-            temperature = {
-              default = 0.7,
-            },
-          },
-        })
-      end
-
-      local function opencode_adapter()
-        return adapters.extend("acp", {
-          name = "opencode",
-          env = {
-            OPENCODE_API_KEY = "cmd:grep '^set -gx OPENCODE_API_KEY' ~/.config/fish/config_secrets.fish | awk '{print $4}'",
-          },
-        })
-      end
+      -- local function kimi_coding_adapter()
+      --   return adapters.extend("kimi_cli", {
+      --     commands = {
+      --       default = {
+      --         "kimi-cli",
+      --         "acp",
+      --       },
+      --     },
+      --   })
+      -- end
+      --
+      -- local function opencode_adapter()
+      --   return adapters.extend("opencode", {
+      --     commands = {
+      --       default = {
+      --         "opencode",
+      --         "acp",
+      --       },
+      --     },
+      --   })
+      -- end
+      --
+      -- local function kiro_cli_adapter()
+      --   return adapters.extend("kiro_cli", {
+      --     commands = {
+      --       default = {
+      --         "kiro-cli",
+      --         "acp",
+      --       },
+      --     },
+      --   })
+      -- end
 
       require("codecompanion").setup({
         adapters = {
-          claude_code = claude_code_adapter,
-          gemini_cli = gemini_cli_adapter,
-          codex = codex_adapter,
-          zai_coding = zai_coding_adapter,
-          kimi_coding = kimi_coding_adapter,
-          opencode = opencode_adapter,
-          acp = {
-            claude_code = claude_code_adapter,
-            codex = codex_adapter,
-            gemini_cli = gemini_cli_adapter,
-            opencode = opencode_adapter,
-          },
           http = {
             zai_coding = zai_coding_adapter,
-            kimi_coding = kimi_coding_adapter,
-            opts = {
-              allow_insecure = false,
-              cache_models_for = 1800, -- Cache for 30 minutes
-            },
+          },
+          acp = {
+            claude_code = claude_code_adapter,
+            gemini_cli = gemini_cli_adapter,
+            codex = codex_adapter,
+            -- kimi_cli = kimi_coding_adapter,
+            -- opencode = opencode_adapter,
+            -- kiro_cli = kiro_cli_adapter,
           },
         },
         interactions = {
@@ -156,7 +147,7 @@ return {
             separator = "─",
             show_context = true,
             show_header_separator = false,
-            show_settings = true,
+            -- show_settings = true,
             show_token_count = true,
             show_tools_processing = true,
             start_in_insert_mode = false,

@@ -8,7 +8,7 @@ if status is-interactive
     enable_transience
 
     # include generic colourizer config for fish
-    test -f /etc/grc.fish && source /etc/grc.fish
+    # test -f /etc/grc.fish && source /etc/grc.fish  # handled by conf.d/cgrc.fish
 
     # set vivid LS_COLORS theme to catppuccin-mocha
     set -gx LS_COLORS (vivid generate catppuccin-mocha)
@@ -23,7 +23,8 @@ if status is-interactive
 
     # Simple command abbreviations
     alias ls=lsd
-    alias cat=bat
+    # alias cat=bat
+    abbr -a cat bat
     abbr -a uls /usr/bin/ls
     abbr -a ucat /usr/bin/cat
     abbr -a vim nvim
@@ -32,6 +33,7 @@ if status is-interactive
     abbr -a mdview 'glow -tl'
     abbr -a claude-aur /usr/bin/claude
     abbr -a lsa 'eza --icons -a'
+    abbr -a k kiro-cli
 
     # Git abbreviations
     abbr -a g git
@@ -97,3 +99,6 @@ set -gx SCCACHE_CACHE_SIZE 10G
 # Go build optimizations
 set -gx GOCACHE ~/.cache/go-build
 set -gx GOMODCACHE ~/.cache/go-mod
+
+# SSH Agent
+set -gx SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/ssh-agent.socket"

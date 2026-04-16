@@ -33,6 +33,14 @@ return {
           command = "opencode",
           args = { "acp" },
         },
+        ["kiro-cli"] = {
+          command = "kiro-cli",
+          args = { "acp" },
+        },
+        ["kimi-cli"] = {
+          command = "kimi-cli",
+          args = { "acp" },
+        },
       })
 
       opts.providers = vim.tbl_deep_extend("force", opts.providers or {}, {

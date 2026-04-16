@@ -12,3 +12,4 @@
 .sops.yaml  filter=crypt diff=crypt merge=crypt
 note.txt  filter=crypt diff=crypt merge=crypt
 .mcli/config.json  filter=crypt diff=crypt merge=crypt
+.config/DankMaterialShell/settings.json  filter=crypt diff=crypt merge=crypt

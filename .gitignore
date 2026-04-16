@@ -4,3 +4,6 @@
 .gemini/settings.json
 .aws/amazonq/cli-agents/cli-agent.json
 .codex/config.toml
+
+# Exclude chat histories
+*.chat
