@@ -1,7 +1,8 @@
 test ! -e "$HOME/.x-cmd.root/local/data/fish/rc.fish" || source "$HOME/.x-cmd.root/local/data/fish/rc.fish" # boot up x-cmd.
 
-# Ensure ~/.local/bin comes first in PATH (after fnm initialization in conf.d)
+# Ensure local wrappers override package-manager shims, then keep ~/.local/bin available.
 fish_add_path --move --prepend ~/.local/bin
+fish_add_path --move --prepend ~/.local/bin-wrappers
 
 if status is-interactive
     starship init fish | source
@@ -81,6 +82,7 @@ if status is-interactive
     set -gx BEMENU_OPTS '--fb "#1e1e2e" --ff "#cdd6f4" --nb "#1e1e2e" --nf "#cdd6f4" --tb "#1e1e2e" --hb "#1e1e2e" --tf "#f38ba8" --hf "#f9e2af" --af "#cdd6f4" --ab "#1e1e2e"'
 
     # Shell integrations
+    direnv hook fish | source
     carapace carapace fish | source
     zoxide init fish | source
     atuin init fish | source
@@ -102,3 +104,22 @@ set -gx GOMODCACHE ~/.cache/go-mod
 
 # SSH Agent
 set -gx SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/ssh-agent.socket"
+alias vlc="QT_QPA_PLATFORM=xcb command vlc --vout=xcb_x11"
+
+# distcc - distribute compilations
+fish_add_path -p /usr/lib/distcc/bin
+
+# Allow old cmake projects to configure with cmake 4.x
+set -gx CMAKE_POLICY_VERSION_MINIMUM 3.5
+
+# Decode pagers from gqrx UDP audio output
+alias pager-decode='socat -u UDP6-RECV:7355,reuseaddr - | sox -t raw -esigned-integer -b16 -r 48000 - -esigned-integer -b16 -r 22050 -t raw - | multimon-ng -t raw -a POCSAG512 -a POCSAG1200 -a POCSAG2400 -a FLEX -f alpha -'
+
+# APRS decode from gqrx/SDR++ UDP stream (tune to 144.39M NFM)
+alias aprs-decode='socat -u UDP-RECV:7355,reuseaddr - | direwolf -c ~/direwolf.conf -r 48000 -b 16 -n 1 -'
+
+# ACARS aircraft messages (standalone, uses dongle directly)
+alias acars-decode='socat -u UDP-RECV:7355,reuseaddr - | acarsdec --sndfile /dev/stdin,subtype=2,channels=1,endian=little -m 4 --output oneline:file:path=/dev/stdout'
+
+# Digital voice decode - P25/DMR/D-STAR (via gqrx/SDR++ UDP, tune to trunked radio freq, NFM)
+alias dsd-decode='socat -u UDP6-RECV:7355,reuseaddr - | sox -t raw -esigned-integer -b16 -r 48000 -c 1 - -t raw -esigned-integer -b16 -r 48000 -c 1 - | dsd -i - -o /dev/null -fa'

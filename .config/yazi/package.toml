@@ -1,22 +1,22 @@
 [[plugin.deps]]
 use = "Rolv-Apneseth/starship"
-rev = "eca1861"
-hash = "e519d894e94ded741e06aae4d4775981"
+rev = "a837101"
+hash = "635b0feb9215772d22020eb0abf0bb34"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
-rev = "1962818"
-hash = "26db011a778f261d730d4f5f8bf24b3f"
+rev = "5d5c480"
+hash = "88e56a64b7ce7c4314427452343fef17"
 
 [[plugin.deps]]
 use = "ktunprasert/git-files"
-rev = "c7289ad"
-hash = "cdb1a69bed63211c75b72521bbab875d"
+rev = "529444e"
+hash = "a028c3c06630a33b068f4d5bd714a795"
 
 [[plugin.deps]]
 use = "llanosrocas/yaziline"
-rev = "d9cc2cb"
-hash = "b6073aadf2f9a1d5389a6d389f33f69c"
+rev = "25161c1"
+hash = "5c7802a9ac249be88729978e3b9525bc"
 
 [[plugin.deps]]
 use = "josephschmitt/auto-layout"
@@ -25,8 +25,8 @@ hash = "94e76cea86ef32b9b73c56d3e3f5120d"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "1962818"
-hash = "6fa6a05a81c98dd000fbca3cca6e9682"
+rev = "5d5c480"
+hash = "7b625412411be411153886894d9acaf"
 
 [[plugin.deps]]
 use = "pirafrank/what-size"
@@ -35,13 +35,13 @@ hash = "57056b9728006881d580ccabe8154a9c"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:jump-to-char"
-rev = "1962818"
+rev = "5d5c480"
 hash = "7a4b4237223aaa94e589d1c01a23542a"
 
 [[plugin.deps]]
 use = "uhs-robert/sshfs"
-rev = "4070c8e"
-hash = "a4cd81fe60c350c3f0fde9957f4a4bb9"
+rev = "a8b8903"
+hash = "8c1b36103121a66b37308afaf7124575"
 
 [[plugin.deps]]
 use = "GianniBYoung/rsync"
@@ -50,12 +50,12 @@ hash = "9e85283824277bf66011a3977d266edb"
 
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-mocha"
-rev = "9511cb0"
+rev = "54ab389"
 hash = "7dfe41c9c3d9be76da8a844263d0bbed"
 
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-macchiato"
-rev = "9511cb0"
+rev = "54ab389"
 hash = "67f2240fd9c98f21714527a24cd672f8"
 
 [[flavor.deps]]

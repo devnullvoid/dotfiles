@@ -20,6 +20,7 @@ for tool in "${tools[@]}"; do
 done
 
 claude install latest
+agy update
 uv tool upgrade kimi-cli --no-cache
 uv tool upgrade mistral-vibe
 uv tool upgrade basic-memory

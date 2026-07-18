@@ -42,13 +42,13 @@ environment {
     CLUTTER_BACKEND "wayland"
     ELECTRON_OZONE_PLATFORM_HINT "auto"
     GDK_BACKEND "wayland,x11"
-    JAVA_AWT_WM_NONEREPARENTING "1"
+    _JAVA_AWT_WM_NONREPARENTING "1"
     MOZ_ENABLE_WAYLAND "1"
     NIXOS_OZONE_WL "1"
     OZONE_PLATFORM "wayland"
     QT_QPA_PLATFORM "wayland;xcb"
     QT_QPA_PLATFORMTHEME "qt6ct"
-    QT_QPA_PLATFORMTHEME "qt6ct"
+    // QT_QPA_PLATFORMTHEME "qt6ct"
     // QT_STYLE_OVERRIDE "kvantum"
     QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
     SDL_VIDEODRIVER "wayland"
@@ -79,7 +79,7 @@ input {
 
     touchpad {
         // tap
-        dwt
+        // dwt
         dwtp
         accel-speed 0.2
         accel-profile "adaptive"
@@ -176,6 +176,14 @@ layout {
       // off
       color "#f5c2e759"
     }
+}
+
+blur {
+    // off
+    passes 2
+    offset 5
+    noise 0.02
+    saturation 1.5
 }
 
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
@@ -315,6 +323,9 @@ window-rule {
     clip-to-geometry true
     opacity 0.95
     draw-border-with-background false
+    background-effect {
+        blur true
+    }
 }
 
 window-rule {
@@ -350,6 +361,14 @@ window-rule {
     opacity 0.97
 }
 
+// window-rule {
+//     match app-id="^Alacritty$"
+//     match app-id="^kitty$"
+//
+//     background-effect {
+//         blur true
+//     }
+// }
 // window-rule {
 //   match app-id="Rofi"
 //
